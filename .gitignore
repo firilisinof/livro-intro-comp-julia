@@ -1,5 +1,7 @@
-venv/
-.quarto/
+venv
+.venv
+.quarto
 *~
-
+.ipynb_checkpoints
 /.quarto/
+.DS_Store

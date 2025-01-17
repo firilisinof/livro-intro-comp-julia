@@ -2,7 +2,7 @@
   "hash": "7a532ad9af836d1c076cbb420b815162",
   "result": {
     "engine": "julia",
-    "markdown": "---\nengine: julia\n---\n\n\n\n# Visão Geral do Curso\n\n",
+    "markdown": "---\nengine: julia\n---\n\n\n# Visão Geral do Curso\n\n",
     "supporting": [
       "01_files"
     ],

@@ -28,19 +28,19 @@ fibo(). Podemos escrever o seguinte trecho de código:
 
 ```{julia}
 function testafibo_versao1()
-  if fibo(1) == 1
-    println("Deu certo para 1")
-  end
-  if fibo(2) == 1
-    println("Deu certo para 2")
-  end
-  if fibo(5) == 5
-    println("Deu certo para 5")
-  end
-  if fibo(12) == 144
-    println("Deu certo para 12")
-  end
-  println("Final dos testes")
+    if fibo(1) == 1
+        println("Deu certo para 1")
+    end
+    if fibo(2) == 1
+        println("Deu certo para 2")
+    end
+    if fibo(5) == 5
+        println("Deu certo para 5")
+    end
+    if fibo(12) == 144
+        println("Deu certo para 12")
+    end
+    println("Final dos testes")
 end
 ```
 
@@ -56,19 +56,19 @@ Levando em conta o que foi escrito acima, podemos mudar o nosso teste para:
 
 ```{julia}
 function testafibo()
-  if fibo(1) != 1
-    println("Não deu certo para 1")
-  end
-  if fibo(2) != 1
-    println("Não deu certo para 2")
-  end
-  if fibo(5) != 5
-    println("Não eu certo para 5")
-  end
-  if fibo(12) != 144
-    println("Não deu certo para 12")
-  end
-  println("Final dos testes")
+    if fibo(1) != 1
+        println("Não deu certo para 1")
+    end
+    if fibo(2) != 1
+        println("Não deu certo para 2")
+    end
+    if fibo(5) != 5
+        println("Não eu certo para 5")
+    end
+    if fibo(12) != 144
+        println("Não deu certo para 12")
+    end
+    println("Final dos testes")
 end
 ``` 
 
@@ -111,7 +111,6 @@ valores de $n$ e $n-1$.
 Como Julia é uma linguagem moderna podemos usar o conceito de Memoização, que evita calcular o que já foi calculado. O Memoize tem que ser instalado no Julia com
 os comandos `import Pkg` e  `Pkg.add("Memoize")`.
 
-
 ```{julia}
 using Memoize
 @memoize function fibo(n)
@@ -150,13 +149,13 @@ TDD (Test Driven Design).
 
 ```{julia}
 function testaMDC()
-    if MDC(3298, 2031)!= 1
+    if MDC(3298, 2031) != 1
         println("deu erro, para 3298 e 2031")
     end
-    if MDC(120, 36)!= 12
+    if MDC(120, 36) != 12
         println("deu erro, para 120 e 36")
     end
-    if MDC(36, 120)!= 12
+    if MDC(36, 120) != 12
         println("deu erro, para 36 e 120")
     end
     println("Acabaram os testes")
