@@ -33,6 +33,7 @@ book:
 execute:
   cache: true
   freeze: auto
+  daemon: 120
 
 format:
   pdf:
