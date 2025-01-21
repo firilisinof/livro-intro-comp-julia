@@ -1,0 +1,11 @@
+{
+  "hash": "482150370428a9a3657c2dc3bcce0384",
+  "result": {
+    "engine": "julia",
+    "markdown": "---\nengine: julia\n---\n\n\n\n\n\n# Sobre o Curso\n\n",
+    "supporting": [
+      "01_files/figure-pdf"
+    ],
+    "filters": []
+  }
+}

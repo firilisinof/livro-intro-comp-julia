@@ -1,34 +1,35 @@
 project:
   type: book
-  output-dir: .
 
 lang: pt
 
 book:
-  title: "Introdução à Linguagem Julia"
+  title: "Uma Introdução à Computação com Julia"
   author:
     - "Alfredo Goldman"
     - "Lucas de Sousa Rosa"
   date: "last-modified"
   chapters:
     - index.qmd
-    - aulas/01.qmd
-    - aulas/02.qmd
-    - aulas/03.qmd
-    - aulas/04.qmd
-    - aulas/05.qmd
-    - aulas/06.qmd
-    - aulas/07.qmd
-    - aulas/08.qmd
-    - aulas/09.qmd
-    - aulas/10.qmd
-    - aulas/11.qmd
-    - aulas/12.qmd
-    - aulas/13.qmd
-    - aulas/14.qmd
-    - aulas/15.qmd
-    - aulas/16.qmd
-    - aulas/17.qmd
+    - sobre-o-curso.qmd
+    - chapters/01.qmd
+    - chapters/02.qmd
+    - chapters/03.qmd
+    - chapters/04.qmd
+    - chapters/05.qmd
+    - chapters/06.qmd
+    - chapters/07.qmd
+    - chapters/08.qmd
+    - chapters/09.qmd
+    - chapters/10.qmd
+    - chapters/11.qmd
+    - chapters/12.qmd
+    - chapters/13.qmd
+    - chapters/14.qmd
+    - chapters/15.qmd
+    - chapters/16.qmd
+    - chapters/17.qmd
+    - agradecimentos.qmd
 
 execute:
   cache: true
@@ -36,6 +37,8 @@ execute:
   daemon: 120
 
 format:
+  html:
+    theme: cosmo
   pdf:
     toc: true
     number-sections: true

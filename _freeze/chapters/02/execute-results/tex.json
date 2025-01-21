@@ -1,0 +1,11 @@
+{
+  "hash": "28a5972fffa780badc4ae070eb6d2f55",
+  "result": {
+    "engine": "julia",
+    "markdown": "---\nengine: julia\n---\n\n\n\n\n\n# Visão Geral da Evolução de Hardware e Linguagens\n\n",
+    "supporting": [
+      "02_files/figure-pdf"
+    ],
+    "filters": []
+  }
+}
