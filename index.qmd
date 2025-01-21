@@ -1,5 +1,1 @@
-# Agradecimentos {.unnumbered}
-
-Diversas pessoas contribuíram, direta ou indiretamente, para a realização deste livro.
-
-O autor principal é o Professor Alfredo Goldman. A revisão do texto e o suporte técnico ficaram a cargo de Lucas de Sousa Rosa, seu orientando de doutorado. Agradecemos, em especial, a Beatriz Viana Costa, que colaborou na redação de alguns capítulos. Agradecemos também os alunos da disciplina MAC0115 (Introdução à Computação para Ciências Exatas e Tecnologia), turma de 2024, por suas contribuições na revisão do conteúdo.
+# Bem-vindos {.unnumbered}
