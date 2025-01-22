@@ -1,67 +1,48 @@
-# Configurando o Ambiente no Ubuntu
+# Como contribuir
 
-## Quarto
+## Requisitos
 
-Baixe o arquivo `quarto-<versão>-linux-amd64.deb` em https://quarto.org/docs/get-started/. Para instalar, execute:
+- [Quarto](https://quarto.org/)
+  - Testado na versão 1.6.40
+- [Julia](https://julialang.org/)
+  - Testado na versão 1.11.2
 
-```sh
-sudo dpkg -i /path/to/quarto-<versão>-linux-amd64.deb
-```
+## Instalação
 
-## Julia
+Após a instalação de Julia e Quarto, será preciso instalar alguns componentes para fazê-los funcionar juntos. Esses componentes são
 
-Caso não tenha a linguagem Julia instalada, siga as instruções em https://julialang.org/downloads/. Basicamente, você precisa executar o comando abaixo e seguir as configurações padrão.
+- IJulia
+- Revise.jl
+- Jupyter Cache
 
-```sh
-curl -fsSL https://install.julialang.org | sh
-```
+As instruções podem ser encontradas na documentação do Quarto em [Using Julia](https://quarto.org/docs/computations/julia.html). Recomendo instalar o ecossistema Jupyter através do pacote IJulia (veja instruções no link anterior).
 
-Na raiz do repositório, execute o REPL de Julia com o seguinte comando:
+## Estrutura do repositório
 
-```sh
-julia --project=@.
-```
+Os diretórios são estruturado da seguinte forma:
 
-No REPL tecle `]`, digite `instantiate` e pressione `Enter` para instalar as dependências (a versão de Julia deve ser a mesma do `Manifest.toml`). Nesse mesmo REPL, novos pacotes podem ser adicionados com o comando `add <nome do pacote>` (lembre-se de versionar os arquivos `Project.toml` e `Manifest.toml` após a instalação de novos pacotes).
+- `_book/`: diretório onde o PDF e o HTML são gerados. Versionar apenas o PDF.
+- `_freeze/`: diretório onde o cache das execuções do Quarto são armazenadas. Versionar.
+- `.github/`: diretório com arquivos de configuração do GitHub. Contém o workflow que faz o deploy do livro no GitHub Pages.
+- `chapters/`: diretório com os capítulos do livro. Cada capítulo é um arquivo `.qmd`.
 
-## Python (Jupyter)
+No diretório raiz, temos os seguintes arquivos:
 
-Provalmente você já tem alguma versão de python instalada no seu sistema operacional. Instale o gerenciador de ambientes virtuais através do comando:
+- `.gitignore`: arquivo de configuração do git para ignorar arquivos e diretórios.
+- `CONTRIBUTING.md`: este arquivo.
+- `README.md`: arquivo de apresentação do repositório.
+- `_quarto.yml`: arquivo de configuração do Quarto.
+- `Project.toml` e `Manifest.toml`: arquivos de configuração do Julia.
+- `index.qmd`: arquivo obrigatório que contém a página inicial do livro.
+- `agradecimentos.qmd`: arquivo que contém os agradecimentos do livro.
+- `sobre-o-curso.qmd`: arquivo que contém informações sobre o curso.
 
-```sh
-sudo apt install python3-virtualenv
-```
+## Adicionando um novo capítulo
 
-Em seguida, crie um ambiente virutal na raíz do repositório através do comando:
+Para adicionar um novo capítulo, crie um arquivo `.qmd` no diretório `chapters/`. Além disso, adicione uma nova entrada no arquivo `_quarto.yml` na entrada `book.chapters`. O Quarto irá renderizar os capítulos na ordem em que eles aparecem no arquivo de configuração.
 
-```sh
-virtualenv venv
-```
+Caso o capítulo utilize algum pacote Julia, adicione a dependência da seguinte forma:
 
-Ative o ambiente com o comando:
-
-```sh
-source venv/bin/activate
-```
-
-Instale as dependências do projeto com o comando:
-
-```sh
-pip install -r requirements.txt
-```
-
-## Visual Studio Code
-
-Por fim, para instalar a extensão do Quarto no Visual Studio Code execute:
-
-```sh
-code --install-extension quarto.quarto
-```
-
-# Workflow
-
-Novas aulas devem ser criadas no diretório `aulas/` seguindo a ordem numérica. Sempre que uma nova aula é adicionada, será necessário avisar o Quarto sobre a nova adição. Isso é feito adicionando uma nova entrada no arquivo `_quarto.yml` na entrada `book.chapters`.
-
-O PDF é gerado ao executar o comando `quarto render --to pdf`. No VSCode, basta selecionar `F1 > Quarto: Render Project`. Caso não tenha nenhum problema, o PDF será gerado na raíz do repositório.
-
-Lembre-se de versionar o diretório `_freeze`, já que ele contém o cache das execuções e permite acelerar a geração de um novo arquivo.
+- Execute o comando `julia --project` para abrir o REPL do Julia no contexto do projeto.
+- Entre no modo de pacotes pressionando `]`.
+- Adicione o pacote com o comando `add NomeDoPacote`.
