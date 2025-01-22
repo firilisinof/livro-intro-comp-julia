@@ -46,3 +46,7 @@ Caso o capítulo utilize algum pacote Julia, adicione a dependência da seguinte
 - Execute o comando `julia --project` para abrir o REPL do Julia no contexto do projeto.
 - Entre no modo de pacotes pressionando `]`.
 - Adicione o pacote com o comando `add NomeDoPacote`.
+
+## Subindo as alterações
+
+Após adicionar um novo capítulo e antes de subir as alterações para o repositório, execute o comando `quarto render --to all` para gerar o PDF e o HTML do livro. Versione apenas o PDF no diretório `_book/` e o cache no diretório `_freeze/`.
