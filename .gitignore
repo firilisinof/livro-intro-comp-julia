@@ -5,5 +5,4 @@ venv
 .ipynb_checkpoints
 /.quarto/
 .DS_Store
-_book/*
-!_book/Uma-Introdução-à-Computação-com-Julia.pdf
+_book/
