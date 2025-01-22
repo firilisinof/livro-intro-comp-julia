@@ -8,6 +8,8 @@ book:
   author:
     - "Alfredo Goldman"
     - "Lucas de Sousa Rosa"
+  repo-url: https://github.com/firilisinof/livro-intro-comp-julia
+  downloads: [pdf]
   date: "last-modified"
   chapters:
     - index.qmd
