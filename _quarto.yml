@@ -13,25 +13,33 @@ book:
   date: "last-modified"
   chapters:
     - index.qmd
-    - sobre-o-curso.qmd
-    - chapters/01.qmd
-    - chapters/02.qmd
-    - chapters/03.qmd
-    - chapters/04.qmd
-    - chapters/05.qmd
-    - chapters/06.qmd
-    - chapters/07.qmd
-    - chapters/08.qmd
-    - chapters/09.qmd
-    - chapters/10.qmd
-    - chapters/11.qmd
-    - chapters/12.qmd
-    - chapters/13.qmd
-    - chapters/14.qmd
-    - chapters/15.qmd
-    - chapters/16.qmd
-    - chapters/17.qmd
     - agradecimentos.qmd
+    - sobre-o-curso.qmd
+    - part: "Parte I: Conceitos Básicos"
+      chapters:
+        - chapters/01-evolucao-computacao.qmd
+        - chapters/02-calculadora-repl.qmd
+        - chapters/03-funcoes-recursao.qmd
+        - chapters/04-controle-fluxo.qmd
+    - part: "Parte II: Estruturas Fundamentais e Boas Práticas"
+      chapters:
+        - chapters/05-algoritmos-testes.qmd
+        - chapters/06-testes-automatizados.qmd
+        - chapters/07-while.qmd
+        - chapters/08-exercicios.qmd
+        - chapters/09-exercicios-cont.qmd
+        - chapters/10-entrada-dados.qmd
+        - chapters/11-exercicios-2.qmd
+        - chapters/12-blackjack.qmd
+        - chapters/13-blackjack-cont.qmd
+        - chapters/14-boas-praticas.qmd
+    - part: "Parte III: Conceitos Avançados"
+      chapters:
+        - chapters/15-matrizes.qmd
+        - chapters/16-exercicios-3.qmd
+    - part: "Em andamento..."
+  appendices:
+    - appendices/01-questionario.qmd
 
 execute:
   cache: true

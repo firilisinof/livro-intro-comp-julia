@@ -1,0 +1,24 @@
+# Respostas para a pergunta "O que é um computador?" {#sec-questionario}
+
+As respostas foram coletadas através do site <https://www.bli.do/MAC115>. Eis as respostas:
+
+- “É uma máquina que utiliza certos padrões para processar informações. É uma evolução da teórica máquina de Turing e pode ser considerada uma extensão de nossa inteligência.”
+- “Computador: configura uma máquina capaz de realizar processos binários de criação e análise, sendo esses modelados pelo próprio dispositivo (IA) ou por um programador. Um produto de passos.”
+- “Um computador é uma máquina capaz de identificar códigos baseados em binariedade utilizando linguagem lógica.”
+- “É um instrumento tecnológico que junta milhões de dados que diversas pessoas ao redor do mundo distribuem, possibilitando trabalhar de forma técnica criando novos dados e meios de alcançar respostas.”
+- “Um dispositivo que vive na tomada.”
+- “É um equipamento que "roda" um programa instalado que recebe dados, os processa e tem com saída o resultado, se tudo correr bem…”
+- “Decodificador.”
+- “Tem por finalidade ser uma ferramenta baseada em algoritmos e lógica de decisão que vez programada e orientada possa possibilitar a resolução de problemas por coleta de dados, informações e então geração de sistemas.”
+- “Um computador é um dispositivo eletrônico caracterizado pela sua capacidade de processamento lógico. São construídos com semicondutores e pode apresentar várias peças diferentes, como fonte (ou bateria), placa mãe, processador, placa de vídeo, memórias e etc.”
+- “um robô que vai controlar os humanos um dia.”
+- “Dispositivo que faz contas.”
+- Um computador é um dispositivo que computa, que faz contas, utilizando uma CPU (Central Processing Unit) para fazer cálculos utilizando o sistema binário. 0 e 1, que são utilizados em portas lógicas que são feitas de silício, um semicondutor que permite que cálculos utilizando esses dois dígitos sejam realizados.”
+- “Uma máquina.”
+- “É um negócio que tem ferramentas que ajudam a realizar diferentes tarefas.”
+- “É um celular 2.0.”
+- “O computador é uma máquina que obedece comandos.”
+- “Uma calculadora.”
+- “Máquina de Turing.”
+- “Computador é, de uma forma bem simplificada, uma inteligência eletrônica composta de uma carcaça (hardware) que completa a parte do software, feita para responder comandos.”
+- “A evolução da calculadora.”

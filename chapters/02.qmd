@@ -1,4 +1,0 @@
----
-engine: julia
----
-# Visão Geral da Evolução de Hardware e Linguagens
