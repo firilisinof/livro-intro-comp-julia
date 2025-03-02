@@ -1,0 +1,33 @@
+# Uma Breve Apresentação da História da Computação
+
+## Motivação
+
+Mas, afinal, o que é um computador? Precisamos mesmo saber a resposta para começar a programar? Na verdade, não. Porém, entender como um computador funciona nos torna bons programadores. Definir o que é um computador pode ser mais complicado do que parece. Veremos que a ideia de "computador" mudou muito ao longo da história, sempre ligada à necessidade de contar. Antes de mergulhar na história, vamos explorar diferentes respostas para essa pergunta.
+
+Logo no começo das aulas de 2025, na matéria MAC115 - Introdução à Computação para Ciências Exatas e Tecnologia, fizemos uma pergunta simples aos alunos: "O que é um computador?". Anotamos as respostas (ver @sec-questionario) e apesar de algumas respostas engraçadas, como “um robô que vai controlar os humanos um dia”, notamos que a maioria dos alunos pensava em coisas parecidas:
+
+1. Um computador é um objeto físico; uma máquina ou dispositivo.
+2. Ele é capaz de processar informações ou dados.
+3. É como uma calculadora, só que mais moderna.
+
+Essas ideias mostram um pouco do que um computador faz, mas não explicam tudo o que ele é.
+
+## Computadores precisam existir?
+
+Se perguntássemos para uma pessoa na rua o que ela acha que é um computador, é bem provável que ela diria que é uma “máquina” ou um “dispositivo”. De fato, nas respostas que coletamos, essa ideia aparece com frequência. No entanto, os computadores modernos foram criados a partir de um modelo matemático abstrato, chamado Máquina de Turing.
+
+Quando criança, aos 11 anos, Alan Mathison Turing escreveu uma carta para seus pais, Julius Mathison Turing e Ethel Sara Stoney Turing, contando sua ideia de como fazer uma máquina de escrever. Alan Turing não inventou a máquina de escrever, mas usou essa ideia para criar a Máquina de Turing: um modelo matemático de computação que manipula símbolos numa fita infinita, seguindo regras bem definidas. Esse modelo deu origem aos computadores modernos que, segundo John A. Robinson, nada mais são do que "manifestações físicas de uma mesma abstração lógica: a máquina universal de Turing." Então, não. Computadores não precisam existir.
+
+O Professor Douglas Hartree (1897–1958), no seu livro “Calculating instruments and machines”, diz que computadores podem ser vistos de dois ângulos: anatômico (do que são feitos) e fisiológico (como funcionam). Tentar definir um computador pelas suas partes não daria certo. Já vimos que eles nem precisam existir. Além disso, as peças dos computadores mudaram muito ao longo dos anos, então usar a anatomia para defini-los não funcionaria.
+
+Na mesma época o Professor Arthur L. Samuel dá uma definição fisiológica do que é um computador. Segundo Samuel, um computador é “um dispositivo de processamento de informações ou dados que aceita dados em uma forma e os entrega em uma forma alterada”. Essa ideia concorda com o que os alunos pensam.
+
+## Calculadoras, computadores e a história da computação
+
+É aqui que a gente começa a falar da história da computação. Nós, humanos, somos muito criativos. Estamos sempre criando ferramentas para nos ajudar. Existem evidências arqueológicas que sugerem que os humanos praticam a contagem há pelo menos 50.000 anos. A contagem era usada por povos antigos para controlar dados sociais e econômicos, como o número de pessoas no grupo, animais, propriedades ou dívidas. Então, não é surpresa que os humanos tenham inventado ferramentas para ajudar nesse processo. Em 2700–2300 AC, os humanos criaram o ábaco: uma ferramenta para fazer contas mais rápido.
+
+Ao longo dos séculos, outras ferramentas foram criadas para ajudar nisso. Um exemplo é a régua de cálculo, do século XVII, que fazia a mesma coisa que o ábaco, mas usando propriedades da funções logarítmicas. Os primeiros computadores eram como versões mais modernas dessas ferramentas, ou seja, máquinas de calcular. O engenho diferencial (1820) de Charles Babbage (1791–1871), uma máquina idealizada, mas não construída, é um exemplo de máquina de calcular feita para calcular funções polinomiais.
+
+O inglês Charles Babbage era matemático, filósofo, inventor e engenheiro mecânico, e é considerado por muitos como o “pai do computador”. Esse título é por causa de outra máquina que ele idealizou. O engenho analítico (1840), diferente de todas as máquinas da época, marcou a transição da aritmética mecanizada para a computação de propósito geral. Essa máquina seria programada por meio de cartões perfurados e incorporaria diversos recursos posteriormente adotados em computadores modernos, como controle sequencial, estruturas de ramificação e mecanismos de repetição (laços).
+
+Durante a criação do engenho analítico, a condessa de Lovelace, Augusta Ada Byron King (filha do poeta Lord Byron), criou um algoritmo para calcular a sequência dos números de Bernoulli, e por isso é considerada a primeira programadora. Hoje em dia, Ada Lovelace é usada como inspiração para aumentar a presença de mulheres na computação, que era bem maior algumas décadas atrás.
