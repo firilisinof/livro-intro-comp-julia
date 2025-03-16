@@ -182,4 +182,28 @@ end
 ```
 
 Exercício:
-Faça uma função para encontrar o \Delta de uma equação de segundo grau
+
+Faça o passo a passo para encontrar as raízes da equação de segundo grau $x^2 - 5 x + 6$, usando
+as váriaveis `a`, `b`, `c`, `\Delta`, `x1` e `x2`. Após isso, compare com a solução a seguir:
+
+```{julia}
+
+# Definição dos coeficientes
+a = 1
+b = -5
+c = 6
+
+# Cálculo do discriminante
+delta = b^2 - 4 * a * c
+
+# Cálculo das raízes
+if delta >= 0
+    x1 = (-b + sqrt(delta)) / (2 * a)
+    x2 = (-b - sqrt(delta)) / (2 * a)
+    println("As raízes são: x1 = $x1 e x2 = $x2")
+else
+    println("A equação não possui raízes reais.")
+end
+
+```
+
