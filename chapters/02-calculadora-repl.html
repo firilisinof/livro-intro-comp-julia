@@ -185,12 +185,6 @@ window.Quarto = {
  <span class="menu-text">Agradecimentos</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../sobre-o-curso.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Sobre o Curso</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -351,12 +345,15 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#começando-com-o-modo-interativo-do-julia" id="toc-começando-com-o-modo-interativo-do-julia" class="nav-link active" data-scroll-target="#começando-com-o-modo-interativo-do-julia"><span class="header-section-number">2.1</span> Começando com o modo interativo do Julia</a></li>
-  <li><a href="#variáveis-e-seus-tipos" id="toc-variáveis-e-seus-tipos" class="nav-link" data-scroll-target="#variáveis-e-seus-tipos"><span class="header-section-number">2.2</span> Variáveis e seus tipos</a>
+  <li><a href="#explorando-a-sessão-interativa-de-julia" id="toc-explorando-a-sessão-interativa-de-julia" class="nav-link active" data-scroll-target="#explorando-a-sessão-interativa-de-julia"><span class="header-section-number">2.1</span> Explorando a Sessão Interativa de Julia</a></li>
+  <li><a href="#variáveis-e-tipos-de-dados" id="toc-variáveis-e-tipos-de-dados" class="nav-link" data-scroll-target="#variáveis-e-tipos-de-dados"><span class="header-section-number">2.2</span> Variáveis e Tipos de Dados</a></li>
+  <li><a href="#saída-de-dados" id="toc-saída-de-dados" class="nav-link" data-scroll-target="#saída-de-dados"><span class="header-section-number">2.3</span> Saída de Dados</a></li>
+  <li><a href="#arquivos-externos" id="toc-arquivos-externos" class="nav-link" data-scroll-target="#arquivos-externos"><span class="header-section-number">2.4</span> Arquivos Externos</a>
   <ul class="collapse">
-  <li><a href="#tipagem-dinâmica" id="toc-tipagem-dinâmica" class="nav-link" data-scroll-target="#tipagem-dinâmica"><span class="header-section-number">2.2.1</span> Tipagem dinâmica</a></li>
+  <li><a href="#o-que-é-um-arquivo-.jl" id="toc-o-que-é-um-arquivo-.jl" class="nav-link" data-scroll-target="#o-que-é-um-arquivo-.jl"><span class="header-section-number">2.4.1</span> O que é um arquivo <code>.jl</code>?</a></li>
   </ul></li>
-  <li><a href="#saída-de-dados" id="toc-saída-de-dados" class="nav-link" data-scroll-target="#saída-de-dados"><span class="header-section-number">2.3</span> Saída de dados</a></li>
+  <li><a href="#verifique-seu-aprendizado" id="toc-verifique-seu-aprendizado" class="nav-link" data-scroll-target="#verifique-seu-aprendizado"><span class="header-section-number">2.5</span> Verifique seu Aprendizado</a></li>
+  <li><a href="#explore-por-conta-própria" id="toc-explore-por-conta-própria" class="nav-link" data-scroll-target="#explore-por-conta-própria"><span class="header-section-number">2.6</span> Explore por Conta Própria</a></li>
   </ul>
 </nav>
     </div>
@@ -382,333 +379,380 @@ window.Quarto = {
 </header>
 
 
-<p>Objetivo: Ver o interpretador de Julia como uma calculadora poderosa, introduzir a noção de variáveis.</p>
-<section id="começando-com-o-modo-interativo-do-julia" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="começando-com-o-modo-interativo-do-julia"><span class="header-section-number">2.1</span> Começando com o modo interativo do Julia</h2>
-<p>Quem quiser já pode instalar o ambiente de programação, usem esse <a href="https://julialang.org/">link</a>. Há também alguns ambientes que permitem o uso da linguagem no seu navegador, sugiro a busca pelas palavras chave <code>Julia Language online</code>.</p>
-<p>Dentro do Julia (após chamar julia na linha de comando), vamos começar com contas com números inteiros:</p>
+<p>O objetivo deste capítulo é apresentar o interpretador de Julia como uma calculadora poderosa e introduzir os primeiros conceitos de programação: variáveis e funções. Mas primeiro é preciso instalar a linguagem Julia em seu computador. Mais detalhes sobre o processo de instalação podem ser encontrados neste <a href="https://julialang.org/downloads/">link</a>.</p>
+<p>Muito provavelmente seu sistema é Windows (10 ou 11) e sua arquitetura é de 64-bits. Há algumas formas de instalar Julia no Windows:</p>
+<ol type="1">
+<li>Através de um arquivo executável (<code>.exe</code>).</li>
+<li>Através de comandos pelo terminal (<code>winget</code>).</li>
+</ol>
+<p>A princípio qualquer uma das opções é adequada. A primeira opção não requer nenhum programa adicional, enquanto que a segunda requer um terminal. Um terminal é um aplicativo que permite a comunicação com o sistema operacional por meio de uma interface de linha de comando (CLI). O terminal padrão do Windows é o Windows Terminal. É fortemente recomendado que você o tenha instalado e isso pode ser feito através da Microsoft Store.</p>
+<p>Uma vez que você tenha acesso a um terminal há dois comandos possíveis para instalar Julia: <code>winget install julia -s msstore</code> ou <code>winget install -e --id Julialang.Julia</code>. Mais uma vez, qualquer uma das opções deve funcionar.</p>
+<section id="explorando-a-sessão-interativa-de-julia" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="explorando-a-sessão-interativa-de-julia"><span class="header-section-number">2.1</span> Explorando a Sessão Interativa de Julia</h2>
+<p>Você pode abrir uma sessão interativa (também conhecido como um <em>read-eval-print loop</em> ou REPL) de Julia digitando o comando <code>julia</code> na linha de comando do seu terminal. No Windows, após instalação da linguagem, é possível abrir uma sessão interativa clicando duas vezes no executável Julia. A sua janela deve ser parecida com</p>
+<pre><code>               _
+   _       _ _(_)_     |  Documentation: https://docs.julialang.org
+  (_)     | (_) (_)    |
+   _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
+  | | | | | | |/ _` |  |
+  | | |_| | | | (_| |  |  Version 1.11.3 (2025-01-21)
+ _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+|__/                   |
+
+
+julia&gt;</code></pre>
+<p>Dentro da sessão podemos inserir comandos que serão lidos, avaliados e impressos na tela. Um comando só é avaliado quando teclamos <strong>Enter</strong>. Vamos começar com operações com números inteiros. Para somar dois números podemos digitar:</p>
 <div id="2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1</span> <span class="op">+</span> <span class="fl">2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1</span> <span class="op">+</span> <span class="fl">2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>3</code></pre>
 </div>
 </div>
+<p>Para multiplicar outros dois número:</p>
 <div id="4" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fl">40</span> <span class="op">*</span> <span class="fl">4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fl">40</span> <span class="op">*</span> <span class="fl">4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>160</code></pre>
 </div>
 </div>
-<p>Sim, como era de se esperar, podemos em Julia usar os operandos: <code>+</code>, <code>-</code> e <code>*</code>, o resultado será como o esperado. Vejamos a seguir que com a divisão fica um pouco diferente:</p>
+<p>Como esperado, podemos utilizar as operações básicas de soma (<code>+</code>), subtração (<code>-</code>) e multiplicação (<code>*</code>), e os resultados ocorrem como previsto. No entanto, observaremos a seguir que o comportamento da divisão apresenta algumas particularidades:</p>
 <div id="6" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">84</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">2</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># As variáveis a e b são do tipo Int64</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> a <span class="op">/</span> b</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(resultado)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">84</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">2</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># As variáveis a e b são do tipo Int64</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> a <span class="op">/</span> b</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(resultado)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>42.0</code></pre>
 </div>
 </div>
-<p>Notem que nesse caso, houve uma mudança de tipos, pois 84 e 2 são inteiros e o resultado é um número em ponto flutuante (float), podemos ver isso, pois ao invés de 42, tivemos como resultado 42.0.</p>
-<p>Também é possível pedir o resultado inteiro usando o operador <code>div</code>:</p>
+<p>Notem que, neste exemplo, ocorreu uma conversão de tipo, pois 84 e 2 são números inteiros, enquanto o resultado é um número em ponto flutuante (float). Os pontos flutuantes são representações binárias de números reais, tema que exploraremos com mais detalhes em breve. Esta conversão fica evidente pela representação do resultado como <code>42.0</code>, em vez de simplesmente <code>42</code>. Caso deseje obter o resultado como um número inteiro, é possível utilizar o operador <code>div</code>:</p>
 <div id="8" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">div</span>(<span class="fl">84</span>,<span class="fl">2</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">div</span>(<span class="fl">84</span>,<span class="fl">2</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>42</code></pre>
 </div>
 </div>
 <p>Ou de forma equivalente usando o operador <code>\div</code> (para conseguir ver o símbolo da divisão é necessário digitar <code>\div</code> seguido da tecla <code>&lt;tab&gt;</code>).</p>
-<p>Além das contas básicas, também dá para fazer a exponenciação:</p>
+<p>Além das operações básicas, é possível fazer exponenciação:</p>
 <div id="10" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span><span class="op">^</span><span class="fl">31</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span><span class="op">^</span><span class="fl">31</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2147483648</code></pre>
 </div>
 </div>
 <p>Expressões mais complexas também podem ser calculadas:</p>
 <div id="12" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fl">23</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">3</span> <span class="op">*</span> <span class="fl">4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fl">23</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">3</span> <span class="op">*</span> <span class="fl">4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>39</code></pre>
 </div>
 </div>
-<p>Sim, a precedência de operadores usual também é válida em Julia. Mas, segue a primeira lição de programação: <em>Escreva para humanos, não para máquinas</em>.</p>
+<p>Sim, a precedência de operadores usual também é válida em Julia. Entretanto, lembre-se da primeira lição de programação: <em>Escreva para humanos, não para máquinas</em>. Podemos usar parênteses para separar as operações:</p>
 <div id="14" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fl">23</span> <span class="op">+</span> (<span class="fl">2</span> <span class="op">*</span> <span class="fl">2</span>) <span class="op">+</span> (<span class="fl">3</span> <span class="op">*</span> <span class="fl">4</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fl">23</span> <span class="op">+</span> (<span class="fl">2</span> <span class="op">*</span> <span class="fl">2</span>) <span class="op">+</span> (<span class="fl">3</span> <span class="op">*</span> <span class="fl">4</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>39</code></pre>
 </div>
 </div>
-<p>Em Julia também podemos fazer operações com números em ponto flutuante:</p>
+<p>Lembra dos pontos flutuantes? Todas as operações vistas podem ser aplicadas em pontos flutuantes:</p>
 <div id="16" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fl">23.5</span> <span class="op">*</span> <span class="fl">3.14</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fl">23.5</span> <span class="op">*</span> <span class="fl">3.14</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>73.79</code></pre>
 </div>
 </div>
-<p>ou</p>
+<p>Ou:</p>
 <div id="18" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fl">12.5</span> <span class="op">/</span> <span class="fl">2.0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fl">12.5</span> <span class="op">/</span> <span class="fl">2.0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>6.25</code></pre>
 </div>
 </div>
-<p>Acima temos mais um exemplo de código escrito para pessoas, ao se escrever 2.0 estamos deixando claro que o segundo parâmetro é um número float.</p>
-<p>É importante saber que números em ponto flutuante tem precisão limitada, logo não se espante com resultados inesperados como abaixo:</p>
+<p>O exemplo acima demonstra mais um código escrito de forma clara para pessoas, onde ao utilizarmos <code>2.0</code> deixamos explícito que o segundo parâmetro é um número de ponto flutuante (float). É fundamental compreender que números de ponto flutuante possuem precisão <strong>limitada</strong>, portanto não se surpreenda ao encontrar resultados inesperados como os demonstrados abaixo:</p>
 <div id="20" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.2</span> <span class="op">-</span> <span class="fl">1.0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.2</span> <span class="op">-</span> <span class="fl">1.0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>0.19999999999999996</code></pre>
 </div>
 </div>
-<p>Erros como esse são bastante raros, tanto que usualmente confiamos plenamente nas contas feitas com computadores e calculadoras. Mas, é bom saber que existem limitações.</p>
+<p>Erros como esse são bastante raros, tanto que normalmente depositamos total confiança nas contas realizadas por computadores e calculadoras. No entanto, é importante reconhecer que existem limitações (veja os exemplos abaixo).</p>
 <div id="22" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fl">2.6</span> <span class="op">-</span> <span class="fl">0.7</span> <span class="op">-</span> <span class="fl">1.9</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fl">2.6</span> <span class="op">-</span> <span class="fl">0.7</span> <span class="op">-</span> <span class="fl">1.9</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2.220446049250313e-16</code></pre>
 </div>
 </div>
-<p>ou</p>
 <div id="24" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>0.30000000000000004</code></pre>
 </div>
 </div>
-<p>ou ainda</p>
 <div id="26" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fl">10e15</span> <span class="op">+</span> <span class="fl">1</span> <span class="op">-</span> <span class="fl">10e15</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fl">10e15</span> <span class="op">+</span> <span class="fl">1</span> <span class="op">-</span> <span class="fl">10e15</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>0.0</code></pre>
 </div>
 </div>
-<p>Esses problemas de precisão estão ligados a limitação de como os números são representados no computador. De maneira simplificada, os valores no computador são codificados em palavras, formadas por bits. Nos computadores modernos as palavras tem 64 bits, ou 8 bytes. Logo, uma outra limitação está ligada aos números inteiros muito grandes</p>
+<p>Esses problemas de precisão estão ligados à limitação de como os números são representados no computador. De maneira simplificada, os valores no computador são codificados em palavras, formadas por bits. Nos computadores modernos, as palavras têm 64 bits, ou 8 bytes. Logo, uma outra limitação está relacionada aos números inteiros muito grandes.</p>
 <div id="28" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span><span class="op">^</span><span class="fl">63</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span><span class="op">^</span><span class="fl">63</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>-9223372036854775808</code></pre>
 </div>
 </div>
-<p>Mas, para um curso introdutório basta saber que existem essas limitações. Como lidar com elas é parte de um curso mais avançado.</p>
-<p>É importante notar que o erro acima é um <em>erro silencioso</em>, ou seja quanto estamos usando números inteiros, pode ocorrer que o número a ser representado não caiba no número de bits disponível, o que faz com que ocorra um erro.</p>
-<p>Voltando para as contas. Um outro operador interessante é o <code>%</code> que faz o resto da divisão</p>
+<p>No entanto, para um curso introdutório, é suficiente estar ciente dessas limitações. O tratamento dessas questões faz parte de disciplinas mais avançadas. Vale ressaltar que o erro mencionado anteriormente é um <em>erro silencioso</em>, ou seja, ao trabalharmos com números inteiros, pode acontecer que o valor a ser representado exceda a capacidade do número de bits disponível, resultando em uma falha que ocorre sem notificação explícita.</p>
+<p>Voltando às contas. Um outro operador interessante é o <code>%</code> que calcula o resto da divisão</p>
 <div id="30" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fl">4</span> <span class="op">%</span> <span class="fl">3</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fl">4</span> <span class="op">%</span> <span class="fl">3</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>1</code></pre>
 </div>
 </div>
-<p>Até agora vimos como trabalhar com um único valor, ou seja, como se fosse no visor de uma calculadora. Mas, é possível ir além. Ao invés de termos teclas de memória, o computador nos oferece variáveis. Elas são como nomes para valores que queremos guardar e usar mais tarde.</p>
-<p>Além das operações básicas também temos as operações matemáticas (funções), como por exemplo o seno, sin em inglês. Para saber como uma função funciona podemos pedir ajuda ao ambiente, usando uma <code>?</code> ou o macro <code>@doc</code>, e em seguida digitando o que queremos saber, como por exemplo em:</p>
+<p>Até agora vimos como trabalhar com um único valor, como se estivéssemos usando o visor de uma calculadora. Mas podemos ir além disso. Em vez de simples teclas de memória, o computador nos oferece <strong>variáveis</strong>. Essas são como nomes para valores que queremos armazenar e utilizar posteriormente.</p>
+<p>Além das operações básicas também temos as operações matemáticas (funções), como por exemplo o seno, <em>sine</em> em inglês. Para saber como uma função funciona podemos pedir ajuda ao ambiente, usando uma <code>?</code> ou o macro <code>@doc</code>, e em seguida digitando o que queremos saber, como por exemplo em:</p>
 <div id="32" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> sin</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> sin</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A saída desse comando indica a operação que a função realiza e ainda apresenta alguns exemplos:</p>
-<pre><code>  sin(x)
+<pre><code>sin(x)
 
-  Compute sine of x, where x is in radians.
+Compute sine of x, where x is in radians.
 
-  See also sind, sinpi, sincos, cis, asin.
+See also sind, sinpi, sincos, cis, asin.
 
-  Examples
-  ≡≡≡≡≡≡≡≡
+Examples
+≡≡≡≡≡≡≡≡
 
-  julia&gt; round.(sin.(range(0, 2pi, length=9)'), digits=3)
-  1×9 Matrix{Float64}:
-   0.0  0.707  1.0  0.707  0.0  -0.707  -1.0  -0.707  -0.0</code></pre>
-<p>Ambos os comandos <code>? sin</code> <code>@doc sin</code> possuem a mesma saída.</p>
-<p>Notem que nem tudo que foi apresentado faz sentido no momento, mas já dá para entender o uso de uma função como sin. Vejamos agora a raiz quadrada:</p>
+julia&gt; round.(sin.(range(0, 2pi, length=9)'), digits=3)
+1×9 Matrix{Float64}:
+0.0  0.707  1.0  0.707  0.0  -0.707  -1.0  -0.707  -0.0</code></pre>
+<p>Ambos os comandos <code>? sin</code> e <code>@doc sin</code> possuem a mesma saída.</p>
+<p>Notem que nem tudo que foi apresentado faz sentido no momento, mas já dá para entender o uso de uma função como <code>sin</code>. Vejamos agora a raiz quadrada:</p>
 <div id="34" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> sqrt</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> sqrt</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<pre><code>sqrt(x)
+
+Return \sqrt{x}.
+
+Throws DomainError for negative Real arguments. Use complex negative arguments instead. Note that sqrt has a branch cut
+along the negative real axis.
+
+The prefix operator √ is equivalent to sqrt.
+
+See also: hypot
+...</code></pre>
 <p>Nela vemos que é possível calcular a raiz como em:</p>
 <div id="36" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">4</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">4</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2.0</code></pre>
 </div>
 </div>
 <div id="38" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">4.0</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">4.0</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2.0</code></pre>
 </div>
 </div>
-<p>Mas, observamos também na documentação a função <code>big()</code>, que tem a seguinte ajuda:</p>
-<div id="40" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> <span class="dt">BigInt</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>A função <code>big()</code> em Julia é usada para criar números inteiros grandes, representados pelo tipo BigInt. Essa função é especialmente útil quando você precisa lidar com números muito grandes que excedem o limite dos tipos inteiros padrão, como Int64 ou Int32.</p>
-<p>Com números BigInt, já não há problemas de estouro, como podemos ver abaixo:</p>
-<div id="42" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">big</span>(<span class="fl">2</span>) <span class="op">^</span> <span class="fl">1002</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Agora, observe que a documentação da função <code>big()</code> tem a seguinte ajuda:</p>
+<pre><code>big(T::Type)
+
+Compute the type that represents the numeric type T with arbitrary precision. Equivalent to typeof(big(zero(T))).
+
+Examples
+≡≡≡≡≡≡≡≡
+
+julia&gt; big(Rational)
+Rational{BigInt}
+
+julia&gt; big(Float64)
+BigFloat
+
+julia&gt; big(Complex{Int})
+Complex{BigInt}
+
+big(x)
+
+Convert a number to a maximum precision representation (typically BigInt or BigFloat). See BigFloat for information about
+some pitfalls with floating-point numbers.</code></pre>
+<p>A função <code>big()</code> permite criar números de grande magnitude, representados pelos tipos <code>BigInt</code> ou <code>BigFloat</code>. Essa função é particularmente útil quando você precisa trabalhar com números muito grandes que ultrapassam os limites dos tipos padrão, como <code>Int64</code> ou <code>Int32</code>. Ao utilizar números do tipo <code>BigInt</code>, eliminamos problemas de estouro (overflow), conforme podemos observar abaixo:</p>
+<div id="40" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">big</span>(<span class="fl">2</span>) <span class="op">^</span> <span class="fl">1002</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>42860344287450692837937001962400072422456192468221344297750015534814042044997444899727935152627834325103786916702125873007485811427692561743938310298794299215738271099296923941684298420249484567511816728612185899934327765069595070236662175784308251658284785910746168670641719326610497547348822672277504</code></pre>
 </div>
 </div>
-<p>Podemos ainda carregar funções de outros arquivos em nosso arquivo Julia ou no próprio terminal, para isso basta utilizar o comando <code>include("caminho/do/arquivo.jl")</code>, Julia lê o arquivo especificado e executa todo o seu conteúdo no contexto atual. Isso significa que todas as funções, variáveis e definições no arquivo tornam-se disponíveis no ambiente onde <code>include</code> foi chamado.</p>
-<p>Como por exemplo no primeiro caso tenho um arquivo chamado <code>funcoes.jl</code> que possui a função soma:</p>
-<div id="44" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ola</span>(nome)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"Olá"</span>, nome)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>ola (generic function with 1 method)</code></pre>
-</div>
-</div>
-<p>Podemos incluir essa função em um segundo arquivo utilizando o <code>include("funcoes.jl")</code>, e utilizar a função definida no arquivo <code>funcoes.jl</code></p>
-<pre><code>    include("funcoes.jl")
-    println(ola("Alfredo"))  </code></pre>
-<p>Cuja saída deverá ser <code>Olá Alfredo</code>.</p>
 </section>
-<section id="variáveis-e-seus-tipos" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="variáveis-e-seus-tipos"><span class="header-section-number">2.2</span> Variáveis e seus tipos</h2>
-<p>Em Julia também temos o conceito de variáveis, que servem para armazenar os diferentes conteúdos de dados possíveis.</p>
-<div id="46" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">7</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span> <span class="op">+</span> a</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="variáveis-e-tipos-de-dados" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="variáveis-e-tipos-de-dados"><span class="header-section-number">2.2</span> Variáveis e Tipos de Dados</h2>
+<p>Como já introduzido, em Julia, temos o conceito de variáveis. Variáveis servem para armazenar dados diversos, como inteiros e floats. Podemos operar nas variáveis da mesma forma que operamos nos dados que elas guardam (veja o exemplo abaixo).</p>
+<div id="42" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">7</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span> <span class="op">+</span> a</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>9</code></pre>
 </div>
 </div>
-<section id="tipagem-dinâmica" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="tipagem-dinâmica"><span class="header-section-number">2.2.1</span> Tipagem dinâmica</h3>
-<p>É importante notar que as variáveis em Julia podem receber novos valores e o tipo da variável depende do que foi atribuído por último.</p>
+<p>É importante destacar que as variáveis em Julia podem receber novos valores, e o tipo da variável é determinado pela última atribuição realizada. A função <code>typeof</code> pode ser usada para identificar o tipo da variável especificada.</p>
+<div id="44" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">3</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>Int64</code></pre>
+</div>
+</div>
+<div id="46" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> a <span class="op">+</span> <span class="fl">1</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>Int64</code></pre>
+</div>
+</div>
+<p>No exemplo a seguir, a variável <code>b</code> começa com um valor de tipo inteiro. No entanto, após a operação de multiplicação, seu valor passa a ser do tipo ponto flutuante.</p>
 <div id="48" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">3</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">3</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> b <span class="op">*</span> <span class="fl">0.5</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(b)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>Int64</code></pre>
+<pre><code>Float64</code></pre>
 </div>
 </div>
+<p>A capacidade de alterar o tipo da variável é conhecida como <strong>tipagem dinâmica</strong>. Esta característica apresenta diversas vantagens, como a flexibilidade de reutilizar variáveis para armazenar diferentes tipos de dados ao longo do tempo e a menor verbosidade, pois não é necessário especificar o tipo de cada variável, o que melhora a legibilidade do código. Neste contexto, podemos observar que Julia possui vários tipos primitivos, sendo os principais:</p>
 <div id="50" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> a <span class="op">+</span> <span class="fl">1</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fl">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>Int64</code></pre>
 </div>
 </div>
-<p>Neste próximo exemplo, a variável b é inicializada com um valor de tipo inteiro, contudo, após a operação de multiplicação, seu valor é do tipo ponto flutuante:</p>
 <div id="52" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">3</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> b <span class="op">*</span> <span class="fl">0.5</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(b)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fl">1.1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>Float64</code></pre>
 </div>
 </div>
-<p>A tipagem dinâmica apresenta diversas vantagens, entre elas a flexibilidade, pois é possível reutilizar variáveis para armazenar diferentes tipos de dados ao longo do tempo; e menos verbosidade, pois não é necessário especificar o tipo de cada variável, o que melhora a legibilidade do código.</p>
-<p>Aproveitando o momento, podemos ver que há vários tipos primitivos em Julia, sendo os principais:</p>
 <div id="54" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fl">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>Int64</code></pre>
-</div>
-</div>
-<div id="56" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fl">1.1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>Float64</code></pre>
-</div>
-</div>
-<div id="58" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="st">"Bom dia"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="st">"Bom dia"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>String</code></pre>
 </div>
 </div>
-<p>Falando em Strings, elas são definidas por conjuntos de caracteres entre aspas como:</p>
-<div id="60" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> <span class="st">"Olha que legal"</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> <span class="st">"Outra String"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Falando em <strong>strings</strong>, elas são definidas por conjuntos de caracteres entre aspas como:</p>
+<div id="56" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> <span class="st">"Olha que legal"</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> <span class="st">"Outra String"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>"Outra String"</code></pre>
 </div>
 </div>
-<p>Dá também para fazer operações com strings como concatenação:</p>
-<div id="62" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> <span class="st">"Tenha um"</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> <span class="st">" Bom dia"</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> s1 <span class="op">*</span> s2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Também é possível realizar operações com strings, como concatenação:</p>
+<div id="58" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> <span class="st">"Tenha um"</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> <span class="st">" Bom dia"</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> s1 <span class="op">*</span> s2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>"Tenha um Bom dia"</code></pre>
 </div>
 </div>
-<p>Ou potência:</p>
-<div id="64" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"Nao vou mais fazer coisas que possam desagradar os meus colegas "</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">^</span> <span class="fl">10</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ou repetição usando o operador de potência:</p>
+<div id="60" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"Não vou mais fazer coisas que possam desagradar os meus colegas "</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">^</span> <span class="fl">10</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>"Nao vou mais fazer coisas que possam desagradar os meus colegas Nao vou mais fazer coisas que possam desagradar os meus colegas Nao vou mais fazer coisas que possam desagradar os meus colegas Nao vou mais fazer coisas que possam desagradar os meus colegas Nao vou mais fa" ⋯ 98 bytes ⋯ "s meus colegas Nao vou mais fazer coisas que possam desagradar os meus colegas Nao vou mais fazer coisas que possam desagradar os meus colegas Nao vou mais fazer coisas que possam desagradar os meus colegas Nao vou mais fazer coisas que possam desagradar os meus colegas "</code></pre>
+<pre><code>"Não vou mais fazer coisas que possam desagradar os meus colegas Não vou mais fazer coisas que possam desagradar os meus colegas Não vou mais fazer coisas que possam desagradar os meus colegas Não vou mais fazer coisas que possam desagradar os meus colegas Não vou mais fa" ⋯ 100 bytes ⋯ " meus colegas Não vou mais fazer coisas que possam desagradar os meus colegas Não vou mais fazer coisas que possam desagradar os meus colegas Não vou mais fazer coisas que possam desagradar os meus colegas Não vou mais fazer coisas que possam desagradar os meus colegas "</code></pre>
 </div>
 </div>
-<p>Ainda sobre variáveis, há umas regras com relação aos seus nomes, tem que começar com uma letra (ou com <code>_</code>), pode ter dígitos e não pode ser uma palavra reservada. É bom notar que Julia por ser uma linguagem moderna, aceita nomes de caracteres em unicode, por exemplo o Δ (<code>\Delta</code>):</p>
-<div id="66" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>Δ <span class="op">=</span> <span class="fl">2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ainda sobre variáveis, há algumas regras referentes aos seus nomes: devem começar com uma letra (ou com <code>_</code>), podem conter dígitos e não podem ser palavras reservadas. Vale ressaltar que Julia, por ser uma linguagem moderna, aceita caracteres unicode e emojis nos nomes, como por exemplo o Δ (<code>\Delta</code>).</p>
+<div id="62" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>Δ <span class="op">=</span> <span class="fl">2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2</code></pre>
 </div>
 </div>
-<p>Mas, a linguagem vai bem além com caracteres de animais e símbolos:</p>
-<div id="68" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>🐱 <span class="op">=</span> <span class="fl">5</span> <span class="co"># \:cat: &lt;tab&gt;</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>🐶 <span class="op">=</span> <span class="fl">3</span> <span class="co"># \:dog: &lt;tab&gt;</span></span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>🏠 <span class="op">=</span> <span class="fl">20</span> <span class="co"># \:house: &lt;tab&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="64" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>🐱 <span class="op">=</span> <span class="fl">5</span> <span class="co"># \:cat: &lt;tab&gt;</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>🐶 <span class="op">=</span> <span class="fl">3</span> <span class="co"># \:dog: &lt;tab&gt;</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>🏠 <span class="op">=</span> <span class="fl">20</span> <span class="co"># \:house: &lt;tab&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>20</code></pre>
 </div>
 </div>
-<p>Isso não adiciona nada do lado de algoritmos, mas é possível ter variáveis bem bonitinhas. A lista de figuras pode ser encontrada <a href="://docs.julialang.org/en/v1/manual/unicode-input/">aqui</a>.</p>
-</section>
+<p>Isso não adiciona nada do lado de algoritmos, mas é possível ter variáveis bem bonitinhas. A lista de figuras pode ser encontrada <a href="https://docs.julialang.org/en/v1/manual/unicode-input/">aqui</a>.</p>
 </section>
 <section id="saída-de-dados" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="saída-de-dados"><span class="header-section-number">2.3</span> Saída de dados</h2>
+<h2 data-number="2.3" class="anchored" data-anchor-id="saída-de-dados"><span class="header-section-number">2.3</span> Saída de Dados</h2>
 <p>Para fazer saídas usam-se dois comandos, <code>print()</code> e o <code>println()</code>, sendo que o primeiro não pula linha e o segundo pula.</p>
-<div id="70" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Hello "</span>)</span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"World!"</span>)</span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Ola, mundo!"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="66" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Hello "</span>)</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"World!"</span>)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Ola, mundo!"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Hello World!
 Ola, mundo!</code></pre>
 </div>
 </div>
-<p>Para evitar que se digitem muitos caracteres, por vezes podemos usar “açucares sintáticos”.</p>
-<div id="72" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">+</span> <span class="fl">1</span></span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">+=</span> <span class="fl">1</span>  <span class="co"># forma equivalente a acima, o mesmo vale para os operadores *, - e /</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para evitar que se digitem muitos caracteres, por vezes podemos usar <em>açucares sintáticos</em>.</p>
+<div id="68" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">+</span> <span class="fl">1</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">+=</span> <span class="fl">1</span>  <span class="co"># forma equivalente a acima, o mesmo vale para os operadores *, - e /</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>3</code></pre>
 </div>
 </div>
-<p>Acima, vimos a forma de se inserir comentários em Julia (sim esses serão ignorados pelo computador).</p>
-<p>Exercício: Faça o passo a passo para encontrar as raízes da equação de segundo grau <span class="math inline">\(x^2 - 5 x + 6\)</span>, usando as váriaveis <code>a</code>, <code>b</code>, <code>c</code>, <code>\Delta</code>, <code>x1</code> e <code>x2</code>. Após isso, compare com a solução a seguir:</p>
-<div id="74" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Definição dos coeficientes</span></span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="op">-</span><span class="fl">5</span></span>
-<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">6</span></span>
-<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo do discriminante</span></span>
-<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> b<span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">4</span> <span class="op">*</span> a <span class="op">*</span> c</span>
-<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo das raízes</span></span>
-<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> delta <span class="op">&gt;=</span> <span class="fl">0</span></span>
-<span id="cb72-12"><a href="#cb72-12" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> (<span class="op">-</span>b <span class="op">+</span> <span class="fu">sqrt</span>(delta)) <span class="op">/</span> (<span class="fl">2</span> <span class="op">*</span> a)</span>
-<span id="cb72-13"><a href="#cb72-13" aria-hidden="true" tabindex="-1"></a>    x2 <span class="op">=</span> (<span class="op">-</span>b <span class="op">-</span> <span class="fu">sqrt</span>(delta)) <span class="op">/</span> (<span class="fl">2</span> <span class="op">*</span> a)</span>
-<span id="cb72-14"><a href="#cb72-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"As raízes são: x1 = </span><span class="sc">$</span>x1<span class="st"> e x2 = </span><span class="sc">$</span>x2<span class="st">"</span>)</span>
-<span id="cb72-15"><a href="#cb72-15" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb72-16"><a href="#cb72-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"A equação não possui raízes reais."</span>)</span>
-<span id="cb72-17"><a href="#cb72-17" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>As raízes são: x1 = 3.0 e x2 = 2.0</code></pre>
+<p>O código acima utiliza comentários (tudo depois do <code>#</code>). Esses comentários são ignorados pelo interpretador e podem ser usados para tornar o código mais legível.</p>
+</section>
+<section id="arquivos-externos" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="arquivos-externos"><span class="header-section-number">2.4</span> Arquivos Externos</h2>
+<p>Podemos carregar funções de outros arquivos na sessão interativa (e em outros arquivos também) usando o comando <code>include("caminho/do/arquivo.jl")</code>. Julia lê o arquivo especificado e executa todo o seu conteúdo no contexto atual. Isso significa que todas as funções, variáveis e definições no arquivo tornam-se disponíveis no ambiente onde <code>include</code> foi chamado.</p>
+<p>Por exemplo, suponha que temos um arquivo chamado <code>funcoes.jl</code> que possui a função <code>ola</code>:</p>
+<div id="70" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ola</span>(nome)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"Olá "</span>, nome)</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>ola (generic function with 1 method)</code></pre>
 </div>
 </div>
+<p>Podemos incluir essa função em um segundo arquivo utilizando o <code>include("funcoes.jl")</code> e então usar a função definida no arquivo <code>funcoes.jl</code>:</p>
+<div id="72" class="cell" data-execution_count="0">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"funcoes.jl"</span>)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">ola</span>(<span class="st">"Alfredo"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A saída deverá ser <code>Olá Alfredo</code>.</p>
+<section id="o-que-é-um-arquivo-.jl" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="o-que-é-um-arquivo-.jl"><span class="header-section-number">2.4.1</span> O que é um arquivo <code>.jl</code>?</h3>
+<p>Um arquivo <code>.jl</code> é semelhante a um arquivo de texto <code>.txt</code>, porém com a extensão <code>.jl</code>. Embora seja possível abri-lo com um editor de texto simples como o Bloco de Notas, não é recomendado utilizá-lo para programação. Os arquivos <code>.jl</code> são arquivos de código-fonte da linguagem Julia e são geralmente editados com editores específicos para programação, como Visual Studio Code, Atom ou Sublime Text.</p>
+<p>Não existe um editor de texto definitivamente superior aos demais, o importante é escolher aquele com o qual você se sinta mais confortável. Nossa recomendação é o Visual Studio Code, que oferece recursos muito mais avançados que um editor de texto comum e possui uma extensão dedicada à linguagem Julia, facilitando significativamente a escrita de código. Para começar a usar o Visual Studio Code com Julia, os tutoriais a seguir podem ser úteis:</p>
+<ul>
+<li><a href="https://code.visualstudio.com/docs/getstarted/getting-started">https://code.visualstudio.com/docs/getstarted/getting-started</a></li>
+<li><a href="https://code.visualstudio.com/docs/languages/julia">https://code.visualstudio.com/docs/languages/julia</a></li>
+</ul>
+</section>
+</section>
+<section id="verifique-seu-aprendizado" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="verifique-seu-aprendizado"><span class="header-section-number">2.5</span> Verifique seu Aprendizado</h2>
+<ol type="1">
+<li>Qual a diferença entre os resultados obtidos pelos operadores <code>/</code> e <code>div</code> em Julia? Em quais situações cada um seria mais apropriado?</li>
+<li>Por que a expressão <code>2.6 - 0.7 - 1.9</code> não resulta exatamente em zero? O que isso nos ensina sobre cálculos computacionais?</li>
+<li>Explique o que significa ‘tipagem dinâmica’ e como isso afeta o comportamento das variáveis quando atribuímos diferentes tipos de valores a elas.</li>
+<li>Use a função <code>big()</code> para calcular <span class="math inline">\(2^{1000}\)</span>. Compare este resultado com o que acontece ao tentar calcular <span class="math inline">\(2^{1000}\)</span> sem usar <code>big()</code>.</li>
+<li>Armazene seu nome e sobrenome em variáveis separadas e depois combine-as para formar seu nome completo com um espaço entre elas. Demonstre também a operação de repetição de strings.</li>
+<li>Crie as variáveis <code>a = 10</code>, <code>b = 3</code> e <code>c = 4.5</code>. Realize os seguintes cálculos: <code>a + b + c</code>, <code>a * b * c</code>, <code>a % b</code> e verifique o tipo do resultado de cada operação usando <code>typeof()</code>.</li>
+</ol>
+</section>
+<section id="explore-por-conta-própria" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="explore-por-conta-própria"><span class="header-section-number">2.6</span> Explore por Conta Própria</h2>
+<ol type="1">
+<li>Procure na documentação duas funções matemáticas que não foram mencionadas no capítulo e teste seu uso no REPL.</li>
+<li>O que acontece quando você tenta dividir um número por zero em Julia? E quando calcula <code>0/0</code>? Teste e observe os resultados.</li>
+<li>Experimente o operador Unicode <code>≈</code> (digite <code>\approx</code> seguido de <strong>TAB</strong>). Como ele se comporta ao comparar <code>0.1 + 0.2 ≈ 0.3</code>?</li>
+<li>Investigue a função <code>round()</code> e utilize-a para corrigir alguns dos problemas de precisão demonstrados no capítulo.</li>
+</ol>
 
 
 </section>
