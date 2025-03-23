@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Introdução às Funções – Uma Introdução à Computação com Julia</title>
+<title>3&nbsp; Estruturas de Controle e Tomada de Decisões – Uma Introdução à Computação com Julia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/04-controle-fluxo.html" rel="next">
+<link href="../chapters/04-funcoes-recursao.html" rel="next">
 <link href="../chapters/02-calculadora-repl.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -103,35 +103,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -144,7 +115,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-evolucao-computacao.html">Parte I: Conceitos Básicos</a></li><li class="breadcrumb-item"><a href="../chapters/03-funcoes-recursao.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introdução às Funções</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-evolucao-computacao.html">Parte I: Conceitos Básicos</a></li><li class="breadcrumb-item"><a href="../chapters/03-condicionais.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estruturas de Controle e Tomada de Decisões</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -208,14 +179,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/03-funcoes-recursao.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introdução às Funções</span></span></a>
+  <a href="../chapters/03-condicionais.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estruturas de Controle e Tomada de Decisões</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/04-controle-fluxo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Comparações, o comando if e recursão</span></span></a>
+  <a href="../chapters/04-funcoes-recursao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introdução às Funções</span></span></a>
   </div>
 </li>
       </ul>
@@ -345,16 +316,27 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#o-uso-de-funções-é-uma-abstração-natural" id="toc-o-uso-de-funções-é-uma-abstração-natural" class="nav-link active" data-scroll-target="#o-uso-de-funções-é-uma-abstração-natural"><span class="header-section-number">3.1</span> O uso de funções é uma abstração natural</a></li>
+  <li><a href="#operadores-de-comparação-e-o-tipo-booleano" id="toc-operadores-de-comparação-e-o-tipo-booleano" class="nav-link active" data-scroll-target="#operadores-de-comparação-e-o-tipo-booleano"><span class="header-section-number">3.1</span> Operadores de Comparação e o Tipo Booleano</a>
+  <ul class="collapse">
+  <li><a href="#operadores-lógicos" id="toc-operadores-lógicos" class="nav-link" data-scroll-target="#operadores-lógicos"><span class="header-section-number">3.1.1</span> Operadores Lógicos</a></li>
+  </ul></li>
+  <li><a href="#alterando-o-fluxo-de-execução-com-if-else" id="toc-alterando-o-fluxo-de-execução-com-if-else" class="nav-link" data-scroll-target="#alterando-o-fluxo-de-execução-com-if-else"><span class="header-section-number">3.2</span> Alterando o Fluxo de Execução com if-else</a>
+  <ul class="collapse">
+  <li><a href="#a-estrutura-if" id="toc-a-estrutura-if" class="nav-link" data-scroll-target="#a-estrutura-if"><span class="header-section-number">3.2.1</span> A Estrutura if</a></li>
+  <li><a href="#adicionando-alternativas-com-else" id="toc-adicionando-alternativas-com-else" class="nav-link" data-scroll-target="#adicionando-alternativas-com-else"><span class="header-section-number">3.2.2</span> Adicionando Alternativas com else</a></li>
+  <li><a href="#múltiplas-condições-com-elseif" id="toc-múltiplas-condições-com-elseif" class="nav-link" data-scroll-target="#múltiplas-condições-com-elseif"><span class="header-section-number">3.2.3</span> Múltiplas Condições com elseif</a></li>
+  </ul></li>
+  <li><a href="#verifique-seu-aprendizado" id="toc-verifique-seu-aprendizado" class="nav-link" data-scroll-target="#verifique-seu-aprendizado"><span class="header-section-number">3.3</span> Verifique seu Aprendizado</a></li>
+  <li><a href="#explore-por-conta-própria" id="toc-explore-por-conta-própria" class="nav-link" data-scroll-target="#explore-por-conta-própria"><span class="header-section-number">3.4</span> Explore por Conta Própria</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-evolucao-computacao.html">Parte I: Conceitos Básicos</a></li><li class="breadcrumb-item"><a href="../chapters/03-funcoes-recursao.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introdução às Funções</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-evolucao-computacao.html">Parte I: Conceitos Básicos</a></li><li class="breadcrumb-item"><a href="../chapters/03-condicionais.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estruturas de Controle e Tomada de Decisões</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introdução às Funções</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estruturas de Controle e Tomada de Decisões</span></h1>
 </div>
 
 
@@ -371,194 +353,212 @@ window.Quarto = {
 </header>
 
 
-<p>Objetivo: Começar a entender como funcionam as funções em uma linguagem de programação</p>
-<section id="o-uso-de-funções-é-uma-abstração-natural" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="o-uso-de-funções-é-uma-abstração-natural"><span class="header-section-number">3.1</span> O uso de funções é uma abstração natural</h2>
-<p>Na aula passada já vimos umas funções e isso foi bem natural, foram elas:</p>
-<ul>
-<li><p>typeof() - Dado um parâmetro devolve o seu tipo. Variáveis estão associadas a tipos;</p></li>
-<li><p>div() - Dados dois parâmetros devolve a divisão inteira do primeiro pelo segundo;</p></li>
-<li><p>print() e println() - Dados diversos parâmetros os imprime, sem devolver nada.</p></li>
-</ul>
-<p>Inclusive, aqui vale a pena ver que podemos pedir ajuda ao Julia para saber o que fazem as funções. Para isso, se usa o ? antes da função:</p>
-<pre><code>?typeof()
-?div()
-?print()</code></pre>
-<p>Ao fazer isso, inclusive descobrimos que o div() pode ser usado também como .</p>
-<p>Uma outra função bem útil é a que permite transformar um tipo de valor em outro.</p>
-<pre><code>parse(Float64, "32")</code></pre>
-<p>Para conversão de valores em ponto flutuante para inteiros, temos a função trunc.</p>
-<pre><code>trunc(Int64, 2.25)</code></pre>
-<p>De forma inversa temos o float.</p>
-<pre><code>float(2)</code></pre>
-<p>Finalmente, podemos transformar um valor em uma string, como em:</p>
-<pre><code>string(3)</code></pre>
-<p>ou</p>
-<pre><code>string(3.57)</code></pre>
-<p>Também tem muitas funções matemáticas prontas como</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 27%">
-<col style="width: 72%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Função</th>
-<th style="text-align: left;">Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>sin(x)</code></td>
-<td style="text-align: left;">Calcula o seno de ( x ) em radianos</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>cos(x)</code></td>
-<td style="text-align: left;">Calcula o cosseno de ( x ) em radianos</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>tan(x)</code></td>
-<td style="text-align: left;">Calcula a tangente de ( x ) em radianos</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>deg2rad(x)</code></td>
-<td style="text-align: left;">Converte ( x ) de graus em radianos</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>rad2deg(x)</code></td>
-<td style="text-align: left;">Converte ( x ) de radianos em graus</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>log(x)</code></td>
-<td style="text-align: left;">Calcula o logaritmo natural de ( x )</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>log(b, x)</code></td>
-<td style="text-align: left;">Calcula o logaritmo de ( x ) na base ( b )</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>log2(x)</code></td>
-<td style="text-align: left;">Calcula o logaritmo de ( x ) na base 2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>log10(x)</code></td>
-<td style="text-align: left;">Calcula o logaritmo de ( x ) na base 10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>exp(x)</code></td>
-<td style="text-align: left;">Calcula o expoente da base natural de ( x )</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>abs(x)</code></td>
-<td style="text-align: left;">Calcula o módulo de ( x )</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>sqrt(x)</code></td>
-<td style="text-align: left;">Calcula a raiz quadrada de ( x )</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>cbrt(x)</code></td>
-<td style="text-align: left;">Calcula a raiz cúbica de ( x )</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>factorial(x)</code></td>
-<td style="text-align: left;">Calcula o fatorial de ( x )</td>
-</tr>
-</tbody>
-</table>
-<p>A melhor forma de se acostumar a usar as funções é fazendo contas e verificando os resultados. Uma dica importante é que para funções mais complexas, pode ser que já existam funções prontas em Julia. Para isso uma busca com as palavras chave. Um exemplo a seguir para procurar a função para o cálculo de seno hiperbólico: “julia lang hiperbolic sin”. A busca pelo termo em inglês é uma boa dica para buscas em geral.</p>
-<p>Em julia também é possível criar funções conforme as suas necessidades, como abaixo:</p>
+<p>O objetivo deste capítulo é entender como um programa pode tomar decisões e alterar seu fluxo de execução. Vamos explorar os operadores de comparação, o tipo booleano, e as estruturas condicionais <code>if</code>, <code>else</code> e <code>elseif</code> em Julia.</p>
+<section id="operadores-de-comparação-e-o-tipo-booleano" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="operadores-de-comparação-e-o-tipo-booleano"><span class="header-section-number">3.1</span> Operadores de Comparação e o Tipo Booleano</h2>
+<p>Antes de estudarmos estruturas condicionais, precisamos entender os operadores de comparação e o tipo de dado que eles produzem: o tipo booleano (<code>Bool</code>). Uma variável booleana pode ter apenas dois valores possíveis: <code>true</code> (verdadeiro) ou <code>false</code> (falso). Vamos examinar os principais operadores de comparação em Julia:</p>
 <div id="2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mensagemDeBomDia</span>()</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">println</span>(<span class="st">"Tenha um bom dia!"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Igualdade: retorna true se os valores forem iguais</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>mensagemDeBomDia (generic function with 1 method)</code></pre>
+<pre><code>true</code></pre>
 </div>
 </div>
-<p>Para usar uma função, basta chamá-la:</p>
-<pre><code>MensagemDeBomDia()</code></pre>
-<p>Funções, podem receber um ou mais parâmetros:</p>
 <div id="4" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">imprime</span>(a)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">println</span>(<span class="st">" Vou imprimir "</span>, a)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">imprime</span>(<span class="fl">42</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> Vou imprimir 42</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Diferença: retorna true se os valores forem diferentes</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fl">3</span> <span class="op">!=</span> <span class="fl">8</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>true</code></pre>
 </div>
 </div>
-<p>Também é possível que uma função chame outra função como em:</p>
 <div id="6" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">imprimeduasvezes</span>(a)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">imprime</span>(a)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">imprime</span>(a)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">imprimeduasvezes</span>(<span class="fl">13</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> Vou imprimir 13
- Vou imprimir 13</code></pre>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Menor que: retorna true se o primeiro valor for menor que o segundo</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fl">23</span> <span class="op">&lt;</span> <span class="fl">24</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>true</code></pre>
 </div>
 </div>
-<p>Mais ainda, também é possível diferenciar funções por meio da quantidade de parâmetros.</p>
 <div id="8" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">recebe</span>(a)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"Recebi um parametro: "</span>, a)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">recebe</span>(a, b)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"Recebi dois parametros: "</span>, a, <span class="st">" "</span>, b)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Menor ou igual: retorna true se o primeiro valor for menor ou igual ao segundo</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fl">42</span> <span class="op">&lt;=</span> <span class="fl">44</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>recebe (generic function with 2 methods)</code></pre>
+<pre><code>true</code></pre>
 </div>
 </div>
-<p>Conforme a chamada, a função chamada será diferente:</p>
-<pre><code>recebe(1)
-recebe(1, 2)</code></pre>
-<p>Também dá para chamar funções com variáveis e com operações, como em:</p>
-<pre><code>a = 10
-recebe(a)
-recebe(a, a + 1)</code></pre>
-<p>As funções que vimos até agora imprimem mensagens, mas não devolvem nada. O typeof() delas é nothing, ou seja, algo que não pode ser atribuído.</p>
-<p>Mas, também é possível fazer funções que devolvem valores, como:</p>
-<pre><code>function soma1(a)
-  return a + 1
-end</code></pre>
-<p>Nesse caso, se for passado um parâmetro numérico, a função devolverá o valor incrementado (adicionado de 1).</p>
-<p>Claro que isso pode ser usado com fórmulas mais complicadas como:</p>
 <div id="10" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">hipotenusa</span>(a, b)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  hip <span class="op">=</span> a <span class="op">*</span> a <span class="op">+</span> b <span class="op">*</span> b</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> hip</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Maior que: retorna true se o primeiro valor for maior que o segundo</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fl">42</span> <span class="op">&gt;</span> <span class="fl">2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>hipotenusa (generic function with 1 method)</code></pre>
+<pre><code>true</code></pre>
 </div>
 </div>
-<p>Exercício:</p>
-<p>Faça o passo a passo para encontrar as raízes da equação de segundo grau <span class="math inline">\(x^2 - 5 x + 6\)</span>, usando as váriaveis <code>a</code>, <code>b</code>, <code>c</code>, <code>\Delta</code>, <code>x1</code> e <code>x2</code>. Após isso, compare com a solução a seguir:</p>
 <div id="12" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Definição dos coeficientes</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="op">-</span><span class="fl">5</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">6</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo do discriminante</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> b<span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">4</span> <span class="op">*</span> a <span class="op">*</span> c</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo das raízes</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> delta <span class="op">&gt;=</span> <span class="fl">0</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> (<span class="op">-</span>b <span class="op">+</span> <span class="fu">sqrt</span>(delta)) <span class="op">/</span> (<span class="fl">2</span> <span class="op">*</span> a)</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    x2 <span class="op">=</span> (<span class="op">-</span>b <span class="op">-</span> <span class="fu">sqrt</span>(delta)) <span class="op">/</span> (<span class="fl">2</span> <span class="op">*</span> a)</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"As raízes são: x1 = </span><span class="sc">$</span>x1<span class="st"> e x2 = </span><span class="sc">$</span>x2<span class="st">"</span>)</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"A equação não possui raízes reais."</span>)</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Maior ou igual: retorna true se o primeiro valor for maior ou igual ao segundo</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fl">42</span> <span class="op">&gt;=</span> <span class="fl">42</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>true</code></pre>
+</div>
+</div>
+<p>É importante observar que em linguagens de programação, incluindo Julia, o sinal de igual (<code>=</code>) é usado para atribuição de valores a variáveis, enquanto o operador de igualdade (<code>==</code>) é usado para comparações.</p>
+<p>Podemos verificar o tipo de uma expressão de comparação:</p>
+<div id="14" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fl">2</span> <span class="op">==</span> <span class="fl">3</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>Bool</code></pre>
+</div>
+</div>
+<p>Como esperado, o tipo é <code>Bool</code>, indicando um valor booleano.</p>
+<section id="operadores-lógicos" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="operadores-lógicos"><span class="header-section-number">3.1.1</span> Operadores Lógicos</h3>
+<p>Além dos operadores de comparação, Julia também oferece operadores lógicos que permitem combinar ou modificar valores booleanos:</p>
+<div id="16" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Operador NOT (negação): inverte o valor booleano</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>!<span class="cn">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>false</code></pre>
+</div>
+</div>
+<div id="18" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>!<span class="cn">false</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>true</code></pre>
+</div>
+</div>
+<div id="20" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Operador AND: retorna true apenas se ambos os valores forem true</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cn">true</span> <span class="op">&amp;&amp;</span> <span class="cn">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>true</code></pre>
+</div>
+</div>
+<div id="22" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cn">true</span> <span class="op">&amp;&amp;</span> <span class="cn">false</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>false</code></pre>
+</div>
+</div>
+<div id="24" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Operador OR: retorna true se pelo menos um dos valores for true</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cn">true</span> <span class="op">||</span> <span class="cn">false</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>true</code></pre>
+</div>
+</div>
+<div id="26" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cn">false</span> <span class="op">||</span> <span class="cn">false</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>false</code></pre>
+</div>
+</div>
+<p>Esses operadores são essenciais para construir condições mais complexas em nossas estruturas condicionais.</p>
+</section>
+</section>
+<section id="alterando-o-fluxo-de-execução-com-if-else" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="alterando-o-fluxo-de-execução-com-if-else"><span class="header-section-number">3.2</span> Alterando o Fluxo de Execução com if-else</h2>
+<p>Até agora, nossos programas seguiam um fluxo de execução linear, com as instruções sendo executadas na ordem em que foram escritas. Veja o exemplo:</p>
+<div id="28" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Oi"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"um"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"dois"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>As raízes são: x1 = 3.0 e x2 = 2.0</code></pre>
+<pre><code>Oi
+um
+dois</code></pre>
 </div>
 </div>
+<p>A ordem de impressão será “Oi”, “um” e “dois”, exatamente na sequência em que os comandos foram escritos.</p>
+<p>No entanto, muitas vezes precisamos que nosso programa tome decisões e execute diferentes blocos de código dependendo de certas condições. É aqui que entra a estrutura condicional <code>if</code>.</p>
+<section id="a-estrutura-if" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="a-estrutura-if"><span class="header-section-number">3.2.1</span> A Estrutura if</h3>
+<p>A estrutura <strong>if</strong> permite executar um bloco de código apenas se uma condição for verdadeira:</p>
+<div id="30" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>pandemia <span class="op">=</span> <span class="cn">true</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Vou sair de casa?"</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> pandemia <span class="op">==</span> <span class="cn">true</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">println</span>(<span class="st">"Só vou sair de casa se for essencial"</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Vou sair de casa?
+Só vou sair de casa se for essencial</code></pre>
+</div>
+</div>
+<p>Neste exemplo, a mensagem “Só vou sair de casa se for essencial” só será impressa se a variável <code>pandemia</code> for igual a <code>true</code>.</p>
+<p>Aqui está outro exemplo:</p>
+<div id="32" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>denominador <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> denominador <span class="op">!=</span> <span class="fl">0</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">println</span>(<span class="st">"Sei fazer a divisão se não for por zero"</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">println</span>(<span class="st">"O resultado da divisão de 30 por "</span>, denominador, <span class="st">" é igual a "</span>, <span class="fl">30</span><span class="op">/</span>denominador)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sei fazer a divisão se não for por zero
+O resultado da divisão de 30 por 1 é igual a 30.0</code></pre>
+</div>
+</div>
+<p>O código dentro do bloco <code>if</code> só será executado se o denominador for diferente de zero, evitando assim um erro de divisão por zero.</p>
+</section>
+<section id="adicionando-alternativas-com-else" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="adicionando-alternativas-com-else"><span class="header-section-number">3.2.2</span> Adicionando Alternativas com else</h3>
+<p>Frequentemente, queremos executar um bloco de código se uma condição for verdadeira e outro bloco se a condição for falsa. Para isso, usamos a estrutura <strong>if-else</strong>:</p>
+<div id="34" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pandemia <span class="op">=</span> <span class="cn">true</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Vou sair de casa?"</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> pandemia <span class="op">==</span> <span class="cn">true</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">println</span>(<span class="st">"Só vou sair de casa se for essencial"</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">println</span>(<span class="st">"Balada liberada!!"</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Vou sair de casa?
+Só vou sair de casa se for essencial</code></pre>
+</div>
+</div>
+<p>Se a variável <code>pandemia</code> for <code>true</code>, será impressa a mensagem “Só vou sair de casa se for essencial”. Caso contrário, será impressa a mensagem “Balada liberada!!”.</p>
+</section>
+<section id="múltiplas-condições-com-elseif" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="múltiplas-condições-com-elseif"><span class="header-section-number">3.2.3</span> Múltiplas Condições com elseif</h3>
+<p>E se tivermos mais de duas situações possíveis? Nesse caso, podemos usar a estrutura <strong>if-elseif-else</strong>:</p>
+<div id="36" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>pandemia <span class="op">=</span> <span class="cn">true</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>tenhoqueestudar <span class="op">=</span> <span class="cn">true</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Vou sair de casa?"</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> pandemia <span class="op">==</span> <span class="cn">true</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">println</span>(<span class="st">"Só vou sair de casa se for essencial"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="cf">elseif</span> tenhoqueestudar <span class="op">==</span> <span class="cn">true</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">println</span>(<span class="st">"Melhor ficar em casa"</span>)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">println</span>(<span class="st">"Balada liberada"</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Vou sair de casa?
+Só vou sair de casa se for essencial</code></pre>
+</div>
+</div>
+<p>Neste exemplo, temos três caminhos possíveis:</p>
+<ol type="1">
+<li>Se houver pandemia, sair apenas se for essencial</li>
+<li>Se não houver pandemia mas eu tiver que estudar, ficar em casa</li>
+<li>Se não houver pandemia e eu não tiver que estudar, ir para a balada</li>
+</ol>
+<p>A estrutura <strong>if-elseif-else</strong> avalia as condições na ordem em que aparecem. Assim que uma condição verdadeira é encontrada, o bloco correspondente é executado e as demais condições são ignoradas.</p>
+</section>
+</section>
+<section id="verifique-seu-aprendizado" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="verifique-seu-aprendizado"><span class="header-section-number">3.3</span> Verifique seu Aprendizado</h2>
+<ol type="1">
+<li>Qual é a diferença entre o operador <code>=</code> e o operador <code>==</code> em Julia? Por que essa distinção é importante?</li>
+<li>Explique a diferença entre <strong>if-else</strong> e <strong>if-elseif-else</strong>. Em quais situações você usaria cada um?</li>
+<li>Considere a seguinte expressão booleana: <code>(a &gt; b) &amp;&amp; !(c == d)</code>. Explique em palavras o que ela significa.</li>
+</ol>
+</section>
+<section id="explore-por-conta-própria" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="explore-por-conta-própria"><span class="header-section-number">3.4</span> Explore por Conta Própria</h2>
+<ol type="1">
+<li>Pesquise sobre a avaliação em curto-circuito dos operadores lógicos <code>&amp;&amp;</code> e <code>||</code> em Julia. Como esse comportamento pode ser útil em programação?</li>
+<li>Em Julia, além dos valores <code>true</code> e <code>false</code>, quais outros valores são considerados “verdadeiros” ou “falsos” em um contexto booleano?</li>
+<li>Investigue o operador ternário (<code>?:</code>) em Julia e como ele pode ser usado como uma alternativa mais concisa para certas estruturas <strong>if-else</strong>.</li>
+<li>Explore como as estruturas condicionais podem ser combinadas com funções para criar código mais modular e reutilizável.</li>
+</ol>
 
 
 </section>
@@ -988,8 +988,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/04-controle-fluxo.html" class="pagination-link" aria-label="Comparações, o comando if e recursão">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Comparações, o comando if e recursão</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/04-funcoes-recursao.html" class="pagination-link" aria-label="Introdução às Funções">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introdução às Funções</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
