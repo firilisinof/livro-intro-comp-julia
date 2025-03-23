@@ -1,0 +1,180 @@
+---
+engine: julia
+---
+
+# Estruturas de Controle e Tomada de Decisões
+
+O objetivo deste capítulo é entender como um programa pode tomar decisões e alterar seu fluxo de execução. Vamos explorar os operadores de comparação, o tipo booleano, e as estruturas condicionais `if`, `else` e `elseif` em Julia.
+
+## Operadores de Comparação e o Tipo Booleano
+
+Antes de estudarmos estruturas condicionais, precisamos entender os operadores de comparação e o tipo de dado que eles produzem: o tipo booleano (`Bool`). Uma variável booleana pode ter apenas dois valores possíveis: `true` (verdadeiro) ou `false` (falso).
+Vamos examinar os principais operadores de comparação em Julia:
+
+```{julia}
+# Igualdade: retorna true se os valores forem iguais
+2 + 2 == 4
+```
+
+```{julia}
+# Diferença: retorna true se os valores forem diferentes
+3 != 8
+```
+
+```{julia}
+# Menor que: retorna true se o primeiro valor for menor que o segundo
+23 < 24
+```
+
+```{julia}
+# Menor ou igual: retorna true se o primeiro valor for menor ou igual ao segundo
+42 <= 44
+```
+
+```{julia}
+# Maior que: retorna true se o primeiro valor for maior que o segundo
+42 > 2
+```
+
+```{julia}
+# Maior ou igual: retorna true se o primeiro valor for maior ou igual ao segundo
+42 >= 42
+```
+
+É importante observar que em linguagens de programação, incluindo Julia, o sinal de igual (`=`) é usado para atribuição de valores a variáveis, enquanto o operador de igualdade (`==`) é usado para comparações.
+
+Podemos verificar o tipo de uma expressão de comparação:
+
+```{julia}
+typeof(2 == 3)
+```
+
+Como esperado, o tipo é `Bool`, indicando um valor booleano.
+
+
+### Operadores Lógicos
+
+Além dos operadores de comparação, Julia também oferece operadores lógicos que permitem combinar ou modificar valores booleanos:
+
+```{julia}
+# Operador NOT (negação): inverte o valor booleano
+!true
+```
+
+```{julia}
+!false
+```
+
+```{julia}
+# Operador AND: retorna true apenas se ambos os valores forem true
+true && true
+```
+
+```{julia}
+true && false
+```
+
+```{julia}
+# Operador OR: retorna true se pelo menos um dos valores for true
+true || false
+```
+
+```{julia}
+false || false
+```
+
+Esses operadores são essenciais para construir condições mais complexas em nossas estruturas condicionais.
+
+## Alterando o Fluxo de Execução com if-else
+
+Até agora, nossos programas seguiam um fluxo de execução linear, com as instruções sendo executadas na ordem em que foram escritas. Veja o exemplo:
+
+```{julia}
+println("Oi")
+println("um")
+println("dois")
+```
+
+A ordem de impressão será "Oi", "um" e "dois", exatamente na sequência em que os comandos foram escritos.
+
+No entanto, muitas vezes precisamos que nosso programa tome decisões e execute diferentes blocos de código dependendo de certas condições. É aqui que entra a estrutura condicional `if`.
+
+### A Estrutura if
+
+A estrutura **if** permite executar um bloco de código apenas se uma condição for verdadeira:
+
+```{julia}
+pandemia = true
+println("Vou sair de casa?")
+if pandemia == true
+   println("Só vou sair de casa se for essencial")
+end
+```
+
+Neste exemplo, a mensagem "Só vou sair de casa se for essencial" só será impressa se a variável `pandemia` for igual a `true`.
+
+Aqui está outro exemplo:
+
+```{julia}
+denominador = 1
+if denominador != 0
+   println("Sei fazer a divisão se não for por zero")
+   println("O resultado da divisão de 30 por ", denominador, " é igual a ", 30/denominador)
+end
+```
+
+O código dentro do bloco `if` só será executado se o denominador for diferente de zero, evitando assim um erro de divisão por zero.
+
+### Adicionando Alternativas com else
+
+Frequentemente, queremos executar um bloco de código se uma condição for verdadeira e outro bloco se a condição for falsa. Para isso, usamos a estrutura **if-else**:
+
+```{julia}
+pandemia = true
+println("Vou sair de casa?")
+if pandemia == true
+   println("Só vou sair de casa se for essencial")
+else
+   println("Balada liberada!!")
+end
+```
+
+Se a variável `pandemia` for `true`, será impressa a mensagem "Só vou sair de casa se for essencial". Caso contrário, será impressa a mensagem "Balada liberada!!".
+
+### Múltiplas Condições com elseif
+
+E se tivermos mais de duas situações possíveis? Nesse caso, podemos usar a estrutura **if-elseif-else**:
+
+```{julia}
+pandemia = true
+tenhoqueestudar = true
+println("Vou sair de casa?")
+if pandemia == true
+   println("Só vou sair de casa se for essencial")
+elseif tenhoqueestudar == true
+   println("Melhor ficar em casa")
+else
+   println("Balada liberada")
+end
+```
+
+Neste exemplo, temos três caminhos possíveis:
+
+1. Se houver pandemia, sair apenas se for essencial
+2. Se não houver pandemia mas eu tiver que estudar, ficar em casa
+3. Se não houver pandemia e eu não tiver que estudar, ir para a balada
+
+A estrutura **if-elseif-else** avalia as condições na ordem em que aparecem. Assim que uma condição verdadeira é encontrada, o bloco correspondente é executado e as demais condições são ignoradas.
+
+## Verifique seu Aprendizado
+
+1. Qual é a diferença entre o operador `=` e o operador `==` em Julia? Por que essa distinção é importante?
+2. Explique a diferença entre **if-else** e **if-elseif-else**. Em quais situações você usaria cada um?
+3. Considere a seguinte expressão booleana: `(a > b) && !(c == d)`. Explique em palavras o que ela significa.
+
+## Explore por Conta Própria
+
+1. Pesquise sobre a avaliação em curto-circuito dos operadores lógicos `&&` e `||` em Julia. Como esse comportamento pode ser útil em programação?
+2. Em Julia, além dos valores `true` e `false`, quais outros valores são considerados "verdadeiros" ou "falsos" em um contexto booleano?
+3. Investigue o operador ternário (`?:`) em Julia e como ele pode ser usado como uma alternativa mais concisa para certas estruturas **if-else**.
+4. Explore como as estruturas condicionais podem ser combinadas com funções para criar código mais modular e reutilizável.
