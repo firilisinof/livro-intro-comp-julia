@@ -1,0 +1,341 @@
+---
+engine: julia
+---
+# Introdução às Funções
+
+O objetivo deste capítulo é compreender o conceito de funções em programação e como elas são implementadas em Julia. Vamos explorar como criar nossas próprias funções, como elas podem receber parâmetros e retornar valores, além de introduzir o conceito de recursão.
+
+## Funções como Abstrações Naturais
+
+Na aula anterior, já utilizamos algumas funções predefinidas em Julia. Funções são blocos de código que realizam tarefas específicas e podem ser reutilizados sempre que necessário. Elas nos permitem abstrair operações complexas em comandos simples, tornando o código mais legível e modular.
+
+Vamos relembrar algumas das funções que já utilizamos:
+
+- `typeof()` - Recebe um valor como parâmetro e retorna o seu tipo.
+- `div()` - Recebe dois números e retorna a divisão inteira do primeiro pelo segundo.
+- `print()` e `println()` - Imprimem valores no console, sendo que o segundo adiciona uma quebra de linha após a impressão.
+
+Assim como na aula anterior, podemos pedir ajuda ao Julia para entender melhor como essas funções funcionam. Para isso, usamos o ponto de interrogação `?` ou o macro `@doc` antes do nome da função:
+
+```{julia}
+#| eval: false
+# Exemplos de como acessar a documentação
+@doc typeof
+```
+
+```{julia}
+#| eval: false
+@doc div
+```
+
+```{julia}
+#| eval: false
+@doc println
+```
+
+Ao consultar a documentação, descobrimos que algumas funções como `div()` podem ser utilizadas com uma sintaxe alternativa, como por exemplo `\div`. Esse tipo de notação é particularmente útil para operações matemáticas.
+
+### Funções de Conversão em Julia
+
+Uma categoria importante de funções em Julia são as funções de conversão, que transformam valores de um tipo em outro. Vejamos alguns exemplos:
+
+```{julia}
+# Converte uma string para um número em ponto flutuante
+parse(Float64, "32")
+```
+
+```{julia}
+# Converte um número em ponto flutuante para um inteiro (removendo a parte decimal)
+trunc(Int64, 2.25)
+```
+
+```{julia}
+# Converte um inteiro para um número em ponto flutuante
+float(2)
+```
+
+```{julia}
+# Converte um número para uma string
+string(3)
+```
+
+```{julia}
+# Converte um número em ponto flutuante para uma string
+string(3.57)
+```
+
+### Funções Matemáticas Prontas em Julia
+
+Julia possui uma grande biblioteca de funções matemáticas prontas para uso. Aqui estão algumas das mais comuns:
+
+| Função            | Descrição                                          |
+|:------------------|:--------------------------------------------------|
+| `sin(x)`          | Calcula o seno de \( x \) em radianos            |
+| `cos(x)`          | Calcula o cosseno de \( x \) em radianos         |
+| `tan(x)`          | Calcula a tangente de \( x \) em radianos        |
+| `deg2rad(x)`      | Converte \( x \) de graus em radianos            |
+| `rad2deg(x)`      | Converte \( x \) de radianos em graus            |
+| `log(x)`          | Calcula o logaritmo natural de \( x \)           |
+| `log(b, x)`       | Calcula o logaritmo de \( x \) na base \( b \)   |
+| `log2(x)`         | Calcula o logaritmo de \( x \) na base 2         |
+| `log10(x)`        | Calcula o logaritmo de \( x \) na base 10        |
+| `exp(x)`          | Calcula o expoente da base natural de \( x \)    |
+| `abs(x)`          | Calcula o valor absoluto de \( x \)              |
+| `sqrt(x)`         | Calcula a raiz quadrada de \( x \)                |
+| `cbrt(x)`         | Calcula a raiz cúbica de \( x \)                  |
+| `factorial(x)`    | Calcula o fatorial de \( x \)                     |
+
+Uma boa prática para se familiarizar com essas funções é experimentá-las com diferentes valores e verificar os resultados. Para funções mais complexas, é possível que já existam implementações prontas em Julia. Uma dica útil é pesquisar na internet usando palavras-chave como "julia lang hiperbolic sin" para encontrar a função desejada. Em geral, pesquisar em inglês tende a produzir melhores resultados.
+
+## Criando Nossas Próprias Funções
+
+Em Julia, podemos criar nossas próprias funções usando a palavra-chave `function`, seguida pelo nome da função, parênteses (que podem conter parâmetros) e terminando com `end`. Vejamos um exemplo simples:
+
+```{julia}
+function mensagemDeBomDia()
+   println("Tenha um bom dia!")
+end
+```
+
+Para usar (ou "chamar") uma função, basta escrever seu nome seguido de parênteses:
+
+```{julia}
+mensagemDeBomDia()
+```
+
+### Funções com Parâmetros
+
+As funções se tornam muito mais úteis quando podem receber informações para processar. Essas informações são chamadas de "parâmetros" ou "argumentos":
+
+```{julia}
+function imprime(a)
+   println("Vou imprimir ", a)
+end
+```
+
+Vamos chamar esta função com diferentes valores:
+
+```{julia}
+imprime(42)
+```
+
+```{julia}
+imprime("Olá, mundo!")
+```
+
+### Funções Chamando Outras Funções
+
+Uma função pode chamar outra função, permitindo a composição de operações mais complexas:
+
+```{julia}
+function imprimeduasvezes(a)
+   imprime(a)
+   imprime(a)
+end
+```
+
+Testando nossa nova função:
+
+```{julia}
+imprimeduasvezes(13)
+```
+
+### Sobrecarga de Funções
+
+Em Julia, podemos ter funções com o mesmo nome, mas com diferentes números ou tipos de parâmetros. Isso é chamado de "sobrecarga de funções":
+
+```{julia}
+function recebe(a)
+  println("Recebi um parâmetro: ", a)
+end
+
+function recebe(a, b)
+  println("Recebi dois parâmetros: ", a, " e ", b)
+end
+```
+
+O Julia decide qual versão da função chamar com base nos argumentos fornecidos:
+
+```{julia}
+recebe(1)
+```
+
+```{julia}
+recebe(1, 2)
+```
+
+Também podemos chamar funções usando variáveis e expressões como argumentos:
+
+```{julia}
+a = 10
+recebe(a)
+recebe(a, a + 1)
+```
+
+## Funções que Retornam Valores
+
+Até agora, vimos funções que apenas imprimem mensagens, mas não devolvem nenhum valor. O tipo de retorno dessas funções é `Nothing`, indicando que elas não produzem um valor que possa ser atribuído a uma variável.
+
+No entanto, frequentemente queremos que nossas funções calculem e retornem valores. Para isso, usamos a palavra-chave `return`:
+
+```{julia}
+function soma1(a)
+  return a + 1
+end
+```
+
+Agora podemos usar essa função em expressões e atribuições:
+
+```{julia}
+resultado = soma1(5)
+println("O resultado é: ", resultado)
+```
+
+```{julia}
+# Também podemos usar o resultado em outras expressões
+println("Resultado multiplicado por 2: ", soma1(5) * 2)
+```
+
+Podemos criar funções para cálculos mais complexos:
+
+```{julia}
+function hipotenusa(a, b)
+  hip = sqrt(a^2 + b^2)
+  return hip
+end
+```
+
+Testando nossa função:
+
+```{julia}
+# Calculando a hipotenusa de um triângulo 3-4-5
+hipotenusa(3, 4)
+```
+
+## Introdução à Recursão
+
+Agora vamos explorar um conceito fundamental em programação: a recursão. Uma função recursiva é aquela que chama a si mesma como parte de sua execução. Isso pode parecer estranho à primeira vista, mas é uma técnica poderosa para resolver certos tipos de problemas.
+
+Vamos começar com um exemplo simples: calcular o fatorial de um número. O fatorial de $n$ (representado por $n!$) é o produto de todos os inteiros positivos menores ou iguais a $n$. Por exemplo, $5! = 5 \times 4 \times 3 \times 2 \times 1 = 120$.
+
+O fatorial pode ser definido recursivamente como:
+
+- Caso base: $0! = 1$
+- Caso recursivo: $n! = n \times (n-1)!$
+
+Vamos implementar isso em Julia:
+
+```{julia}
+function fatorial(n)
+  if n == 0
+    return 1  # Caso base
+  else
+    return n * fatorial(n - 1)  # Chamada recursiva
+  end
+end
+```
+
+Testando nossa função:
+
+```{julia}
+fatorial(5)
+```
+
+Para entender como a recursão funciona, vamos acompanhar passo a passo o cálculo de `fatorial(3)`:
+
+1. Chamamos `fatorial(3)`
+   - Como $3$ não é igual a $0$, executamos `return 3 * fatorial(2)`
+2. Agora precisamos calcular `fatorial(2)`
+   - Como $2$ não é igual a $0$, executamos `return 2 * fatorial(1)`
+3. Agora precisamos calcular `fatorial(1)`
+   - Como $1$ não é igual a $0$, executamos `return 1 * fatorial(0)`
+4. Agora precisamos calcular `fatorial(0)`
+   - Como $0$ é igual a $0$, retornamos $1$
+5. Agora podemos completar o cálculo de `fatorial(1)` = $1 \times 1 = 1$
+6. Agora podemos completar o cálculo de `fatorial(2)` = $2 \times 1 = 2$
+7. Finalmente, completamos o cálculo de `fatorial(3)` = $3 \times 2 = 6$
+
+A recursão tem duas partes fundamentais:
+
+1. Um **caso base** que encerra a recursão (no nosso exemplo, quando $n = 0$)
+2. Um **caso recursivo** que aproxima o problema do caso base (no nosso exemplo, reduzindo $n$ em $1$)
+
+É necessário que a recursão sempre alcance o caso base, caso contrário, a função continuará chamando a si mesma indefinidamente, causando um erro de estouro de pilha (stack overflow).
+
+### Mais Exemplos de Recursão
+
+Vamos implementar uma função recursiva para contagem regressiva:
+
+```{julia}
+function contagem(n)
+    if n < 0
+        println("Fim!")
+    else
+        print(n, " ")
+        contagem(n - 1)
+    end
+end
+```
+
+Testando nossa função:
+
+```{julia}
+contagem(5)
+```
+
+Podemos também usar recursão para calcular a soma dos primeiros $n$ números inteiros:
+
+```{julia}
+function soma(n)
+  if n == 0
+    return 0  # Caso base
+  else
+    return n + soma(n - 1)  # Caso recursivo
+  end
+end
+```
+
+Testando nossa função:
+
+```{julia}
+soma(10)
+```
+
+Outro exemplo interessante é o cálculo da soma dos termos da série harmônica:
+
+```{julia}
+function somaharmonica(atual, n)
+  # Caso base: quando chegamos ao último termo
+  if atual > n
+    return 0.0
+  else
+    # Caso recursivo: somamos o termo atual e chamamos a função para o próximo termo
+    return 1.0 / atual + somaharmonica(atual + 1, n)
+  end
+end
+```
+
+Vamos calcular a soma dos 10 primeiros termos da série harmônica:
+
+```{julia}
+somaharmonica(1, 10)
+```
+
+## Verifique seu Aprendizado
+
+1. Qual é a diferença entre uma função que imprime um valor e uma função que retorna um valor? Por que esta distinção é importante?
+2. Explique o conceito de recursão em suas próprias palavras. Quais são os componentes essenciais de uma função recursiva?
+3. Crie uma função que receba um número inteiro positivo e retorne a soma de seus dígitos. Por exemplo, para o número $123$, a função deve retornar $1+2+3 = 6$.
+4. Implemente uma função que calcule o $n$-ésimo número da **sequência de Fibonacci** usando recursão. Lembre-se que
+    - $Fib(0) = 0$
+    - $Fib(1) = 1$
+    - $Fib(n) = Fib(n-1) + Fib(n-2)$, se $n > 1$.
+5. Crie uma função que receba dois números como parâmetros e retorne o **máximo divisor comum (MDC)** entre eles usando o algoritmo de Euclides recursivamente.
+
+## Explore por Conta Própria
+
+1. Pesquise sobre o conceito de "pilha de chamadas" (*call stack*) e como ele se relaciona com a recursão. Quais são as limitações práticas da recursão devido à pilha de chamadas?
+2. Pense em como seria possível otimizar a função recursiva de Fibonacci para evitar cálculos repetidos.
+    - Dica: pesquise sobre "memoização".
+3. Explore funções com um número variável de argumentos em Julia usando a sintaxe de "splats" (`...`).
+4. Procure como você pode definir valores padrão para parâmetros de funções em Julia.
