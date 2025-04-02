@@ -347,8 +347,9 @@ window.Quarto = {
   <ul>
   <li><a href="#funções-como-abstrações-naturais" id="toc-funções-como-abstrações-naturais" class="nav-link active" data-scroll-target="#funções-como-abstrações-naturais"><span class="header-section-number">4.1</span> Funções como Abstrações Naturais</a>
   <ul class="collapse">
-  <li><a href="#funções-de-conversão-em-julia" id="toc-funções-de-conversão-em-julia" class="nav-link" data-scroll-target="#funções-de-conversão-em-julia"><span class="header-section-number">4.1.1</span> Funções de Conversão em Julia</a></li>
-  <li><a href="#funções-matemáticas-prontas-em-julia" id="toc-funções-matemáticas-prontas-em-julia" class="nav-link" data-scroll-target="#funções-matemáticas-prontas-em-julia"><span class="header-section-number">4.1.2</span> Funções Matemáticas Prontas em Julia</a></li>
+  <li><a href="#acessando-a-documentação-de-funções" id="toc-acessando-a-documentação-de-funções" class="nav-link" data-scroll-target="#acessando-a-documentação-de-funções"><span class="header-section-number">4.1.1</span> Acessando a Documentação de Funções</a></li>
+  <li><a href="#funções-de-conversão-em-julia" id="toc-funções-de-conversão-em-julia" class="nav-link" data-scroll-target="#funções-de-conversão-em-julia"><span class="header-section-number">4.1.2</span> Funções de Conversão em Julia</a></li>
+  <li><a href="#funções-matemáticas-prontas-em-julia" id="toc-funções-matemáticas-prontas-em-julia" class="nav-link" data-scroll-target="#funções-matemáticas-prontas-em-julia"><span class="header-section-number">4.1.3</span> Funções Matemáticas Prontas em Julia</a></li>
   </ul></li>
   <li><a href="#criando-nossas-próprias-funções" id="toc-criando-nossas-próprias-funções" class="nav-link" data-scroll-target="#criando-nossas-próprias-funções"><span class="header-section-number">4.2</span> Criando Nossas Próprias Funções</a>
   <ul class="collapse">
@@ -371,7 +372,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-evolucao-computacao.html">Parte I: Conceitos Básicos</a></li><li class="breadcrumb-item"><a href="../chapters/04-funcoes-recursao.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introdução às Funções</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introdução às Funções</span></h1>
+<h1 class="title"><span id="sec-functions" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introdução às Funções</span></span></h1>
 </div>
 
 
@@ -398,59 +399,91 @@ window.Quarto = {
 <li><code>div()</code> - Recebe dois números e retorna a divisão inteira do primeiro pelo segundo.</li>
 <li><code>print()</code> e <code>println()</code> - Imprimem valores no console, sendo que o segundo adiciona uma quebra de linha após a impressão.</li>
 </ul>
-<p>Assim como na aula anterior, podemos pedir ajuda ao Julia para entender melhor como essas funções funcionam. Para isso, usamos o ponto de interrogação <code>?</code> ou o macro <code>@doc</code> antes do nome da função:</p>
-<div id="2" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplos de como acessar a documentação</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> typeof</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Até agora, vimos exemplos de <strong>chamadas de funções</strong> como <code>sin(0.5)</code> ou <code>sqrt(4)</code>. Quando escrevemos o nome da função seguido de parênteses contendo argumentos, estamos “chamando” ou “invocando” essa função.</p>
+<p>Mas como essas funções são criadas? Em Julia, podemos declarar nossas próprias funções usando a palavra-chave <code>function</code>:</p>
+<div id="2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">dobro</span>(x)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> <span class="fl">2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>dobro (generic function with 1 method)</code></pre>
 </div>
-<div id="4" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> div</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Aqui, <code>dobro</code> é o nome da função, <code>x</code> é um parâmetro (um valor que a função recebe), e <code>return x * 2</code> especifica o que a função deve calcular e retornar quando chamada.</p>
+<p>Após declarar a função, podemos chamá-la várias vezes com diferentes argumentos:</p>
+<div id="4" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>resultado1 <span class="op">=</span> <span class="fu">dobro</span>(<span class="fl">5</span>)    <span class="co"># Chama a função com o argumento 5</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(resultado1)      <span class="co"># Imprime 10</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>resultado2 <span class="op">=</span> <span class="fu">dobro</span>(<span class="fl">3.5</span>)  <span class="co"># Chama a função com o argumento 3.5</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(resultado2)      <span class="co"># Imprime 7.0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10
+7.0</code></pre>
+</div>
+</div>
+<p>É importante entender a diferença entre declaração e chamada de funções:</p>
+<ul>
+<li><strong>Declaração</strong>: Define como a função deve se comportar (ocorre uma vez)</li>
+<li><strong>Chamada</strong>: Executa a função com valores específicos (pode ocorrer múltiplas vezes)</li>
+</ul>
+<p>Funções como <code>sin()</code>, <code>sqrt()</code> e <code>big()</code> já vêm declaradas em Julia, por isso podemos utilizá-las diretamente.</p>
+<section id="acessando-a-documentação-de-funções" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="acessando-a-documentação-de-funções"><span class="header-section-number">4.1.1</span> Acessando a Documentação de Funções</h3>
+<p>Podemos pedir ajuda ao Julia para entender melhor como essas funções funcionam. Para isso, usamos o ponto de interrogação <code>?</code> ou o macro <code>@doc</code> antes do nome da função:</p>
 <div id="6" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> println</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplos de como acessar a documentação</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> typeof</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8" class="cell" data-execution_count="0">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> div</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="10" class="cell" data-execution_count="0">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> println</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ao consultar a documentação, descobrimos que algumas funções como <code>div()</code> podem ser utilizadas com uma sintaxe alternativa, como por exemplo <code>\div</code>. Esse tipo de notação é particularmente útil para operações matemáticas.</p>
-<section id="funções-de-conversão-em-julia" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="funções-de-conversão-em-julia"><span class="header-section-number">4.1.1</span> Funções de Conversão em Julia</h3>
+</section>
+<section id="funções-de-conversão-em-julia" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="funções-de-conversão-em-julia"><span class="header-section-number">4.1.2</span> Funções de Conversão em Julia</h3>
 <p>Uma categoria importante de funções em Julia são as funções de conversão, que transformam valores de um tipo em outro. Vejamos alguns exemplos:</p>
-<div id="8" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converte uma string para um número em ponto flutuante</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">parse</span>(<span class="dt">Float64</span>, <span class="st">"32"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="12" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converte uma string para um número em ponto flutuante</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">parse</span>(<span class="dt">Float64</span>, <span class="st">"32"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>32.0</code></pre>
 </div>
 </div>
-<div id="10" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converte um número em ponto flutuante para um inteiro (removendo a parte decimal)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">trunc</span>(<span class="dt">Int64</span>, <span class="fl">2.25</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="14" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converte um número em ponto flutuante para um inteiro (removendo a parte decimal)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">trunc</span>(<span class="dt">Int64</span>, <span class="fl">2.25</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2</code></pre>
 </div>
 </div>
-<div id="12" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converte um inteiro para um número em ponto flutuante</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">float</span>(<span class="fl">2</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="16" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converte um inteiro para um número em ponto flutuante</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">float</span>(<span class="fl">2</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2.0</code></pre>
 </div>
 </div>
-<div id="14" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converte um número para uma string</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">string</span>(<span class="fl">3</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="18" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converte um número para uma string</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">string</span>(<span class="fl">3</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>"3"</code></pre>
 </div>
 </div>
-<div id="16" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converte um número em ponto flutuante para uma string</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">string</span>(<span class="fl">3.57</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="20" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converte um número em ponto flutuante para uma string</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">string</span>(<span class="fl">3.57</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>"3.57"</code></pre>
 </div>
 </div>
 </section>
-<section id="funções-matemáticas-prontas-em-julia" class="level3" data-number="4.1.2">
-<h3 data-number="4.1.2" class="anchored" data-anchor-id="funções-matemáticas-prontas-em-julia"><span class="header-section-number">4.1.2</span> Funções Matemáticas Prontas em Julia</h3>
+<section id="funções-matemáticas-prontas-em-julia" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="funções-matemáticas-prontas-em-julia"><span class="header-section-number">4.1.3</span> Funções Matemáticas Prontas em Julia</h3>
 <p>Julia possui uma grande biblioteca de funções matemáticas prontas para uso. Aqui estão algumas das mais comuns:</p>
 <table class="caption-top table">
 <colgroup>
@@ -528,17 +561,17 @@ window.Quarto = {
 <section id="criando-nossas-próprias-funções" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="criando-nossas-próprias-funções"><span class="header-section-number">4.2</span> Criando Nossas Próprias Funções</h2>
 <p>Em Julia, podemos criar nossas próprias funções usando a palavra-chave <code>function</code>, seguida pelo nome da função, parênteses (que podem conter parâmetros) e terminando com <code>end</code>. Vejamos um exemplo simples:</p>
-<div id="18" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mensagemDeBomDia</span>()</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">println</span>(<span class="st">"Tenha um bom dia!"</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="22" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mensagemDeBomDia</span>()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">println</span>(<span class="st">"Tenha um bom dia!"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>mensagemDeBomDia (generic function with 1 method)</code></pre>
 </div>
 </div>
 <p>Para usar (ou “chamar”) uma função, basta escrever seu nome seguido de parênteses:</p>
-<div id="20" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mensagemDeBomDia</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="24" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mensagemDeBomDia</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Tenha um bom dia!</code></pre>
 </div>
@@ -546,23 +579,23 @@ window.Quarto = {
 <section id="funções-com-parâmetros" class="level3" data-number="4.2.1">
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="funções-com-parâmetros"><span class="header-section-number">4.2.1</span> Funções com Parâmetros</h3>
 <p>As funções se tornam muito mais úteis quando podem receber informações para processar. Essas informações são chamadas de “parâmetros” ou “argumentos”:</p>
-<div id="22" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">imprime</span>(a)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">println</span>(<span class="st">"Vou imprimir "</span>, a)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="26" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">imprime</span>(a)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">println</span>(<span class="st">"Vou imprimir "</span>, a)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>imprime (generic function with 1 method)</code></pre>
 </div>
 </div>
 <p>Vamos chamar esta função com diferentes valores:</p>
-<div id="24" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">imprime</span>(<span class="fl">42</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="28" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">imprime</span>(<span class="fl">42</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Vou imprimir 42</code></pre>
 </div>
 </div>
-<div id="26" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">imprime</span>(<span class="st">"Olá, mundo!"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="30" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">imprime</span>(<span class="st">"Olá, mundo!"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Vou imprimir Olá, mundo!</code></pre>
 </div>
@@ -571,18 +604,18 @@ window.Quarto = {
 <section id="funções-chamando-outras-funções" class="level3" data-number="4.2.2">
 <h3 data-number="4.2.2" class="anchored" data-anchor-id="funções-chamando-outras-funções"><span class="header-section-number">4.2.2</span> Funções Chamando Outras Funções</h3>
 <p>Uma função pode chamar outra função, permitindo a composição de operações mais complexas:</p>
-<div id="28" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">imprimeduasvezes</span>(a)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">imprime</span>(a)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">imprime</span>(a)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="32" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">imprimeduasvezes</span>(a)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">imprime</span>(a)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">imprime</span>(a)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>imprimeduasvezes (generic function with 1 method)</code></pre>
 </div>
 </div>
 <p>Testando nossa nova função:</p>
-<div id="30" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">imprimeduasvezes</span>(<span class="fl">13</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="34" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">imprimeduasvezes</span>(<span class="fl">13</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Vou imprimir 13
 Vou imprimir 13</code></pre>
@@ -592,36 +625,36 @@ Vou imprimir 13</code></pre>
 <section id="sobrecarga-de-funções" class="level3" data-number="4.2.3">
 <h3 data-number="4.2.3" class="anchored" data-anchor-id="sobrecarga-de-funções"><span class="header-section-number">4.2.3</span> Sobrecarga de Funções</h3>
 <p>Em Julia, podemos ter funções com o mesmo nome, mas com diferentes números ou tipos de parâmetros. Isso é chamado de “sobrecarga de funções”:</p>
-<div id="32" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">recebe</span>(a)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"Recebi um parâmetro: "</span>, a)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">recebe</span>(a, b)</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"Recebi dois parâmetros: "</span>, a, <span class="st">" e "</span>, b)</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="36" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">recebe</span>(a)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"Recebi um parâmetro: "</span>, a)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">recebe</span>(a, b)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"Recebi dois parâmetros: "</span>, a, <span class="st">" e "</span>, b)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>recebe (generic function with 2 methods)</code></pre>
 </div>
 </div>
 <p>O Julia decide qual versão da função chamar com base nos argumentos fornecidos:</p>
-<div id="34" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">recebe</span>(<span class="fl">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="38" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">recebe</span>(<span class="fl">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Recebi um parâmetro: 1</code></pre>
 </div>
 </div>
-<div id="36" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">recebe</span>(<span class="fl">1</span>, <span class="fl">2</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="40" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">recebe</span>(<span class="fl">1</span>, <span class="fl">2</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Recebi dois parâmetros: 1 e 2</code></pre>
 </div>
 </div>
 <p>Também podemos chamar funções usando variáveis e expressões como argumentos:</p>
-<div id="38" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">10</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">recebe</span>(a)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">recebe</span>(a, a <span class="op">+</span> <span class="fl">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="42" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">10</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">recebe</span>(a)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">recebe</span>(a, a <span class="op">+</span> <span class="fl">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Recebi um parâmetro: 10
 Recebi dois parâmetros: 10 e 11</code></pre>
@@ -633,43 +666,43 @@ Recebi dois parâmetros: 10 e 11</code></pre>
 <h2 data-number="4.3" class="anchored" data-anchor-id="funções-que-retornam-valores"><span class="header-section-number">4.3</span> Funções que Retornam Valores</h2>
 <p>Até agora, vimos funções que apenas imprimem mensagens, mas não devolvem nenhum valor. O tipo de retorno dessas funções é <code>Nothing</code>, indicando que elas não produzem um valor que possa ser atribuído a uma variável.</p>
 <p>No entanto, frequentemente queremos que nossas funções calculem e retornem valores. Para isso, usamos a palavra-chave <code>return</code>:</p>
-<div id="40" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">soma1</span>(a)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> a <span class="op">+</span> <span class="fl">1</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="44" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">soma1</span>(a)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> a <span class="op">+</span> <span class="fl">1</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>soma1 (generic function with 1 method)</code></pre>
 </div>
 </div>
 <p>Agora podemos usar essa função em expressões e atribuições:</p>
-<div id="42" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> <span class="fu">soma1</span>(<span class="fl">5</span>)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"O resultado é: "</span>, resultado)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="46" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> <span class="fu">soma1</span>(<span class="fl">5</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"O resultado é: "</span>, resultado)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>O resultado é: 6</code></pre>
 </div>
 </div>
-<div id="44" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Também podemos usar o resultado em outras expressões</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Resultado multiplicado por 2: "</span>, <span class="fu">soma1</span>(<span class="fl">5</span>) <span class="op">*</span> <span class="fl">2</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="48" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Também podemos usar o resultado em outras expressões</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Resultado multiplicado por 2: "</span>, <span class="fu">soma1</span>(<span class="fl">5</span>) <span class="op">*</span> <span class="fl">2</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Resultado multiplicado por 2: 12</code></pre>
 </div>
 </div>
 <p>Podemos criar funções para cálculos mais complexos:</p>
-<div id="46" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">hipotenusa</span>(a, b)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  hip <span class="op">=</span> <span class="fu">sqrt</span>(a<span class="op">^</span><span class="fl">2</span> <span class="op">+</span> b<span class="op">^</span><span class="fl">2</span>)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> hip</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="50" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">hipotenusa</span>(a, b)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  hip <span class="op">=</span> <span class="fu">sqrt</span>(a<span class="op">^</span><span class="fl">2</span> <span class="op">+</span> b<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> hip</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>hipotenusa (generic function with 1 method)</code></pre>
 </div>
 </div>
 <p>Testando nossa função:</p>
-<div id="48" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando a hipotenusa de um triângulo 3-4-5</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hipotenusa</span>(<span class="fl">3</span>, <span class="fl">4</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="52" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando a hipotenusa de um triângulo 3-4-5</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hipotenusa</span>(<span class="fl">3</span>, <span class="fl">4</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>5.0</code></pre>
 </div>
@@ -685,21 +718,21 @@ Recebi dois parâmetros: 10 e 11</code></pre>
 <li>Caso recursivo: <span class="math inline">\(n! = n \times (n-1)!\)</span></li>
 </ul>
 <p>Vamos implementar isso em Julia:</p>
-<div id="50" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">fatorial</span>(n)</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> n <span class="op">==</span> <span class="fl">0</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1</span>  <span class="co"># Caso base</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> <span class="fu">fatorial</span>(n <span class="op">-</span> <span class="fl">1</span>)  <span class="co"># Chamada recursiva</span></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="54" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">fatorial</span>(n)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> n <span class="op">==</span> <span class="fl">0</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1</span>  <span class="co"># Caso base</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> <span class="fu">fatorial</span>(n <span class="op">-</span> <span class="fl">1</span>)  <span class="co"># Chamada recursiva</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>fatorial (generic function with 1 method)</code></pre>
 </div>
 </div>
 <p>Testando nossa função:</p>
-<div id="52" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fatorial</span>(<span class="fl">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="56" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fatorial</span>(<span class="fl">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>120</code></pre>
 </div>
@@ -735,64 +768,64 @@ Recebi dois parâmetros: 10 e 11</code></pre>
 <section id="mais-exemplos-de-recursão" class="level3" data-number="4.4.1">
 <h3 data-number="4.4.1" class="anchored" data-anchor-id="mais-exemplos-de-recursão"><span class="header-section-number">4.4.1</span> Mais Exemplos de Recursão</h3>
 <p>Vamos implementar uma função recursiva para contagem regressiva:</p>
-<div id="54" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">contagem</span>(n)</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;</span> <span class="fl">0</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"Fim!"</span>)</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(n, <span class="st">" "</span>)</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">contagem</span>(n <span class="op">-</span> <span class="fl">1</span>)</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="58" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">contagem</span>(n)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;</span> <span class="fl">0</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"Fim!"</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(n, <span class="st">" "</span>)</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">contagem</span>(n <span class="op">-</span> <span class="fl">1</span>)</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>contagem (generic function with 1 method)</code></pre>
 </div>
 </div>
 <p>Testando nossa função:</p>
-<div id="56" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem</span>(<span class="fl">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="60" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem</span>(<span class="fl">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>5 4 3 2 1 0 Fim!</code></pre>
 </div>
 </div>
 <p>Podemos também usar recursão para calcular a soma dos primeiros <span class="math inline">\(n\)</span> números inteiros:</p>
-<div id="58" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">soma</span>(n)</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> n <span class="op">==</span> <span class="fl">0</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0</span>  <span class="co"># Caso base</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">+</span> <span class="fu">soma</span>(n <span class="op">-</span> <span class="fl">1</span>)  <span class="co"># Caso recursivo</span></span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="62" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">soma</span>(n)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> n <span class="op">==</span> <span class="fl">0</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0</span>  <span class="co"># Caso base</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">+</span> <span class="fu">soma</span>(n <span class="op">-</span> <span class="fl">1</span>)  <span class="co"># Caso recursivo</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>soma (generic function with 1 method)</code></pre>
 </div>
 </div>
 <p>Testando nossa função:</p>
-<div id="60" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">soma</span>(<span class="fl">10</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="64" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">soma</span>(<span class="fl">10</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>55</code></pre>
 </div>
 </div>
 <p>Outro exemplo interessante é o cálculo da soma dos termos da série harmônica:</p>
-<div id="62" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">somaharmonica</span>(atual, n)</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Caso base: quando chegamos ao último termo</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> atual <span class="op">&gt;</span> n</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.0</span></span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span></span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Caso recursivo: somamos o termo atual e chamamos a função para o próximo termo</span></span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.0</span> <span class="op">/</span> atual <span class="op">+</span> <span class="fu">somaharmonica</span>(atual <span class="op">+</span> <span class="fl">1</span>, n)</span>
-<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="66" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">somaharmonica</span>(atual, n)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Caso base: quando chegamos ao último termo</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> atual <span class="op">&gt;</span> n</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.0</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Caso recursivo: somamos o termo atual e chamamos a função para o próximo termo</span></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.0</span> <span class="op">/</span> atual <span class="op">+</span> <span class="fu">somaharmonica</span>(atual <span class="op">+</span> <span class="fl">1</span>, n)</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>somaharmonica (generic function with 1 method)</code></pre>
 </div>
 </div>
 <p>Vamos calcular a soma dos 10 primeiros termos da série harmônica:</p>
-<div id="64" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">somaharmonica</span>(<span class="fl">1</span>, <span class="fl">10</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="68" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">somaharmonica</span>(<span class="fl">1</span>, <span class="fl">10</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2.9289682539682538</code></pre>
 </div>
