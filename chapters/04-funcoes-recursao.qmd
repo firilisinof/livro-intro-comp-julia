@@ -1,7 +1,7 @@
 ---
 engine: julia
 ---
-# Introdução às Funções
+# Introdução às Funções {#sec-functions}
 
 O objetivo deste capítulo é compreender o conceito de funções em programação e como elas são implementadas em Julia. Vamos explorar como criar nossas próprias funções, como elas podem receber parâmetros e retornar valores, além de introduzir o conceito de recursão.
 
@@ -15,7 +15,38 @@ Vamos relembrar algumas das funções que já utilizamos:
 - `div()` - Recebe dois números e retorna a divisão inteira do primeiro pelo segundo.
 - `print()` e `println()` - Imprimem valores no console, sendo que o segundo adiciona uma quebra de linha após a impressão.
 
-Assim como na aula anterior, podemos pedir ajuda ao Julia para entender melhor como essas funções funcionam. Para isso, usamos o ponto de interrogação `?` ou o macro `@doc` antes do nome da função:
+Até agora, vimos exemplos de **chamadas de funções** como `sin(0.5)` ou `sqrt(4)`. Quando escrevemos o nome da função seguido de parênteses contendo argumentos, estamos "chamando" ou "invocando" essa função.
+
+Mas como essas funções são criadas? Em Julia, podemos declarar nossas próprias funções usando a palavra-chave `function`:
+
+```{julia}
+function dobro(x)
+    return x * 2
+end
+```
+
+Aqui, `dobro` é o nome da função, `x` é um parâmetro (um valor que a função recebe), e `return x * 2` especifica o que a função deve calcular e retornar quando chamada.
+
+Após declarar a função, podemos chamá-la várias vezes com diferentes argumentos:
+
+```{julia}
+resultado1 = dobro(5)    # Chama a função com o argumento 5
+println(resultado1)      # Imprime 10
+
+resultado2 = dobro(3.5)  # Chama a função com o argumento 3.5
+println(resultado2)      # Imprime 7.0
+```
+
+É importante entender a diferença entre declaração e chamada de funções:
+
+- **Declaração**: Define como a função deve se comportar (ocorre uma vez)
+- **Chamada**: Executa a função com valores específicos (pode ocorrer múltiplas vezes)
+
+Funções como `sin()`, `sqrt()` e `big()` já vêm declaradas em Julia, por isso podemos utilizá-las diretamente.
+
+### Acessando a Documentação de Funções
+
+Podemos pedir ajuda ao Julia para entender melhor como essas funções funcionam. Para isso, usamos o ponto de interrogação `?` ou o macro `@doc` antes do nome da função:
 
 ```{julia}
 #| eval: false
