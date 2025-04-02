@@ -131,7 +131,7 @@ Voltando às contas. Um outro operador interessante é o `%` que calcula o resto
 
 Até agora vimos como trabalhar com um único valor, como se estivéssemos usando o visor de uma calculadora. Mas podemos ir além disso. Em vez de simples teclas de memória, o computador nos oferece **variáveis**. Essas são como nomes para valores que queremos armazenar e utilizar posteriormente.
 
-Além das operações básicas também temos as operações matemáticas (funções), como por exemplo o seno, *sine* em inglês. Para saber como uma função funciona podemos pedir ajuda ao ambiente, usando uma `?` ou o macro `@doc`, e em seguida digitando o que queremos saber, como por exemplo em:
+Além das operações básicas também temos as operações matemáticas (funções), como por exemplo o seno, *sine* em inglês. Para saber como uma função funciona podemos pedir ajuda ao ambiente, usando uma `?` ou o macro (funções especiais) `@doc`, e em seguida digitando o que queremos saber, como por exemplo em:
 
 ```{julia}
 #| eval: false
@@ -228,6 +228,8 @@ a = 7
 2 + a
 ```
 
+Quando escrevemos `a = 7`, estamos realizando uma operação chamada **atribuição**. O operador `=` em Julia (e na maioria das linguagens de programação) não representa igualdade matemática, mas sim uma instrução para armazenar o valor à direita na variável à esquerda. Podemos visualizar isso como se estivéssemos colocando o valor `7` dentro de uma caixa chamada `a`. 
+
 É importante destacar que as variáveis em Julia podem receber novos valores, e o tipo da variável é determinado pela última atribuição realizada. A função `typeof` pode ser usada para identificar o tipo da variável especificada.
 
 ```{julia}
@@ -240,7 +242,7 @@ a = a + 1
 typeof(a)
 ```
 
-No exemplo a seguir, a variável `b` começa com um valor de tipo inteiro. No entanto, após a operação de multiplicação, seu valor passa a ser do tipo ponto flutuante.
+A atribuição sempre acontece da direita para a esquerda: primeiro calcula-se o valor da expressão à direita, e depois esse valor é armazenado na variável à esquerda. No exemplo a seguir, a variável `b` começa com um valor de tipo inteiro. No entanto, após a operação de multiplicação, seu valor passa a ser do tipo ponto flutuante.
 
 ```{julia}
 b = 3
@@ -262,14 +264,14 @@ typeof(1.1)
 typeof("Bom dia")
 ```
 
-Falando em **strings**, elas são definidas por conjuntos de caracteres entre aspas como:
+Falando em **strings**, eles são definidos por conjuntos de caracteres entre aspas como:
 
 ```{julia}
 s1 = "Olha que legal"
 s2 = "Outra String"
 ```
 
-Também é possível realizar operações com strings, como concatenação:
+Também é possível realizar operações com strings, como **concatenação**:
 
 ```{julia}
 s1 = "Tenha um"
@@ -283,6 +285,16 @@ Ou repetição usando o operador de potência:
 s = "Não vou mais fazer coisas que possam desagradar os meus colegas "
 s ^ 10
 ```
+
+Para evitar que se digitem muitos caracteres, por vezes podemos usar *açucares sintáticos*.
+
+```{julia}
+x = 1
+x = x + 1
+x += 1  # '+= 1' equivale a '= x + 1', também funciona para os operadores *, - e /
+```
+
+O código acima utiliza comentários (tudo depois do `#`). Esses comentários são ignorados pelo interpretador e podem ser usados para tornar o código mais legível.
 
 Ainda sobre variáveis, há algumas regras referentes aos seus nomes: devem começar com uma letra (ou com `_`), podem conter dígitos e não podem ser palavras reservadas. Vale ressaltar que Julia, por ser uma linguagem moderna, aceita caracteres unicode e emojis nos nomes, como por exemplo o Δ (`\Delta`).
 
@@ -299,7 +311,8 @@ Ainda sobre variáveis, há algumas regras referentes aos seus nomes: devem come
 Isso não adiciona nada do lado de algoritmos, mas é possível ter variáveis bem bonitinhas. A lista de figuras pode ser encontrada [aqui](https://docs.julialang.org/en/v1/manual/unicode-input/).
 
 ## Saída de Dados
-Para fazer saídas usam-se dois comandos, `print()` e o `println()`, sendo que o primeiro não pula linha e o segundo pula.
+
+Para imprimir informações no terminal, usamos as funções `print()` e o `println()`. A diferença entre elas é que a primeira não pula linha, enquanto que a segunda pula.
 
 ```{julia}
 print("Hello ")
@@ -307,37 +320,125 @@ println("World!")
 println("Ola, mundo!")
 ```
 
-Para evitar que se digitem muitos caracteres, por vezes podemos usar *açucares sintáticos*.
+O comando `println()` pode receber múltiplos argumentos, que serão convertidos em strings e concatenados automaticamente:
 
 ```{julia}
-x = 1
-x = x + 1
-x += 1  # forma equivalente a acima, o mesmo vale para os operadores *, - e /
+nome = "Maria"
+idade = 25
+println("Olá, meu nome é ", nome, " e tenho ", idade, " anos.")
 ```
 
-O código acima utiliza comentários (tudo depois do `#`). Esses comentários são ignorados pelo interpretador e podem ser usados para tornar o código mais legível.
-
-## Arquivos Externos
-
-Podemos carregar funções de outros arquivos na sessão interativa (e em outros arquivos também) usando o comando `include("caminho/do/arquivo.jl")`. Julia lê o arquivo especificado e executa todo o seu conteúdo no contexto atual. Isso significa que todas as funções, variáveis e definições no arquivo tornam-se disponíveis no ambiente onde `include` foi chamado.
-
-Por exemplo, suponha que temos um arquivo chamado `funcoes.jl` que possui a função `ola`:
+Para formatações mais complexas, Julia oferece **interpolação de strings**, onde podemos inserir variáveis e expressões diretamente dentro de uma string usando o cifrão `$`:
 
 ```{julia}
-function ola(nome)
-    println("Olá ", nome)
-end
+nome = "João"
+altura = 1.75
+println("$nome tem $altura metros de altura.")
 ```
 
-Podemos incluir essa função em um segundo arquivo utilizando o `include("funcoes.jl")` e então usar a função definida no arquivo `funcoes.jl`:
+Também podemos incluir expressões dentro de chaves após o cifrão:
+
+```{julia}
+preco = 9.99
+quantidade = 3
+println("Total da compra: R\$ $(preco * quantidade)")
+```
+
+Para formatação numérica, podemos usar a função `@sprintf` ou a macro `@printf` do módulo `Printf` (detalhes sobre módulos na @sec-files-modules):
+
+```{julia}
+using Printf
+
+valor = 123.456
+@printf("Valor formatado: %.2f\n", valor)  # Exibe com 2 casas decimais
+```
+
+Ou alternativamente:
+
+```{julia}
+valor = 123.456
+s = @sprintf("Valor formatado: %.2f", valor)
+println(s)
+```
+
+## Arquivos Externos e Módulos {#sec-files-modules}
+
+No exemplo anterior usamos a sintaxe `using Printf`. Esta é a sintaxe para importar um módulo em Julia. Os módulos são coleções organizadas de código que podemos utilizar em nossos programas. O módulo `Printf` faz parte da **biblioteca padrão** de Julia e oferece funções para formatação de tipos no estilo da linguagem C. Ao escrever `using Printf`, informamos o interpretador que queremos acessar as funções deste módulo, como `@printf` e `@sprintf`. Para descobrir quais funções estão disponíveis neste e em outros módulos, consulte a documentação oficial de Julia. A documentação específica do módulo `Printf` está disponível em <https://docs.julialang.org/en/v1/stdlib/Printf/>.
+
+Julia vem com vários módulos padrão que podem ser úteis:
+
+- `Statistics`: para cálculos estatísticos (média, mediana, etc.)
+- `Dates`: para trabalhar com datas e horas
+- `Printf`: para formatação avançada de texto
+- `LinearAlgebra`: para operações de álgebra linear
+- `Random`: para geração de números aleatórios
+
+A comunidade de Julia também desenvolve diversos módulos (pacotes) que podem ser instalados para expandir as funcionalidades da linguagem. Vamos aprender a fazer isso mais adiante no curso.
+
+Além de módulos, Julia permite carregar código de arquivos externos usando o comando `include()`. Este comando lê o arquivo especificado e executa todo seu conteúdo no contexto atual. Como resultado, todas as funções, variáveis e definições do arquivo tornam-se disponíveis no ambiente onde `include` foi chamado.
+
+No Windows, os caminhos de arquivo tradicionalmente usam barras invertidas (`\`). Porém, em Julia, podemos usar tanto barras normais (`/`) quanto barras invertidas. Há um detalhe importante: quando usamos barras invertidas dentro de strings em Julia, precisamos duplicá-las. Isso ocorre porque a barra invertida sozinha (`\`) é um caractere especial em strings, usado para representar caracteres como `\n` (nova linha) ou `\t` (tabulação). Para indicar que queremos uma barra invertida literal, precisamos escrever duas (`\\`). Por esse motivo, caminhos com várias pastas tornam-se mais difíceis de ler:
+
+```{julia}
+#| eval: false
+# Caminho usando barras normais (recomendado)
+include("C:/Users/MeuUsuario/Documentos/arquivo.jl")
+
+# Mesmo caminho usando barras invertidas (mais complicado)
+include("C:\\Users\\MeuUsuario\\Documentos\\arquivo.jl")
+```
+
+Se o arquivo estiver no mesmo diretório que seu script ou REPL atual, basta usar o nome do arquivo:
 
 ```{julia}
 #| eval: false
 include("funcoes.jl")
-println(ola("Alfredo"))
 ```
 
-A saída deverá ser `Olá Alfredo`.
+Para arquivos em subdiretórios do diretório atual:
+
+```{julia}
+#| eval: false
+include("utilitarios/matematica.jl")
+```
+
+Para arquivos no diretório pai:
+
+```{julia}
+#| eval: false
+include("../exemplos.jl")
+```
+
+Vamos ver um exemplo prático. Suponha que você tenha criado um arquivo chamado `funcoes.jl` na pasta `C:/Projetos/Julia/` com o seguinte conteúdo:
+
+```{julia}
+#| eval: false
+function ola(nome)
+    println("Olá ", nome)
+end
+
+function soma(a, b)
+    return a + b
+end
+```
+
+Agora você pode usar essas funções (mais sobre funções no @sec-functions) no REPL ou em outro arquivo:
+
+```{julia}
+#| eval: false
+# No REPL ou em um arquivo na mesma pasta:
+include("funcoes.jl")
+
+# Ou com caminho completo:
+include("C:/Projetos/Julia/funcoes.jl")
+
+# Agora podemos usar as funções definidas em funcoes.jl
+ola("Alfredo")         # Imprime: Olá Alfredo
+resultado = soma(5, 3) # resultado = 8
+println(resultado)     # Imprime: 8
+```
+
+Esta funcionalidade é especialmente útil para organizar seu código em múltiplos arquivos, permitindo que você divida programas maiores em partes menores.
 
 ### O que é um arquivo `.jl`?
 
