@@ -20,6 +20,7 @@ book:
         - chapters/02-calculadora-repl.qmd
         - chapters/03-condicionais.qmd
         - chapters/04-funcoes-recursao.qmd
+        - chapters/05-problemas-recursao.qmd
     - part: "Parte II: Estruturas Fundamentais e Boas Práticas"
       chapters:
         - chapters/05-algoritmos-testes.qmd

@@ -1,0 +1,264 @@
+---
+engine: julia
+---
+# Mais Problemas Envolvendo Recursão
+
+No capítulo anterior, introduzimos o conceito de recursão e vimos como funções podem chamar a si mesmas para resolver problemas. Neste capítulo, vamos explorar mais alguns problemas que podem ser resolvidos utilizando recursão, o que nos ajudará a desenvolver nossa capacidade de "pensar recursivamente".
+
+## Pensando Recursivamente
+
+Resolver problemas usando recursão requer uma mudança na forma como enxergamos os problemas. Em vez de pensar em todos os passos necessários para chegar à solução, focamos em:
+
+1. Como expressar o problema em termos de uma versão menor do mesmo problema
+2. Quando parar a recursão (caso base)
+
+Vamos explorar quatro problemas que ilustram bem o poder da recursão: o problema das escadas, a potenciação por quadrados, o cálculo da raiz quadrada usando o método de Heron e o coeficiente binomial.
+
+## Problema das Escadas
+
+Imagine uma escada com $n$ degraus. Você pode subir 1 ou 2 degraus por vez. De quantas maneiras diferentes você pode chegar ao topo da escada?
+
+Por exemplo, se temos uma escada com 3 degraus, existem 3 maneiras de subir:
+
+- Dar três passos de 1 degrau: (1, 1, 1)
+- Dar um passo de 1 degrau seguido de um passo de 2 degraus: (1, 2)
+- Dar um passo de 2 degraus seguido de um passo de 1 degrau: (2, 1)
+
+Como podemos pensar nesse problema recursivamente? Para chegar ao degrau $n$, devemos ter vindo do degrau $n-1$ (dando um passo de 1 degrau) ou do degrau $n-2$ (dando um passo de 2 degraus). Portanto, o número total de maneiras de chegar ao degrau $n$ é a soma do número de maneiras de chegar ao degrau $n-1$ e ao degrau $n-2$.
+
+Nossos casos base são:
+
+- Se $n = 0$ (nenhum degrau): há 1 maneira (não subir)
+- Se $n = 1$ (um degrau): há 1 maneira (dar um passo de 1 degrau)
+
+Vamos implementar essa solução:
+
+```{julia}
+function maneiras_subir_escada(n)
+    # Casos base
+    if n == 0 || n == 1
+        return 1
+    else
+        # Caso recursivo: soma das maneiras de chegar a partir de n-1 e n-2
+        return maneiras_subir_escada(n - 1) + maneiras_subir_escada(n - 2)
+    end
+end
+```
+
+Vamos testar nosso código para diferentes números de degraus:
+
+```{julia}
+for i in 1:10
+    println("Escada com $i degraus: $(maneiras_subir_escada(i)) maneiras diferentes")
+end
+```
+
+Note que estamos usando uma estrutura diferente, `for`. Não se preocupe com os detalhes dessa estrutura no momento, mas saiba que estamos apenas repetindo a execução de um bloco de código.
+
+Se você olhar atentamente para essa sequência de resultados, perceberá que ela corresponde à famosa sequência de Fibonacci: $(0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, \dots)$. Isso não é coincidência. O problema da escada e a sequência de Fibonacci compartilham a mesma estrutura recursiva.
+
+## Potenciação por Quadrados
+
+Quando queremos calcular potências como $a^n$, a abordagem mais simples seria multiplicar $a$ por si mesmo $n$ vezes. Por exemplo, para calcular $2^8$, faríamos $2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2$, realizando 7 multiplicações. Mas existe uma abordagem muito mais eficiente usando recursão.
+
+O método de potenciação por quadrados que vamos apresentar consegue calcular o mesmo valor realizando apenas cerca de $\log_2 n$ operações. Por exemplo, para calcular $2^8$, precisaríamos apenas de 3 multiplicações. Para números grandes, essa diferença é ainda mais significativa - calcular $2^{1000}$ exigiria 999 multiplicações com o método simples, mas apenas cerca de 10 multiplicações com nosso método recursivo.
+
+A ideia baseia-se nas seguintes propriedades matemáticas:
+
+- Se $n$ é negativo: $a^n = 1 / a^{-n}$ (invertemos o resultado da potência positiva)
+- Se $n$ é par: $a^n = (a^{n/2})^2$ (calculamos a "metade" da potência e elevamos ao quadrado)
+- Se $n$ é ímpar: $a^n = a \times a^{n-1}$ (multiplicamos por uma potência par, que sabemos calcular)
+
+Como isso se traduz para o pensamento recursivo?
+
+1. Se queremos calcular $a^n$ e $n$ é par:
+   - Primeiro calculamos $a^{n/2}$ (um problema menor)
+   - Depois multiplicamos esse resultado por si mesmo
+
+2. Se queremos calcular $a^n$ e $n$ é ímpar:
+   - Primeiro calculamos $a^{n-1}$ (que é par e sabemos resolver pelo caso anterior)
+   - Depois multiplicamos esse resultado por $a$
+
+3. Se queremos calcular $a^n$ e $n$ é negativo:
+   - Calculamos $a^{-n}$ (sabemos resolver pelos casos anteriores)
+   - Depois calculamos $1 / a^{-n}$
+
+Nossos casos base (onde a recursão para) são:
+
+- Se $n = 0$, então $a^n = 1$ (qualquer número elevado a 0 é 1)
+- Se $n = 1$, então $a^n = a$ (qualquer número elevado a 1 é ele mesmo)
+
+Vamos implementar essa solução:
+
+```{julia}
+function potenciacao(base, expoente)
+    # Resolvemos o expoente negativo primeiro
+    if expoente < 0
+        return 1 ÷ potenciacao(base, -expoente)
+    end
+    
+    if expoente == 0
+        return 1
+    elseif expoente == 1
+        return base
+    end
+    
+    # Se o expoente for par
+    if expoente % 2 == 0
+        temp = potenciacao(base, expoente ÷ 2)
+        return temp * temp
+    else
+        # Se o expoente for ímpar
+        return base * potenciacao(base, expoente - 1)
+    end
+end
+```
+
+Vamos testar nossa função:
+
+```{julia}
+println(potenciacao(2, 10))  # Deve retornar 1024
+println(potenciacao(3, 5))   # Deve retornar 243
+```
+
+Para entender melhor como essa abordagem economiza operações, vamos traçar a execução de `potenciacao(2, 10)`:
+
+**Passo 1**: `potenciacao(2, 10)`
+
+- `expoente = 10` é par
+- Precisamos calcular `potenciacao(2, 5)^2`
+
+**Passo 2**: `potenciacao(2, 5)`
+
+- `expoente = 5` é ímpar
+- Precisamos calcular `2 * potenciacao(2, 4)`
+
+**Passo 3**: `potenciacao(2, 4)`
+
+- `expoente = 4` é par
+- Precisamos calcular `potenciacao(2, 2)^2`
+
+**Passo 4**: `potenciacao(2, 2)`
+
+- `expoente = 2` é par
+- Precisamos calcular `potenciacao(2, 1)^2`
+
+**Passo 5**: `potenciacao(2, 1)`
+
+- `expoente = 1` é ímpar
+- Precisamos calcular `2 * potenciacao(2, 0)`
+
+**Passo 6**: `potenciacao(2, 0)`
+
+- caso base, retorna `1`
+
+Valores retornados:
+
+- `potenciacao(2, 0)` retorna `1`
+- `potenciacao(2, 1)` retorna `2 * 1 = 2`
+- `potenciacao(2, 2)` retorna `2^2 = 4`
+- `potenciacao(2, 4)` retorna `4^2 = 16`
+- `potenciacao(2, 5)` retorna `2 * 16 = 32`
+- `potenciacao(2, 10)` retorna `32^2 = 1024`
+
+Para os entusiastas de computação, quando falamos de **complexidade** estamos nos referindo à eficiência de um algoritmo em termos do número de operações realizadas. Para representar a quantidade de operações, utilizamos a notação *Big-O* (O-Grande), simbolizada como $O(\cdot)$.
+
+Neste contexto, a abordagem que utilizamos consegue reduzir a complexidade de $O(n)$ (onde o número de operações cresce **linearmente** com o tamanho da entrada) para $O(\log n)$ (onde o número de operações cresce **logaritmicamente**, tornando o algoritmo muito mais eficiente para entradas grandes).
+
+## Cálculo da Raiz Quadrada (Método de Heron)
+
+O Método de Heron (também conhecido como método babilônico) é um algoritmo antigo para calcular aproximações de raízes quadradas. A ideia é começar com uma estimativa e melhorá-la progressivamente.
+
+Vamos calcular uma aproximação para $\sqrt{S}$. Se $x_0 > 0$ é a nossa estimativa inicial, podemos melhorar nossa estimativa usando a seguinte fórmula iterativa:
+
+$$x_{n + 1} = \frac{1}{2} \left( x_n + \frac{S}{x_n} \right).$$
+
+Considere $\varepsilon$ o erro em nossa estimativa de $\sqrt{S}$. Então, $S = (x_0 + \varepsilon)^2$. Expandindo o binômio temos
+
+$$S = (x_0 + \varepsilon)^2 = x_0^2 + 2x_0\varepsilon + \varepsilon^2.$$
+
+Podemos resolver a equação acima para $\varepsilon$.
+
+$$\varepsilon = \frac{S - x_0^2}{2x_0 + \varepsilon} \approx \frac{S - x_0^2}{2x_0}, \quad (\varepsilon \ll x_0).$$
+
+Assim, podemos compensar o erro e atualizar nossa estimativa antiga como
+
+$$x_0 + \varepsilon \approx x_0 + \frac{S - x_0^2}{2x_0} = \frac{S + x_0^2}{2x_0} = \frac{\frac{S}{x_0} + x_0}{2} \equiv x_{1}$$
+
+Como o erro calculado não foi exato, esta não é a resposta final, mas se torna nossa nova estimativa para usar na próxima iteração. O processo de atualização é repetido até que a precisão desejada seja obtida.
+
+Vamos implementar esse método recursivamente:
+
+```{julia}
+function raiz_quadrada(S, xₙ = S / 2, ε = 0.0001)
+    xₙ₊₁ = (xₙ + S / xₙ) / 2
+    
+    # Verificamos se a diferença entre as estimativas é menor que a precisão desejada
+    if abs(xₙ₊₁ - xₙ) < ε
+        return xₙ₊₁
+    else
+        return raiz_quadrada(S, xₙ₊₁, ε)
+    end
+end
+```
+
+A função recebe três parâmetros:
+
+- `S`: o número do qual queremos a raiz quadrada
+- `xₙ`: nossa estimativa atual (por padrão, começamos com metade do número)
+- `ε`: quão próximas duas estimativas consecutivas devem estar para considerarmos que encontramos a resposta (por padrão, estamos considerando `0.0001`)
+
+Vamos testar nossa função:
+
+```{julia}
+println(raiz_quadrada(25))  # Deve ser próximo de 5
+println(raiz_quadrada(2))   # Deve ser próximo de 1.4142...
+```
+
+Observe o que acontece com o valor da estimativa para o cálculo da raíz quadrada de 25:
+
+1. Primeira chamada: `x₀ = 25/2 = 12.5`
+2. Segunda chamada: `x₁ = (12.5 + 25/12.5)/2 = 7.25`
+3. Terceira chamada: `x₂ = (7.25 + 25/7.25)/2 = 5.35`
+4. Quarta chamada: `x₃ = (5.35 + 25/5.35)/2 = 5.01`
+5. Quinta chamada: `x₄ = (5.01 + 25/5.01)/2 = 5.0`
+
+## Coeficiente Binomial
+
+O coeficiente binomial $\binom{n}{k}$ (lê-se "n escolhe k") representa o número de maneiras de escolher $k$ elementos de um conjunto de $n$ elementos, sem considerar a ordem. Por exemplo, $\binom{5}{2}$ é o número de maneiras de escolher 2 elementos de um conjunto de 5 elementos.
+
+O coeficiente binomial possui a seguinte definição recursiva (para $n > k$):
+
+$$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$$
+
+Esta fórmula pode ser deduzida dividindo o problema em dois casos complementares. Consideremos um elemento $X$ específico dentre as $n$ alternativas disponíveis. Podemos classificar todos os possíveis subconjuntos de $k$ elementos em duas categorias:
+
+1. Subconjuntos que incluem $X$: Neste caso, como $X$ já está selecionado, precisamos escolher apenas $k-1$ elementos adicionais dentre os $n-1$ elementos restantes. Isto corresponde a $\binom{n-1}{k-1}$ possibilidades.
+
+2. Subconjuntos que não incluem $X$: Neste caso, devemos selecionar todos os $k$ elementos dentre os $n-1$ elementos restantes (excluindo $X$). Isto corresponde a $\binom{n-1}{k}$ possibilidades.
+
+O número total de subconjuntos possíveis é a soma destes dois casos, o que justifica a fórmula recursiva apresentada.
+
+Podemos determinar os casos base através das seguintes propriedades:
+
+1. $\binom{n}{0} = 1$ para qualquer $n \geq 0$ (há apenas uma maneira de escolher 0 elementos)
+2. $\binom{n}{n} = 1$ para qualquer $n \geq 0$ (há apenas uma maneira de escolher todos os elementos)
+
+Vamos implementar essa solução:
+
+```{julia}
+function coeficiente_binomial(n, k)
+    if k == 0 || k == n
+        return 1
+    else
+        return coeficiente_binomial(n - 1, k - 1) + coeficiente_binomial(n - 1, k)
+    end
+end
+```
+
+Vamos testar nossa função:
+
+```{julia}
+println(coeficiente_binomial(5, 2))  # Deve retornar 10
+println(coeficiente_binomial(10, 4)) # Deve retornar 210
+```
