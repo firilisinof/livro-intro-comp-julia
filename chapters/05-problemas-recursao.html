@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Testes automatizados e um pouco mais de código – Uma Introdução à Computação com Julia</title>
+<title>5&nbsp; Mais Problemas Envolvendo Recursão – Uma Introdução à Computação com Julia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/07-while.html" rel="next">
-<link href="../chapters/05-algoritmos-testes.html" rel="prev">
+<link href="../chapters/05-algoritmos-testes.html" rel="next">
+<link href="../chapters/04-funcoes-recursao.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -144,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-algoritmos-testes.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/06-testes-automatizados.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testes automatizados e um pouco mais de código</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-evolucao-computacao.html">Parte I: Conceitos Básicos</a></li><li class="breadcrumb-item"><a href="../chapters/05-problemas-recursao.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Mais Problemas Envolvendo Recursão</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -220,7 +220,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/05-problemas-recursao.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/05-problemas-recursao.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Mais Problemas Envolvendo Recursão</span></span></a>
   </div>
 </li>
@@ -243,7 +243,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/06-testes-automatizados.html" class="sidebar-item-text sidebar-link active">
+  <a href="../chapters/06-testes-automatizados.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testes automatizados e um pouco mais de código</span></span></a>
   </div>
 </li>
@@ -351,16 +351,20 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#funções-caóticas" id="toc-funções-caóticas" class="nav-link active" data-scroll-target="#funções-caóticas"><span class="header-section-number">7.1</span> Funções caóticas</a></li>
+  <li><a href="#pensando-recursivamente" id="toc-pensando-recursivamente" class="nav-link active" data-scroll-target="#pensando-recursivamente"><span class="header-section-number">5.1</span> Pensando Recursivamente</a></li>
+  <li><a href="#problema-das-escadas" id="toc-problema-das-escadas" class="nav-link" data-scroll-target="#problema-das-escadas"><span class="header-section-number">5.2</span> Problema das Escadas</a></li>
+  <li><a href="#potenciação-por-quadrados" id="toc-potenciação-por-quadrados" class="nav-link" data-scroll-target="#potenciação-por-quadrados"><span class="header-section-number">5.3</span> Potenciação por Quadrados</a></li>
+  <li><a href="#cálculo-da-raiz-quadrada-método-de-heron" id="toc-cálculo-da-raiz-quadrada-método-de-heron" class="nav-link" data-scroll-target="#cálculo-da-raiz-quadrada-método-de-heron"><span class="header-section-number">5.4</span> Cálculo da Raiz Quadrada (Método de Heron)</a></li>
+  <li><a href="#coeficiente-binomial" id="toc-coeficiente-binomial" class="nav-link" data-scroll-target="#coeficiente-binomial"><span class="header-section-number">5.5</span> Coeficiente Binomial</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-algoritmos-testes.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/06-testes-automatizados.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testes automatizados e um pouco mais de código</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-evolucao-computacao.html">Parte I: Conceitos Básicos</a></li><li class="breadcrumb-item"><a href="../chapters/05-problemas-recursao.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Mais Problemas Envolvendo Recursão</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testes automatizados e um pouco mais de código</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Mais Problemas Envolvendo Recursão</span></h1>
 </div>
 
 
@@ -377,134 +381,268 @@ window.Quarto = {
 </header>
 
 
-<p>Vamos começar o capítulo vendo uma forma mais simples de se rodar testes. Nos testes que vimos até agora sempre havia o teste de uma condição booleana associado a uma mensagem de erro quando não funcionasse. Mas, observando que a mensagem de erro geralmente está ligada à condição, por vezes a condição pode ser auto-explicativa.</p>
-<p>Logo, uma forma elegante de expressar as condições pode ser útil na escrita dos testes. Para isso, vamos usar o módulo de testes. Em linguagens modernas, várias das situações repetitivas que enfrentamos podem ser evitadas usando alguma técnica mais moderna.</p>
+<p>No capítulo anterior, introduzimos o conceito de recursão e vimos como funções podem chamar a si mesmas para resolver problemas. Neste capítulo, vamos explorar mais alguns problemas que podem ser resolvidos utilizando recursão, o que nos ajudará a desenvolver nossa capacidade de “pensar recursivamente”.</p>
+<section id="pensando-recursivamente" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="pensando-recursivamente"><span class="header-section-number">5.1</span> Pensando Recursivamente</h2>
+<p>Resolver problemas usando recursão requer uma mudança na forma como enxergamos os problemas. Em vez de pensar em todos os passos necessários para chegar à solução, focamos em:</p>
+<ol type="1">
+<li>Como expressar o problema em termos de uma versão menor do mesmo problema</li>
+<li>Quando parar a recursão (caso base)</li>
+</ol>
+<p>Vamos explorar quatro problemas que ilustram bem o poder da recursão: o problema das escadas, a potenciação por quadrados, o cálculo da raiz quadrada usando o método de Heron e o coeficiente binomial.</p>
+</section>
+<section id="problema-das-escadas" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="problema-das-escadas"><span class="header-section-number">5.2</span> Problema das Escadas</h2>
+<p>Imagine uma escada com <span class="math inline">\(n\)</span> degraus. Você pode subir 1 ou 2 degraus por vez. De quantas maneiras diferentes você pode chegar ao topo da escada?</p>
+<p>Por exemplo, se temos uma escada com 3 degraus, existem 3 maneiras de subir:</p>
+<ul>
+<li>Dar três passos de 1 degrau: (1, 1, 1)</li>
+<li>Dar um passo de 1 degrau seguido de um passo de 2 degraus: (1, 2)</li>
+<li>Dar um passo de 2 degraus seguido de um passo de 1 degrau: (2, 1)</li>
+</ul>
+<p>Como podemos pensar nesse problema recursivamente? Para chegar ao degrau <span class="math inline">\(n\)</span>, devemos ter vindo do degrau <span class="math inline">\(n-1\)</span> (dando um passo de 1 degrau) ou do degrau <span class="math inline">\(n-2\)</span> (dando um passo de 2 degraus). Portanto, o número total de maneiras de chegar ao degrau <span class="math inline">\(n\)</span> é a soma do número de maneiras de chegar ao degrau <span class="math inline">\(n-1\)</span> e ao degrau <span class="math inline">\(n-2\)</span>.</p>
+<p>Nossos casos base são:</p>
+<ul>
+<li>Se <span class="math inline">\(n = 0\)</span> (nenhum degrau): há 1 maneira (não subir)</li>
+<li>Se <span class="math inline">\(n = 1\)</span> (um degrau): há 1 maneira (dar um passo de 1 degrau)</li>
+</ul>
+<p>Vamos implementar essa solução:</p>
 <div id="2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Test</span>  </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@testset</span> <span class="st">"Modelo de testes"</span> <span class="cf">begin</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="cn">true</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> !<span class="cn">false</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Test Summary:    | Pass  Total  Time
-Modelo de testes |    3      3  0.1s</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">maneiras_subir_escada</span>(n)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Casos base</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="fl">0</span> <span class="op">||</span> n <span class="op">==</span> <span class="fl">1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Caso recursivo: soma das maneiras de chegar a partir de n-1 e n-2</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">maneiras_subir_escada</span>(n <span class="op">-</span> <span class="fl">1</span>) <span class="op">+</span> <span class="fu">maneiras_subir_escada</span>(n <span class="op">-</span> <span class="fl">2</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>Test.DefaultTestSet("Modelo de testes", Any[], 3, false, false, true, 1.741131048930295e9, 1.741131049021716e9, false, "/Users/lucas/Desktop/livro-intro-comp-julia/chapters/06-testes-automatizados.qmd")</code></pre>
+<pre><code>maneiras_subir_escada (generic function with 1 method)</code></pre>
 </div>
 </div>
-<p>No trecho acima primeiro indicamos que queremos fazer testes. Em seguida usamos o <em>test</em> que espera uma condição ou valor booleano. Finalmente todos os testes são reunidos em um <em>testset</em>.</p>
-<p>Claro que o teste dá infomações relevantes quando falha:</p>
-<div id="4" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Test</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@test</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">!=</span> <span class="fl">4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Vamos testar nosso código para diferentes números de degraus:</p>
+<div id="4" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"Escada com </span><span class="sc">$</span>i<span class="st"> degraus: </span><span class="sc">$</span>(<span class="fu">maneiras_subir_escada</span>(i))<span class="st"> maneiras diferentes"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Escada com 1 degraus: 1 maneiras diferentes
+Escada com 2 degraus: 2 maneiras diferentes
+Escada com 3 degraus: 3 maneiras diferentes
+Escada com 4 degraus: 5 maneiras diferentes
+Escada com 5 degraus: 8 maneiras diferentes
+Escada com 6 degraus: 13 maneiras diferentes
+Escada com 7 degraus: 21 maneiras diferentes
+Escada com 8 degraus: 34 maneiras diferentes
+Escada com 9 degraus: 55 maneiras diferentes
+Escada com 10 degraus: 89 maneiras diferentes</code></pre>
 </div>
-<pre><code>Test Failed at REPL[2]:1
-  Expression: 2 + 2 != 4
-   Evaluated: 4 != 4</code></pre>
-<p>Agora sim, vamos pensar em problemas algoritmicos novos. Que tal fazer a soma dos dígitos de um número inteiro. Ou seja, pensar em um número dígito à dígito. Vamos aos testes primeiro:</p>
-<div id="6" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Test</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@testset</span> <span class="st">"Teste da Soma de Dígitos"</span> <span class="cf">begin</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">somaDig</span>(<span class="fl">0</span>) <span class="op">==</span> <span class="fl">0</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">somaDig</span>(<span class="fl">1</span>) <span class="op">==</span> <span class="fl">1</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">somaDig</span>(<span class="fl">100</span>) <span class="op">==</span> <span class="fl">1</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">somaDig</span>(<span class="fl">123</span>) <span class="op">==</span> <span class="fl">6</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">somaDig</span>(<span class="fl">321</span>) <span class="op">==</span> <span class="fl">6</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">somaDig</span>(<span class="fl">99</span>) <span class="op">==</span> <span class="fl">18</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Vamos agora tentar pensar em como “descascar” um número, dado o número 123, uma forma seria pegar o resto por 10 (ou seja 3) e depois dividir por 10 (ou seja 12), e assim por diante. Ou seja.</p>
+<p>Note que estamos usando uma estrutura diferente, <code>for</code>. Não se preocupe com os detalhes dessa estrutura no momento, mas saiba que estamos apenas repetindo a execução de um bloco de código.</p>
+<p>Se você olhar atentamente para essa sequência de resultados, perceberá que ela corresponde à famosa sequência de Fibonacci: <span class="math inline">\((0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, \dots)\)</span>. Isso não é coincidência. O problema da escada e a sequência de Fibonacci compartilham a mesma estrutura recursiva.</p>
+</section>
+<section id="potenciação-por-quadrados" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="potenciação-por-quadrados"><span class="header-section-number">5.3</span> Potenciação por Quadrados</h2>
+<p>Quando queremos calcular potências como <span class="math inline">\(a^n\)</span>, a abordagem mais simples seria multiplicar <span class="math inline">\(a\)</span> por si mesmo <span class="math inline">\(n\)</span> vezes. Por exemplo, para calcular <span class="math inline">\(2^8\)</span>, faríamos <span class="math inline">\(2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2\)</span>, realizando 7 multiplicações. Mas existe uma abordagem muito mais eficiente usando recursão.</p>
+<p>O método de potenciação por quadrados que vamos apresentar consegue calcular o mesmo valor realizando apenas cerca de <span class="math inline">\(\log_2 n\)</span> operações. Por exemplo, para calcular <span class="math inline">\(2^8\)</span>, precisaríamos apenas de 3 multiplicações. Para números grandes, essa diferença é ainda mais significativa - calcular <span class="math inline">\(2^{1000}\)</span> exigiria 999 multiplicações com o método simples, mas apenas cerca de 10 multiplicações com nosso método recursivo.</p>
+<p>A ideia baseia-se nas seguintes propriedades matemáticas:</p>
+<ul>
+<li>Se <span class="math inline">\(n\)</span> é negativo: <span class="math inline">\(a^n = 1 / a^{-n}\)</span> (invertemos o resultado da potência positiva)</li>
+<li>Se <span class="math inline">\(n\)</span> é par: <span class="math inline">\(a^n = (a^{n/2})^2\)</span> (calculamos a “metade” da potência e elevamos ao quadrado)</li>
+<li>Se <span class="math inline">\(n\)</span> é ímpar: <span class="math inline">\(a^n = a \times a^{n-1}\)</span> (multiplicamos por uma potência par, que sabemos calcular)</li>
+</ul>
+<p>Como isso se traduz para o pensamento recursivo?</p>
+<ol type="1">
+<li>Se queremos calcular <span class="math inline">\(a^n\)</span> e <span class="math inline">\(n\)</span> é par:
+<ul>
+<li>Primeiro calculamos <span class="math inline">\(a^{n/2}\)</span> (um problema menor)</li>
+<li>Depois multiplicamos esse resultado por si mesmo</li>
+</ul></li>
+<li>Se queremos calcular <span class="math inline">\(a^n\)</span> e <span class="math inline">\(n\)</span> é ímpar:
+<ul>
+<li>Primeiro calculamos <span class="math inline">\(a^{n-1}\)</span> (que é par e sabemos resolver pelo caso anterior)</li>
+<li>Depois multiplicamos esse resultado por <span class="math inline">\(a\)</span></li>
+</ul></li>
+<li>Se queremos calcular <span class="math inline">\(a^n\)</span> e <span class="math inline">\(n\)</span> é negativo:
+<ul>
+<li>Calculamos <span class="math inline">\(a^{-n}\)</span> (sabemos resolver pelos casos anteriores)</li>
+<li>Depois calculamos <span class="math inline">\(1 / a^{-n}\)</span></li>
+</ul></li>
+</ol>
+<p>Nossos casos base (onde a recursão para) são:</p>
+<ul>
+<li>Se <span class="math inline">\(n = 0\)</span>, então <span class="math inline">\(a^n = 1\)</span> (qualquer número elevado a 0 é 1)</li>
+<li>Se <span class="math inline">\(n = 1\)</span>, então <span class="math inline">\(a^n = a\)</span> (qualquer número elevado a 1 é ele mesmo)</li>
+</ul>
+<p>Vamos implementar essa solução:</p>
+<div id="6" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">potenciacao</span>(base, expoente)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Resolvemos o expoente negativo primeiro</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> expoente <span class="op">&lt;</span> <span class="fl">0</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">1</span> <span class="op">÷</span> <span class="fu">potenciacao</span>(base, <span class="op">-</span>expoente)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> expoente <span class="op">==</span> <span class="fl">0</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">1</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elseif</span> expoente <span class="op">==</span> <span class="fl">1</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> base</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Se o expoente for par</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> expoente <span class="op">%</span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        temp <span class="op">=</span> <span class="fu">potenciacao</span>(base, expoente <span class="op">÷</span> <span class="fl">2</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> temp <span class="op">*</span> temp</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Se o expoente for ímpar</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> base <span class="op">*</span> <span class="fu">potenciacao</span>(base, expoente <span class="op">-</span> <span class="fl">1</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>potenciacao (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p>Vamos testar nossa função:</p>
 <div id="8" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">somaDig</span>(n)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span><span class="fl">0</span> <span class="cf">return</span> <span class="fl">0</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n <span class="op">%</span> <span class="fl">10</span> <span class="op">+</span> <span class="fu">somaDig</span>(n <span class="op">÷</span> <span class="fl">10</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">somaDig</span>(<span class="fl">1234</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">potenciacao</span>(<span class="fl">2</span>, <span class="fl">10</span>))  <span class="co"># Deve retornar 1024</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">potenciacao</span>(<span class="fl">3</span>, <span class="fl">5</span>))   <span class="co"># Deve retornar 243</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>10</code></pre>
+<pre><code>1024
+243</code></pre>
 </div>
 </div>
-<p>Vamos agora a um outro problema clássico, a verificação se um número é ou não é primo. Na prática para fazer isso, temos a definição, um número <span class="math inline">\(n\)</span> é primo apenas se for divisível apenas por 1 e por ele mesmo. Ou seja, nenhum número entre 2 e <span class="math inline">\(n - 1\)</span> pode ser divisor de um número primo.</p>
-<p>A forma de se fazer isso é relativamente simples. Vamos pensar em uma função que tenta dividir um número recursivamente, se conseguir devolve falso, se não conseguir devolve verdadeiro.</p>
-<p>Vamos aos código:</p>
+<p>Para entender melhor como essa abordagem economiza operações, vamos traçar a execução de <code>potenciacao(2, 10)</code>:</p>
+<p><strong>Passo 1</strong>: <code>potenciacao(2, 10)</code></p>
+<ul>
+<li><code>expoente = 10</code> é par</li>
+<li>Precisamos calcular <code>potenciacao(2, 5)^2</code></li>
+</ul>
+<p><strong>Passo 2</strong>: <code>potenciacao(2, 5)</code></p>
+<ul>
+<li><code>expoente = 5</code> é ímpar</li>
+<li>Precisamos calcular <code>2 * potenciacao(2, 4)</code></li>
+</ul>
+<p><strong>Passo 3</strong>: <code>potenciacao(2, 4)</code></p>
+<ul>
+<li><code>expoente = 4</code> é par</li>
+<li>Precisamos calcular <code>potenciacao(2, 2)^2</code></li>
+</ul>
+<p><strong>Passo 4</strong>: <code>potenciacao(2, 2)</code></p>
+<ul>
+<li><code>expoente = 2</code> é par</li>
+<li>Precisamos calcular <code>potenciacao(2, 1)^2</code></li>
+</ul>
+<p><strong>Passo 5</strong>: <code>potenciacao(2, 1)</code></p>
+<ul>
+<li><code>expoente = 1</code> é ímpar</li>
+<li>Precisamos calcular <code>2 * potenciacao(2, 0)</code></li>
+</ul>
+<p><strong>Passo 6</strong>: <code>potenciacao(2, 0)</code></p>
+<ul>
+<li>caso base, retorna <code>1</code></li>
+</ul>
+<p>Valores retornados:</p>
+<ul>
+<li><code>potenciacao(2, 0)</code> retorna <code>1</code></li>
+<li><code>potenciacao(2, 1)</code> retorna <code>2 * 1 = 2</code></li>
+<li><code>potenciacao(2, 2)</code> retorna <code>2^2 = 4</code></li>
+<li><code>potenciacao(2, 4)</code> retorna <code>4^2 = 16</code></li>
+<li><code>potenciacao(2, 5)</code> retorna <code>2 * 16 = 32</code></li>
+<li><code>potenciacao(2, 10)</code> retorna <code>32^2 = 1024</code></li>
+</ul>
+<p>Para os entusiastas de computação, quando falamos de <strong>complexidade</strong> estamos nos referindo à eficiência de um algoritmo em termos do número de operações realizadas. Para representar a quantidade de operações, utilizamos a notação <em>Big-O</em> (O-Grande), simbolizada como <span class="math inline">\(O(\cdot)\)</span>.</p>
+<p>Neste contexto, a abordagem que utilizamos consegue reduzir a complexidade de <span class="math inline">\(O(n)\)</span> (onde o número de operações cresce <strong>linearmente</strong> com o tamanho da entrada) para <span class="math inline">\(O(\log n)\)</span> (onde o número de operações cresce <strong>logaritmicamente</strong>, tornando o algoritmo muito mais eficiente para entradas grandes).</p>
+</section>
+<section id="cálculo-da-raiz-quadrada-método-de-heron" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="cálculo-da-raiz-quadrada-método-de-heron"><span class="header-section-number">5.4</span> Cálculo da Raiz Quadrada (Método de Heron)</h2>
+<p>O Método de Heron (também conhecido como método babilônico) é um algoritmo antigo para calcular aproximações de raízes quadradas. A ideia é começar com uma estimativa e melhorá-la progressivamente.</p>
+<p>Vamos calcular uma aproximação para <span class="math inline">\(\sqrt{S}\)</span>. Se <span class="math inline">\(x_0 &gt; 0\)</span> é a nossa estimativa inicial, podemos melhorar nossa estimativa usando a seguinte fórmula iterativa:</p>
+<p><span class="math display">\[x_{n + 1} = \frac{1}{2} \left( x_n + \frac{S}{x_n} \right).\]</span></p>
+<p>Considere <span class="math inline">\(\varepsilon\)</span> o erro em nossa estimativa de <span class="math inline">\(\sqrt{S}\)</span>. Então, <span class="math inline">\(S = (x_0 + \varepsilon)^2\)</span>. Expandindo o binômio temos</p>
+<p><span class="math display">\[S = (x_0 + \varepsilon)^2 = x_0^2 + 2x_0\varepsilon + \varepsilon^2.\]</span></p>
+<p>Podemos resolver a equação acima para <span class="math inline">\(\varepsilon\)</span>.</p>
+<p><span class="math display">\[\varepsilon = \frac{S - x_0^2}{2x_0 + \varepsilon} \approx \frac{S - x_0^2}{2x_0}, \quad (\varepsilon \ll x_0).\]</span></p>
+<p>Assim, podemos compensar o erro e atualizar nossa estimativa antiga como</p>
+<p><span class="math display">\[x_0 + \varepsilon \approx x_0 + \frac{S - x_0^2}{2x_0} = \frac{S + x_0^2}{2x_0} = \frac{\frac{S}{x_0} + x_0}{2} \equiv x_{1}\]</span></p>
+<p>Como o erro calculado não foi exato, esta não é a resposta final, mas se torna nossa nova estimativa para usar na próxima iteração. O processo de atualização é repetido até que a precisão desejada seja obtida.</p>
+<p>Vamos implementar esse método recursivamente:</p>
 <div id="10" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">divide</span>(n, i)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">%</span> i <span class="op">==</span> <span class="fl">0</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elseif</span> i <span class="op">==</span> n <span class="op">-</span> <span class="fl">1</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">true</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">divide</span>(n, i <span class="op">+</span> <span class="fl">1</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">raiz_quadrada</span>(S, xₙ <span class="op">=</span> S <span class="op">/</span> <span class="fl">2</span>, ε <span class="op">=</span> <span class="fl">0.0001</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    xₙ₊₁ <span class="op">=</span> (xₙ <span class="op">+</span> S <span class="op">/</span> xₙ) <span class="op">/</span> <span class="fl">2</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Verificamos se a diferença entre as estimativas é menor que a precisão desejada</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">abs</span>(xₙ₊₁ <span class="op">-</span> xₙ) <span class="op">&lt;</span> ε</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> xₙ₊₁</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">raiz_quadrada</span>(S, xₙ₊₁, ε)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>divide (generic function with 1 method)</code></pre>
+<pre><code>raiz_quadrada (generic function with 3 methods)</code></pre>
 </div>
 </div>
-<p>Que pode ser chamada por:</p>
+<p>A função recebe três parâmetros:</p>
+<ul>
+<li><code>S</code>: o número do qual queremos a raiz quadrada</li>
+<li><code>xₙ</code>: nossa estimativa atual (por padrão, começamos com metade do número)</li>
+<li><code>ε</code>: quão próximas duas estimativas consecutivas devem estar para considerarmos que encontramos a resposta (por padrão, estamos considerando <code>0.0001</code>)</li>
+</ul>
+<p>Vamos testar nossa função:</p>
 <div id="12" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">éPrimo</span>(n)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">divide</span>(n, <span class="fl">2</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">raiz_quadrada</span>(<span class="fl">25</span>))  <span class="co"># Deve ser próximo de 5</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">raiz_quadrada</span>(<span class="fl">2</span>))   <span class="co"># Deve ser próximo de 1.4142...</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5.000000000016778
+1.4142135623746899</code></pre>
+</div>
+</div>
+<p>Observe o que acontece com o valor da estimativa para o cálculo da raíz quadrada de 25:</p>
+<ol type="1">
+<li>Primeira chamada: <code>x₀ = 25/2 = 12.5</code></li>
+<li>Segunda chamada: <code>x₁ = (12.5 + 25/12.5)/2 = 7.25</code></li>
+<li>Terceira chamada: <code>x₂ = (7.25 + 25/7.25)/2 = 5.35</code></li>
+<li>Quarta chamada: <code>x₃ = (5.35 + 25/5.35)/2 = 5.01</code></li>
+<li>Quinta chamada: <code>x₄ = (5.01 + 25/5.01)/2 = 5.0</code></li>
+</ol>
+</section>
+<section id="coeficiente-binomial" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="coeficiente-binomial"><span class="header-section-number">5.5</span> Coeficiente Binomial</h2>
+<p>O coeficiente binomial <span class="math inline">\(\binom{n}{k}\)</span> (lê-se “n escolhe k”) representa o número de maneiras de escolher <span class="math inline">\(k\)</span> elementos de um conjunto de <span class="math inline">\(n\)</span> elementos, sem considerar a ordem. Por exemplo, <span class="math inline">\(\binom{5}{2}\)</span> é o número de maneiras de escolher 2 elementos de um conjunto de 5 elementos.</p>
+<p>O coeficiente binomial possui a seguinte definição recursiva (para <span class="math inline">\(n &gt; k\)</span>):</p>
+<p><span class="math display">\[\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}\]</span></p>
+<p>Esta fórmula pode ser deduzida dividindo o problema em dois casos complementares. Consideremos um elemento <span class="math inline">\(X\)</span> específico dentre as <span class="math inline">\(n\)</span> alternativas disponíveis. Podemos classificar todos os possíveis subconjuntos de <span class="math inline">\(k\)</span> elementos em duas categorias:</p>
+<ol type="1">
+<li><p>Subconjuntos que incluem <span class="math inline">\(X\)</span>: Neste caso, como <span class="math inline">\(X\)</span> já está selecionado, precisamos escolher apenas <span class="math inline">\(k-1\)</span> elementos adicionais dentre os <span class="math inline">\(n-1\)</span> elementos restantes. Isto corresponde a <span class="math inline">\(\binom{n-1}{k-1}\)</span> possibilidades.</p></li>
+<li><p>Subconjuntos que não incluem <span class="math inline">\(X\)</span>: Neste caso, devemos selecionar todos os <span class="math inline">\(k\)</span> elementos dentre os <span class="math inline">\(n-1\)</span> elementos restantes (excluindo <span class="math inline">\(X\)</span>). Isto corresponde a <span class="math inline">\(\binom{n-1}{k}\)</span> possibilidades.</p></li>
+</ol>
+<p>O número total de subconjuntos possíveis é a soma destes dois casos, o que justifica a fórmula recursiva apresentada.</p>
+<p>Podemos determinar os casos base através das seguintes propriedades:</p>
+<ol type="1">
+<li><span class="math inline">\(\binom{n}{0} = 1\)</span> para qualquer <span class="math inline">\(n \geq 0\)</span> (há apenas uma maneira de escolher 0 elementos)</li>
+<li><span class="math inline">\(\binom{n}{n} = 1\)</span> para qualquer <span class="math inline">\(n \geq 0\)</span> (há apenas uma maneira de escolher todos os elementos)</li>
+</ol>
+<p>Vamos implementar essa solução:</p>
+<div id="14" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">coeficiente_binomial</span>(n, k)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> k <span class="op">==</span> <span class="fl">0</span> <span class="op">||</span> k <span class="op">==</span> n</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">1</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">coeficiente_binomial</span>(n <span class="op">-</span> <span class="fl">1</span>, k <span class="op">-</span> <span class="fl">1</span>) <span class="op">+</span> <span class="fu">coeficiente_binomial</span>(n <span class="op">-</span> <span class="fl">1</span>, k)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>éPrimo (generic function with 1 method)</code></pre>
+<pre><code>coeficiente_binomial (generic function with 1 method)</code></pre>
 </div>
 </div>
-<p>Mais um exemplo, o método de Newton para o cálculo de raiz quadrada. Para achar a raiz de <span class="math inline">\(x\)</span>, a partir de um chute inicial (por exemplos <span class="math inline">\(y= x /2\)</span>), chegamos a um novo chute que é a média de <span class="math inline">\(y\)</span> e <span class="math inline">\(x/y\)</span>.</p>
-<p>Mas, sim, vamos começar com os testes. Como estamos usando números do tipo <em>double</em> é bom sempre ter uma tolerância, por isso vamos usar uma comparação aproximada. Também poderiamos ter usado a função <em>isapprox</em> da linguagem Julia.</p>
-<div id="14" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Test</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">quaseIgual</span>(a, b)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">abs</span>(a <span class="op">-</span> b) <span class="op">&lt;=</span> <span class="fl">1e-10</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">true</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@testset</span> <span class="st">"Teste da raiz pelo método de Newton"</span> <span class="cf">begin</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">quaseIgual</span>(<span class="fl">3.0</span>, <span class="fu">raiz</span>(<span class="fl">3.0</span> <span class="op">*</span> <span class="fl">3.0</span>))</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">quaseIgual</span>(<span class="fl">33.7</span>, <span class="fu">raiz</span>(<span class="fl">33.7</span> <span class="op">*</span> <span class="fl">33.7</span>))</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">quaseIgual</span>(<span class="fl">223.7</span>, <span class="fu">raiz</span>(<span class="fl">223.7</span> <span class="op">*</span> <span class="fl">223.7</span>))</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">quaseIgual</span>(<span class="fl">0.7</span>, <span class="fu">raiz</span>(<span class="fl">0.7</span> <span class="op">*</span> <span class="fl">0.7</span>))</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">quaseIgual</span>(<span class="fl">1.0</span>, <span class="fu">raiz</span>(<span class="fl">1.0</span> <span class="op">*</span> <span class="fl">1.0</span>))</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Note que como estamos comparando números em ponto flutuante, não usamos a comparação exata.</p>
-<p>A solução final é:</p>
+<p>Vamos testar nossa função:</p>
 <div id="16" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">newton</span>(c, n)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    q <span class="op">=</span> n <span class="op">/</span> c</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">quaseIgual</span>(q, c)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> q</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">newton</span>( (c <span class="op">+</span> q) <span class="op">/</span> <span class="fl">2.0</span>, n)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">raiz</span>(n)</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span>  <span class="fu">newton</span>(n <span class="op">/</span> <span class="fl">2.0</span>, n)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"a raiz de "</span>, n, <span class="st">" é "</span>, a)</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>raiz (generic function with 1 method)</code></pre>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">coeficiente_binomial</span>(<span class="fl">5</span>, <span class="fl">2</span>))  <span class="co"># Deve retornar 10</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">coeficiente_binomial</span>(<span class="fl">10</span>, <span class="fl">4</span>)) <span class="co"># Deve retornar 210</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10
+210</code></pre>
 </div>
 </div>
-<section id="funções-caóticas" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="funções-caóticas"><span class="header-section-number">7.1</span> Funções caóticas</h2>
-<p>Vamos brincar um pouco agora com funções caóticas :), isso é, funções, que conforme o comportamento de uma constante <span class="math inline">\(k\)</span>, apresentam resultados que podem convergir ou não. Isso é, a cada passo, quero saber o valor do próximo ponto aplicando a função novamente, isso é: <span class="math display">\[x_1 = f(x_0), x_2 = f(x_1), \ldots, x_n  = f(x_{n - 1})\]</span></p>
-<p>As funções caóticas desempenham um papel significativo em diversas áreas da matemática e da física, com aplicações que vão desde a modelagem de crescimento populacional até a previsão de padrões climáticos. Elas também são fundamentais na análise de circuitos elétricos não lineares, onde pequenas variações nas condições iniciais podem levar a resultados drasticamente diferentes.</p>
-<p>Para o nosso teste, a função <span class="math inline">\(f\)</span> é extremamente simples: <span class="math inline">\(x_{i + 1}=x_i * (1 -  x_i) * k\)</span>.</p>
-<p>Implemente a função e imprima os 30 primeiros resultados. Comece com um valor de <span class="math inline">\(x\)</span> entre 0 e 1, como 0.2. Use constantes <span class="math inline">\(k = 2.1, 2.5, 2.8\)</span> e <span class="math inline">\(3.1\)</span> o que ocorre com <span class="math inline">\(k = 3.7\)</span>?</p>
-<p>Entregue o código e um pequeno relatório sobre o que acontece.</p>
 
 
 </section>
@@ -929,13 +1067,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/05-algoritmos-testes.html" class="pagination-link" aria-label="Mais algoritmos e introdução aos testes">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Mais algoritmos e introdução aos testes</span></span>
+      <a href="../chapters/04-funcoes-recursao.html" class="pagination-link" aria-label="Introdução às Funções">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introdução às Funções</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/07-while.html" class="pagination-link" aria-label="Uma outra forma de se fazer laços">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uma outra forma de se fazer laços</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/05-algoritmos-testes.html" class="pagination-link" aria-label="Mais algoritmos e introdução aos testes">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Mais algoritmos e introdução aos testes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

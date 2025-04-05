@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Entrada de dados e o começo de listas – Uma Introdução à Computação com Julia</title>
+<title>11&nbsp; Entrada de dados e o começo de listas – Uma Introdução à Computação com Julia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-a34d670291f06f286357e447776a572a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -144,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-algoritmos-testes.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/10-entrada-dados.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Entrada de dados e o começo de listas</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-algoritmos-testes.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/10-entrada-dados.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Entrada de dados e o começo de listas</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -218,6 +218,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introdução às Funções</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-problemas-recursao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Mais Problemas Envolvendo Recursão</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -232,61 +238,61 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-algoritmos-testes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Mais algoritmos e introdução aos testes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Mais algoritmos e introdução aos testes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/06-testes-automatizados.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testes automatizados e um pouco mais de código</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testes automatizados e um pouco mais de código</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-while.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Uma outra forma de se fazer laços</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uma outra forma de se fazer laços</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-exercicios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Aula de exercícios</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Aula de exercícios</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-exercicios-cont.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Revisitando a aula passada</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Revisitando a aula passada</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/10-entrada-dados.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Entrada de dados e o começo de listas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Entrada de dados e o começo de listas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/11-exercicios-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Exercícios com vetores</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Exercícios com vetores</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/12-blackjack.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Modelando um problema maior</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Modelando um problema maior</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/13-blackjack-cont.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Continuando a modelagem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Continuando a modelagem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/14-boas-praticas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Boas práticas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Boas práticas</span></span></a>
   </div>
 </li>
       </ul>
@@ -303,13 +309,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/15-matrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Indo além de uma dimensão (Matrizes)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Indo além de uma dimensão (Matrizes)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/16-exercicios-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Aula de exercícios sobre Strings</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Aula de exercícios sobre Strings</span></span></a>
   </div>
 </li>
       </ul>
@@ -345,12 +351,12 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#o-comando-input" id="toc-o-comando-input" class="nav-link active" data-scroll-target="#o-comando-input"><span class="header-section-number">10.1</span> O comando input</a></li>
-  <li><a href="#lendo-através-da-linha-de-comando" id="toc-lendo-através-da-linha-de-comando" class="nav-link" data-scroll-target="#lendo-através-da-linha-de-comando"><span class="header-section-number">10.2</span> Lendo através da linha de comando</a></li>
-  <li><a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas"><span class="header-section-number">10.3</span> Listas</a>
+  <li><a href="#o-comando-input" id="toc-o-comando-input" class="nav-link active" data-scroll-target="#o-comando-input"><span class="header-section-number">11.1</span> O comando input</a></li>
+  <li><a href="#lendo-através-da-linha-de-comando" id="toc-lendo-através-da-linha-de-comando" class="nav-link" data-scroll-target="#lendo-através-da-linha-de-comando"><span class="header-section-number">11.2</span> Lendo através da linha de comando</a></li>
+  <li><a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas"><span class="header-section-number">11.3</span> Listas</a>
   <ul class="collapse">
-  <li><a href="#álgebra-linear-e-listas" id="toc-álgebra-linear-e-listas" class="nav-link" data-scroll-target="#álgebra-linear-e-listas"><span class="header-section-number">10.3.1</span> Álgebra linear e Listas</a></li>
-  <li><a href="#exercício-de-permutação" id="toc-exercício-de-permutação" class="nav-link" data-scroll-target="#exercício-de-permutação"><span class="header-section-number">10.3.2</span> Exercício de permutação</a></li>
+  <li><a href="#álgebra-linear-e-listas" id="toc-álgebra-linear-e-listas" class="nav-link" data-scroll-target="#álgebra-linear-e-listas"><span class="header-section-number">11.3.1</span> Álgebra linear e Listas</a></li>
+  <li><a href="#exercício-de-permutação" id="toc-exercício-de-permutação" class="nav-link" data-scroll-target="#exercício-de-permutação"><span class="header-section-number">11.3.2</span> Exercício de permutação</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -358,9 +364,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-algoritmos-testes.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/10-entrada-dados.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Entrada de dados e o começo de listas</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-algoritmos-testes.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/10-entrada-dados.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Entrada de dados e o começo de listas</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Entrada de dados e o começo de listas</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Entrada de dados e o começo de listas</span></h1>
 </div>
 
 
@@ -378,8 +384,8 @@ window.Quarto = {
 
 
 <p>Nessa aula, temos dois tópicos principais, como fazer a entrada de dados, através de comandos de entrada e com argumentos na linha de comando. Além disso também veremos como tratar de um tipo especial de variável, onde é possível, guardar mais de um valor.</p>
-<section id="o-comando-input" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="o-comando-input"><span class="header-section-number">10.1</span> O comando input</h2>
+<section id="o-comando-input" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="o-comando-input"><span class="header-section-number">11.1</span> O comando input</h2>
 <p>Quando queremos inserir dados, em Julia, basta colocar dados. Mas, como podemos fazer para entrar dados em um programa comum?</p>
 <p>Para isso temos o comando readline(), que interrompe a execução do programa e espera pela entrada de uma String, o que ocorre quando a tecla “enter” é pressionada.</p>
 <div id="2" class="cell" data-execution_count="0">
@@ -437,8 +443,8 @@ window.Quarto = {
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="lendo-através-da-linha-de-comando" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="lendo-através-da-linha-de-comando"><span class="header-section-number">10.2</span> Lendo através da linha de comando</h2>
+<section id="lendo-através-da-linha-de-comando" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="lendo-através-da-linha-de-comando"><span class="header-section-number">11.2</span> Lendo através da linha de comando</h2>
 <p>A outra forma de ler comandos é através da constante ARGS que é preparada na chamada de um programa. Para entender melhor isso, vamos ver o seguinte programa.</p>
 <div id="12" class="cell" data-execution_count="0">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="cn">ARGS</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -477,8 +483,8 @@ window.Quarto = {
 </div>
 <p>A flexibilidade que temos ao usar listas é enorme! Por isso, listas ou vetores, merecem um tópico próprio.</p>
 </section>
-<section id="listas" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="listas"><span class="header-section-number">10.3</span> Listas</h2>
+<section id="listas" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="listas"><span class="header-section-number">11.3</span> Listas</h2>
 <p>Vamos primeiro brincar um pouco no console.</p>
 <div id="20" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>vetor <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>]</span>
@@ -565,8 +571,8 @@ window.Quarto = {
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="álgebra-linear-e-listas" class="level3" data-number="10.3.1">
-<h3 data-number="10.3.1" class="anchored" data-anchor-id="álgebra-linear-e-listas"><span class="header-section-number">10.3.1</span> Álgebra linear e Listas</h3>
+<section id="álgebra-linear-e-listas" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="álgebra-linear-e-listas"><span class="header-section-number">11.3.1</span> Álgebra linear e Listas</h3>
 <p>A manipulação de listas é uma parte fundamental da álgebra linear, que estuda vetores e matrizes. Funções como o produto escalar de dois vetores são exemplos clássicos. Abaixo temos dois exemplos de produto escalar de dois vetores. lembrado esse é definido como a soma dos produtos de elementos em posições iguais.</p>
 <div id="36" class="cell" data-execution_count="0">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">dotProduct</span>(a, b)</span>
@@ -597,8 +603,8 @@ window.Quarto = {
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="exercício-de-permutação" class="level3" data-number="10.3.2">
-<h3 data-number="10.3.2" class="anchored" data-anchor-id="exercício-de-permutação"><span class="header-section-number">10.3.2</span> Exercício de permutação</h3>
+<section id="exercício-de-permutação" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="exercício-de-permutação"><span class="header-section-number">11.3.2</span> Exercício de permutação</h3>
 <p>Para terminar, vamos fazer uma função onde dado um vetor de inteiros de tamanho <span class="math inline">\(n\)</span>, verifica se esse vetor é uma permutação dos números de 1 a <span class="math inline">\(n\)</span>. Para isso, veremos se cada número de 1 a <span class="math inline">\(n\)</span> está no vetor.</p>
 <p>Mas, sem esquecer dos testes:</p>
 <div id="40" class="cell" data-execution_count="0">
@@ -1052,12 +1058,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/09-exercicios-cont.html" class="pagination-link" aria-label="Revisitando a aula passada">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Revisitando a aula passada</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Revisitando a aula passada</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/11-exercicios-2.html" class="pagination-link" aria-label="Exercícios com vetores">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Exercícios com vetores</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Exercícios com vetores</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>14&nbsp; Boas práticas – Uma Introdução à Computação com Julia</title>
+<title>15&nbsp; Boas práticas – Uma Introdução à Computação com Julia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-a34d670291f06f286357e447776a572a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-algoritmos-testes.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/14-boas-praticas.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Boas práticas</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-algoritmos-testes.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/14-boas-praticas.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Boas práticas</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -189,6 +189,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introdução às Funções</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-problemas-recursao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Mais Problemas Envolvendo Recursão</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -203,61 +209,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-algoritmos-testes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Mais algoritmos e introdução aos testes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Mais algoritmos e introdução aos testes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/06-testes-automatizados.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testes automatizados e um pouco mais de código</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testes automatizados e um pouco mais de código</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-while.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Uma outra forma de se fazer laços</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uma outra forma de se fazer laços</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-exercicios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Aula de exercícios</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Aula de exercícios</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-exercicios-cont.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Revisitando a aula passada</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Revisitando a aula passada</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/10-entrada-dados.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Entrada de dados e o começo de listas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Entrada de dados e o começo de listas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/11-exercicios-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Exercícios com vetores</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Exercícios com vetores</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/12-blackjack.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Modelando um problema maior</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Modelando um problema maior</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/13-blackjack-cont.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Continuando a modelagem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Continuando a modelagem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/14-boas-praticas.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Boas práticas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Boas práticas</span></span></a>
   </div>
 </li>
       </ul>
@@ -274,13 +280,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/15-matrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Indo além de uma dimensão (Matrizes)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Indo além de uma dimensão (Matrizes)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/16-exercicios-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Aula de exercícios sobre Strings</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Aula de exercícios sobre Strings</span></span></a>
   </div>
 </li>
       </ul>
@@ -316,28 +322,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#uso-de-contratos" id="toc-uso-de-contratos" class="nav-link active" data-scroll-target="#uso-de-contratos"><span class="header-section-number">14.1</span> Uso de contratos</a>
+  <li><a href="#uso-de-contratos" id="toc-uso-de-contratos" class="nav-link active" data-scroll-target="#uso-de-contratos"><span class="header-section-number">15.1</span> Uso de contratos</a>
   <ul class="collapse">
-  <li><a href="#boa-prática-1-use-tipos" id="toc-boa-prática-1-use-tipos" class="nav-link" data-scroll-target="#boa-prática-1-use-tipos"><span class="header-section-number">14.1.1</span> Boa prática 1: Use tipos</a></li>
+  <li><a href="#boa-prática-1-use-tipos" id="toc-boa-prática-1-use-tipos" class="nav-link" data-scroll-target="#boa-prática-1-use-tipos"><span class="header-section-number">15.1.1</span> Boa prática 1: Use tipos</a></li>
   </ul></li>
-  <li><a href="#testes-automatizados" id="toc-testes-automatizados" class="nav-link" data-scroll-target="#testes-automatizados"><span class="header-section-number">14.2</span> Testes automatizados</a>
+  <li><a href="#testes-automatizados" id="toc-testes-automatizados" class="nav-link" data-scroll-target="#testes-automatizados"><span class="header-section-number">15.2</span> Testes automatizados</a>
   <ul class="collapse">
-  <li><a href="#boa-prática-2-sempre-que-possível-faça-testes" id="toc-boa-prática-2-sempre-que-possível-faça-testes" class="nav-link" data-scroll-target="#boa-prática-2-sempre-que-possível-faça-testes"><span class="header-section-number">14.2.1</span> Boa prática 2: Sempre que possível faça testes</a></li>
+  <li><a href="#boa-prática-2-sempre-que-possível-faça-testes" id="toc-boa-prática-2-sempre-que-possível-faça-testes" class="nav-link" data-scroll-target="#boa-prática-2-sempre-que-possível-faça-testes"><span class="header-section-number">15.2.1</span> Boa prática 2: Sempre que possível faça testes</a></li>
   </ul></li>
-  <li><a href="#escreva-código-para-humanos-não-para-computadores" id="toc-escreva-código-para-humanos-não-para-computadores" class="nav-link" data-scroll-target="#escreva-código-para-humanos-não-para-computadores"><span class="header-section-number">14.3</span> Escreva código para humanos, não para computadores</a>
+  <li><a href="#escreva-código-para-humanos-não-para-computadores" id="toc-escreva-código-para-humanos-não-para-computadores" class="nav-link" data-scroll-target="#escreva-código-para-humanos-não-para-computadores"><span class="header-section-number">15.3</span> Escreva código para humanos, não para computadores</a>
   <ul class="collapse">
-  <li><a href="#boa-prática-3-escreva-código-para-que-outros-leiam" id="toc-boa-prática-3-escreva-código-para-que-outros-leiam" class="nav-link" data-scroll-target="#boa-prática-3-escreva-código-para-que-outros-leiam"><span class="header-section-number">14.3.1</span> Boa prática 3: Escreva código para que outros leiam</a></li>
+  <li><a href="#boa-prática-3-escreva-código-para-que-outros-leiam" id="toc-boa-prática-3-escreva-código-para-que-outros-leiam" class="nav-link" data-scroll-target="#boa-prática-3-escreva-código-para-que-outros-leiam"><span class="header-section-number">15.3.1</span> Boa prática 3: Escreva código para que outros leiam</a></li>
   </ul></li>
-  <li><a href="#aplicando-as-boas-práticas" id="toc-aplicando-as-boas-práticas" class="nav-link" data-scroll-target="#aplicando-as-boas-práticas"><span class="header-section-number">14.4</span> Aplicando as boas práticas</a></li>
+  <li><a href="#aplicando-as-boas-práticas" id="toc-aplicando-as-boas-práticas" class="nav-link" data-scroll-target="#aplicando-as-boas-práticas"><span class="header-section-number">15.4</span> Aplicando as boas práticas</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-algoritmos-testes.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/14-boas-praticas.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Boas práticas</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-algoritmos-testes.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/14-boas-praticas.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Boas práticas</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Boas práticas</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Boas práticas</span></h1>
 </div>
 
 
@@ -355,8 +361,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Vamos começar apresentando 3 boas práticas de programação. Na verdade há uma área que cuida de desenvolvimento de software, a Engenharia de Software. Vamos a elas:</p>
-<section id="uso-de-contratos" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="uso-de-contratos"><span class="header-section-number">14.1</span> Uso de contratos</h2>
+<section id="uso-de-contratos" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="uso-de-contratos"><span class="header-section-number">15.1</span> Uso de contratos</h2>
 <p>Sempre que possível o código deve ser modular, ou seja estar repartido em arquivos e ou funções. Cada tipo de função deve deixar claro quais são os seus parâmetros e o que ela devolve. Isso pode ser feito usando tipos.</p>
 <div id="2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">fatorial</span>(n<span class="op">::</span><span class="dt">Int64</span>)<span class="op">::</span><span class="dt">Int64</span></span>
@@ -371,12 +377,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Com isso, fica claro o que a função recebe e devolve, e se for enviado um tipo diferente do esperado, temos em erro imediato.</p>
-<section id="boa-prática-1-use-tipos" class="level3" data-number="14.1.1">
-<h3 data-number="14.1.1" class="anchored" data-anchor-id="boa-prática-1-use-tipos"><span class="header-section-number">14.1.1</span> Boa prática 1: Use tipos</h3>
+<section id="boa-prática-1-use-tipos" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="boa-prática-1-use-tipos"><span class="header-section-number">15.1.1</span> Boa prática 1: Use tipos</h3>
 </section>
 </section>
-<section id="testes-automatizados" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="testes-automatizados"><span class="header-section-number">14.2</span> Testes automatizados</h2>
+<section id="testes-automatizados" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="testes-automatizados"><span class="header-section-number">15.2</span> Testes automatizados</h2>
 <p>Para evitar que apareçam erros, ou os populates bugs, uma forma eficaz é escrever código que verifica o funcionamento do código. Se isso for feito de forma automática, temos os testes automatizados.</p>
 <div id="4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Test</span></span>
@@ -391,24 +397,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>testaFat (generic function with 1 method)</code></pre>
 </div>
 </div>
-<section id="boa-prática-2-sempre-que-possível-faça-testes" class="level3" data-number="14.2.1">
-<h3 data-number="14.2.1" class="anchored" data-anchor-id="boa-prática-2-sempre-que-possível-faça-testes"><span class="header-section-number">14.2.1</span> Boa prática 2: Sempre que possível faça testes</h3>
+<section id="boa-prática-2-sempre-que-possível-faça-testes" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="boa-prática-2-sempre-que-possível-faça-testes"><span class="header-section-number">15.2.1</span> Boa prática 2: Sempre que possível faça testes</h3>
 </section>
 </section>
-<section id="escreva-código-para-humanos-não-para-computadores" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="escreva-código-para-humanos-não-para-computadores"><span class="header-section-number">14.3</span> Escreva código para humanos, não para computadores</h2>
+<section id="escreva-código-para-humanos-não-para-computadores" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="escreva-código-para-humanos-não-para-computadores"><span class="header-section-number">15.3</span> Escreva código para humanos, não para computadores</h2>
 <p>Apesar dos computadores serem capazes de ler código nem sempre bem formatado, é bem difícil para humanos lerem código de forma não padrão. Por isso algumas dicas importantes são:</p>
 <ul>
 <li><p>Use identação. Com isso, os blocos ficam bem claros e é fácil identificar os laços, blocos de if e corpos de função;</p></li>
 <li><p>Escolha bem o nome das variáveis e funções, isso ajuda muito quem for ler o código</p></li>
 <li><p>Sempre que você identificar uma possibilidade de melhoria no código, implemente. Ainda melhor se você tiver testes automatizados, para verificar que a melhoria não quebrou o código.</p></li>
 </ul>
-<section id="boa-prática-3-escreva-código-para-que-outros-leiam" class="level3" data-number="14.3.1">
-<h3 data-number="14.3.1" class="anchored" data-anchor-id="boa-prática-3-escreva-código-para-que-outros-leiam"><span class="header-section-number">14.3.1</span> Boa prática 3: Escreva código para que outros leiam</h3>
+<section id="boa-prática-3-escreva-código-para-que-outros-leiam" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="boa-prática-3-escreva-código-para-que-outros-leiam"><span class="header-section-number">15.3.1</span> Boa prática 3: Escreva código para que outros leiam</h3>
 </section>
 </section>
-<section id="aplicando-as-boas-práticas" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="aplicando-as-boas-práticas"><span class="header-section-number">14.4</span> Aplicando as boas práticas</h2>
+<section id="aplicando-as-boas-práticas" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="aplicando-as-boas-práticas"><span class="header-section-number">15.4</span> Aplicando as boas práticas</h2>
 <p>Vamos agora resolver o seguinte problema, aplicando as práticas acima. Dada um vetor com números reais, determinar os números que estão no vetor e o número de vezes que cada um deles ocorre na mesma.</p>
 <p>Ao analizar o problema, vemos que temos como entrada um vetor de número reais, que pode conter repetições. Para determinar os números que estão no vetor, podemos usar um outro vetor de saída. Sendo que o de entrada e o de saída devem ser do tipo Float64. Além disso, para o vetor que fornece a quantidade de números temos um vetor de inteiros. De posse disso, já temos a assinatura da função.</p>
 <div id="6" class="cell" data-execution_count="1">
@@ -887,12 +893,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/13-blackjack-cont.html" class="pagination-link" aria-label="Continuando a modelagem">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Continuando a modelagem</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Continuando a modelagem</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/15-matrizes.html" class="pagination-link" aria-label="Indo além de uma dimensão (Matrizes)">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Indo além de uma dimensão (Matrizes)</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Indo além de uma dimensão (Matrizes)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
