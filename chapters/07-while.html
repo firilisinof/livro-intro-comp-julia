@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Uma outra forma de se fazer laços – Uma Introdução à Computação com Julia</title>
+<title>7&nbsp; Estruturas de Repetição Iterativas – Uma Introdução à Computação com Julia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a34d670291f06f286357e447776a572a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-292c0866b2e53f8190c286d1fd533ef9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -103,6 +103,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -115,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-algoritmos-testes.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/07-while.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uma outra forma de se fazer laços</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-testes-automatizados.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/07-while.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estruturas de Repetição Iterativas</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -208,62 +237,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/05-algoritmos-testes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Mais algoritmos e introdução aos testes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/06-testes-automatizados.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testes automatizados e um pouco mais de código</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testes Automatizados</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-while.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uma outra forma de se fazer laços</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estruturas de Repetição Iterativas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-exercicios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Aula de exercícios</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Aula de exercícios</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-exercicios-cont.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Revisitando a aula passada</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Revisitando a aula passada</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/10-entrada-dados.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Entrada de dados e o começo de listas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Entrada de dados e o começo de listas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/11-exercicios-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Exercícios com vetores</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Exercícios com vetores</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/12-blackjack.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Modelando um problema maior</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Modelando um problema maior</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/13-blackjack-cont.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Continuando a modelagem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Continuando a modelagem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/14-boas-praticas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Boas práticas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Boas práticas</span></span></a>
   </div>
 </li>
       </ul>
@@ -280,13 +303,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/15-matrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Indo além de uma dimensão (Matrizes)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Indo além de uma dimensão (Matrizes)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/16-exercicios-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Aula de exercícios sobre Strings</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Aula de exercícios sobre Strings</span></span></a>
   </div>
 </li>
       </ul>
@@ -317,15 +340,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#introdução-ao-while" id="toc-introdução-ao-while" class="nav-link active" data-scroll-target="#introdução-ao-while"><span class="header-section-number">7.1</span> Introdução ao <code>while</code></a></li>
+  <li><a href="#comparando-recursão-e-iteração" id="toc-comparando-recursão-e-iteração" class="nav-link" data-scroll-target="#comparando-recursão-e-iteração"><span class="header-section-number">7.2</span> Comparando Recursão e Iteração</a>
+  <ul class="collapse">
+  <li><a href="#contagem-regressiva" id="toc-contagem-regressiva" class="nav-link" data-scroll-target="#contagem-regressiva"><span class="header-section-number">7.2.1</span> Contagem Regressiva</a></li>
+  <li><a href="#soma-dos-primeiros-n-números" id="toc-soma-dos-primeiros-n-números" class="nav-link" data-scroll-target="#soma-dos-primeiros-n-números"><span class="header-section-number">7.2.2</span> Soma dos Primeiros N Números</a></li>
+  </ul></li>
+  <li><a href="#calculando-séries-matemáticas" id="toc-calculando-séries-matemáticas" class="nav-link" data-scroll-target="#calculando-séries-matemáticas"><span class="header-section-number">7.3</span> Calculando Séries Matemáticas</a></li>
+  <li><a href="#quando-usar-recursão-e-iteração" id="toc-quando-usar-recursão-e-iteração" class="nav-link" data-scroll-target="#quando-usar-recursão-e-iteração"><span class="header-section-number">7.4</span> Quando Usar Recursão e Iteração?</a>
+  <ul class="collapse">
+  <li><a href="#vantagens-da-iteração" id="toc-vantagens-da-iteração" class="nav-link" data-scroll-target="#vantagens-da-iteração"><span class="header-section-number">7.4.1</span> Vantagens da iteração</a></li>
+  <li><a href="#vantagens-da-recursão" id="toc-vantagens-da-recursão" class="nav-link" data-scroll-target="#vantagens-da-recursão"><span class="header-section-number">7.4.2</span> Vantagens da recursão</a></li>
+  </ul></li>
+  <li><a href="#verifique-seu-aprendizado" id="toc-verifique-seu-aprendizado" class="nav-link" data-scroll-target="#verifique-seu-aprendizado"><span class="header-section-number">7.5</span> Verifique seu Aprendizado</a></li>
+  <li><a href="#explore-por-conta-própria" id="toc-explore-por-conta-própria" class="nav-link" data-scroll-target="#explore-por-conta-própria"><span class="header-section-number">7.6</span> Explore por Conta Própria</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-algoritmos-testes.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/07-while.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uma outra forma de se fazer laços</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-testes-automatizados.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/07-while.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estruturas de Repetição Iterativas</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uma outra forma de se fazer laços</span></h1>
+<h1 class="title"><span id="sec-while" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estruturas de Repetição Iterativas</span></span></h1>
 </div>
 
 
@@ -342,102 +384,215 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Até o momento vimos que o computador é muito bom para fazer contas e repetições. Fizemos isso até agora com funções recursivas. Mas, existe um outro comando para isso, o while. A motivação é que enquanto alguma condição for válida, o computador continua repetindo os comandos.</p>
-<p>O formato básico é o seguinte:</p>
-<pre><code>while condição
-  # execute obloco
-end  </code></pre>
-<p>Enquanto a condição continuar verdadeira, o computador vai seguir repetindo o bloco que pode ser formado por várias intruções. Logo, para que a repetição, ou laço, não seja repetido indefinidamente, é essencial que algo ligado a condição seja atualizado no corpo do while.</p>
-<p>Vejamos o exemplo simples da contagem regressiva:</p>
-<div id="2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">5</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&gt;</span> <span class="fl">0</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(n)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> n <span class="op">-</span> <span class="fl">1</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Acabou"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Até o momento, vimos que o computador é muito bom para fazer cálculos e repetições. Realizamos essas repetições utilizando funções recursivas, onde uma função chama a si mesma para resolver problemas menores. Agora, vamos explorar uma forma alternativa de realizar repetições: a abordagem iterativa.</p>
+<section id="introdução-ao-while" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="introdução-ao-while"><span class="header-section-number">7.1</span> Introdução ao <code>while</code></h2>
+<p>A estrutura <code>while</code> é uma das formas mais fundamentais de criar laços (em inglês, <em>loops</em>) em programação. Ela permite que um bloco de código seja executado repetidamente enquanto uma condição específica for verdadeira, de forma iterativa. A sintaxe básica do <code>while</code> em Julia é:</p>
+<div id="2" class="cell" data-execution_count="0">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> condição</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bloco de código a ser repetido</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O funcionamento do <code>while</code> segue estes passos:</p>
+<ol type="1">
+<li>A condição é avaliada</li>
+<li>Se a condição for verdadeira, o bloco de código é executado</li>
+<li>Após a execução do bloco, a condição é avaliada novamente</li>
+<li>Este ciclo continua até que a condição se torne falsa</li>
+</ol>
+<p>Um aspecto importante para entender sobre o <code>while</code> é que para evitar um loop infinito (um laço que nunca termina), algo relacionado à condição deve ser modificado dentro do bloco de código.</p>
+<p>Vamos começar com um exemplo simples: contagem regressiva.</p>
+<div id="4" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">contagem_regressiva</span>(n)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> n <span class="op">&gt;</span> <span class="fl">0</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(n)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> n <span class="op">-</span> <span class="fl">1</span>  <span class="co"># Esta linha é essencial para evitar um loop infinito</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"Fim!"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem_regressiva</span>(<span class="fl">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>5
 4
 3
 2
 1
-Acabou</code></pre>
+Fim!</code></pre>
 </div>
 </div>
-<p>Mas, vamos ver abaixo um caso onde o uso de while deixa o código mais Claro que com a recursão (onde é ruim fazer uma com vários parãmetros). Veja a resolução da série de Taylor abaixo:</p>
-<div id="4" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> <span class="kw">function</span> <span class="fu">sinTaylor2</span>(x)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>   i <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>   termo <span class="op">=</span> x</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>   soma <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>   <span class="cf">while</span> i <span class="op">&lt;=</span> <span class="fl">15</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>     soma <span class="op">=</span> soma <span class="op">+</span> termo</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>     termo <span class="op">=</span> <span class="op">-</span><span class="fl">1</span> <span class="op">*</span> termo <span class="op">*</span> x <span class="op">*</span> x <span class="op">/</span> ((<span class="fl">2</span> <span class="op">*</span> i) <span class="op">*</span> (<span class="fl">2</span> <span class="op">*</span> i <span class="op">+</span> <span class="fl">1</span>))</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>     i <span class="op">=</span> i <span class="op">+</span> <span class="fl">1</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>   <span class="cf">end</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>   <span class="cf">return</span> soma</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>sinTaylor2 (generic function with 1 method)</code></pre>
-</div>
-</div>
-<p>Nela são calculados os 15 primeiros termos.</p>
-<p>Observem a versão recursiva:</p>
+<p>Neste exemplo, a condição <code>n &gt; 0</code> é inicialmente verdadeira (assumindo que <code>n</code> começa com um valor positivo). O bloco de código imprime o valor atual de <code>n</code> e, em seguida, decrementa <code>n</code> em 1. Eventualmente, <code>n</code> chegará a zero, tornando a condição falsa e encerrando o loop.</p>
+</section>
+<section id="comparando-recursão-e-iteração" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="comparando-recursão-e-iteração"><span class="header-section-number">7.2</span> Comparando Recursão e Iteração</h2>
+<p>Para entender melhor a diferença entre recursão e iteração, vamos reescrever algumas funções que implementamos anteriormente usando recursão.</p>
+<section id="contagem-regressiva" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="contagem-regressiva"><span class="header-section-number">7.2.1</span> Contagem Regressiva</h3>
+<p>Primeiro, vamos relembrar a versão recursiva da contagem regressiva:</p>
 <div id="6" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sinTaylor</span>(x)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">sinTaylorRec</span>(<span class="fl">1</span>, <span class="fl">15</span>, x, <span class="fl">1</span>, x)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sinTaylorRec</span>(i, n, x, sinal, termo)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> i</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fl">0.0</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> sinal <span class="op">*</span> termo <span class="op">+</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>         <span class="fu">sinTaylorRec</span>(i <span class="op">+</span> <span class="fl">1</span>, n, x, <span class="op">-</span><span class="fl">1</span> <span class="op">*</span> sinal, termo <span class="op">*</span> x <span class="op">*</span> x<span class="op">/</span> (<span class="fl">2</span><span class="op">*</span>i <span class="op">*</span> (<span class="fl">2</span><span class="op">*</span>i<span class="op">+</span><span class="fl">1</span>)))</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>sinTaylorRec (generic function with 1 method)</code></pre>
-</div>
-</div>
-<p>Podemos também fazer operações com os dígitos de um número inteiro, para isso operações como o resto da divisão por 10 e a divisão inteira por 10 são bastante úteis. Abaixo temos as duas versões que fazem a soma dos dígitos de um número inteiro.</p>
-<div id="8" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Test</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">testaSD</span>()</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@test</span> <span class="fu">sd</span>(<span class="fl">123</span>) <span class="op">==</span> <span class="fl">6</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@test</span> <span class="fu">sd</span>(<span class="fl">321</span>) <span class="op">==</span> <span class="fl">6</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@test</span> <span class="fu">sd</span>(<span class="fl">0</span>) <span class="op">==</span> <span class="fl">0</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@test</span> <span class="fu">sd</span>(<span class="fl">1001</span>) <span class="op">==</span> <span class="fl">2</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@test</span> <span class="fu">sd</span>(<span class="fl">3279</span>) <span class="op">==</span> <span class="fl">21</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"Fim dos testes"</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sd</span>(x)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> x <span class="op">==</span> <span class="fl">0</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>     <span class="cf">return</span> <span class="fl">0</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>     d <span class="op">=</span> x <span class="op">%</span> <span class="fl">10</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>     <span class="cf">return</span> d <span class="op">+</span> <span class="fu">sd</span>(<span class="fu">div</span>(x, <span class="fl">10</span>))</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sd1</span>(x)</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  soma <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> x <span class="op">!=</span> <span class="fl">0</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>   d <span class="op">=</span> x <span class="op">%</span> <span class="fl">10</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>   soma <span class="op">=</span> soma <span class="op">+</span> d</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>   x <span class="op">=</span> <span class="fu">div</span>(x, <span class="fl">10</span>)</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> soma</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="fu">testaSD</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">contagem_recursiva</span>(n)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="fl">0</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"Fim!"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(n)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">contagem_recursiva</span>(n <span class="op">-</span> <span class="fl">1</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">contagem_recursiva</span>(<span class="fl">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Fim dos testes</code></pre>
+<pre><code>5
+4
+3
+2
+1
+Fim!</code></pre>
 </div>
 </div>
+<p>Comparando as duas implementações, podemos observar que: - Na versão recursiva, o caso base (<code>n &lt;= 0</code>) corresponde à condição de parada do <code>while</code> - A chamada recursiva com <code>n - 1</code> corresponde à atualização de <code>n</code> no <code>while</code></p>
+<p>Ambas as versões produzem o mesmo resultado, mas com abordagens diferentes.</p>
+</section>
+<section id="soma-dos-primeiros-n-números" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="soma-dos-primeiros-n-números"><span class="header-section-number">7.2.2</span> Soma dos Primeiros N Números</h3>
+<p>Vamos implementar uma função que calcula a soma dos primeiros <code>n</code> números inteiros positivos (1 + 2 + … + n), usando tanto recursão quanto <code>while</code>.</p>
+<p>Versão recursiva:</p>
+<div id="8" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">soma_recursiva</span>(n)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="fl">0</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">0</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n <span class="op">+</span> <span class="fu">soma_recursiva</span>(n <span class="op">-</span> <span class="fl">1</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Soma dos primeiros 5 números (recursiva): "</span>, <span class="fu">soma_recursiva</span>(<span class="fl">5</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Soma dos primeiros 5 números (recursiva): 15</code></pre>
+</div>
+</div>
+<p>Versão com <code>while</code>:</p>
+<div id="10" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">soma_while</span>(n)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    soma <span class="op">=</span> <span class="fl">0</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> i <span class="op">&lt;=</span> n</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        soma <span class="op">=</span> soma <span class="op">+</span> i</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> i <span class="op">+</span> <span class="fl">1</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> soma</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Soma dos primeiros 5 números (while): "</span>, <span class="fu">soma_while</span>(<span class="fl">5</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Soma dos primeiros 5 números (while): 15</code></pre>
+</div>
+</div>
+<p>Na versão recursiva, temos um caso base explícito (<code>n &lt;= 0</code>) e uma chamada recursiva que reduz o problema. Na versão com <code>while</code>, utilizamos uma variável de controle <code>i</code> que é incrementada a cada iteração, e uma variável acumuladora <code>soma</code> que armazena o resultado parcial.</p>
+</section>
+</section>
+<section id="calculando-séries-matemáticas" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="calculando-séries-matemáticas"><span class="header-section-number">7.3</span> Calculando Séries Matemáticas</h2>
+<p>As estruturas de repetição são especialmente úteis para calcular somas de séries matemáticas. Vamos implementar uma função para calcular a aproximação do seno usando a série de Taylor:</p>
+<p><span class="math display">\[\sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \ldots\]</span></p>
+<p>Esta série pode ser representada como:</p>
+<p><span class="math display">\[\sin(x) = \sum_{n=0}^{\infty} \frac{(-1)^n \cdot x^{2n+1}}{(2n+1)!}\]</span></p>
+<p>Implementação usando <code>while</code>:</p>
+<div id="12" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sin_taylor</span>(x, termos <span class="op">=</span> <span class="fl">10</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    termo <span class="op">=</span> x</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="fl">0</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> i <span class="op">&lt;</span> termos</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Adicionamos o termo atual à soma</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        resultado <span class="op">=</span> resultado <span class="op">+</span> termo</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculamos o próximo termo</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> i <span class="op">+</span> <span class="fl">1</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        termo <span class="op">=</span> <span class="op">-</span>termo <span class="op">*</span> x <span class="op">*</span> x <span class="op">/</span> ((<span class="fl">2</span> <span class="op">*</span> i) <span class="op">*</span> (<span class="fl">2</span> <span class="op">*</span> i <span class="op">+</span> <span class="fl">1</span>))</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resultado</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste com π/6 (30 graus), cujo seno é 0.5</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"sin(π/6) ≈ "</span>, <span class="fu">sin_taylor</span>(<span class="cn">π</span><span class="op">/</span><span class="fl">6</span>))</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"sin(π/6) exato: "</span>, <span class="fu">sin</span>(<span class="cn">π</span><span class="op">/</span><span class="fl">6</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sin(π/6) ≈ 0.49999999999999994
+sin(π/6) exato: 0.49999999999999994</code></pre>
+</div>
+</div>
+<p>Observe como o <code>while</code> permite um controle preciso sobre o número de termos da série que queremos calcular.</p>
+<p>Vamos comparar com uma implementação recursiva:</p>
+<div id="14" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sin_taylor_recursivo</span>(x, i <span class="op">=</span> <span class="fl">0</span>, termos <span class="op">=</span> <span class="fl">10</span>, termo <span class="op">=</span> x, resultado <span class="op">=</span> <span class="fl">0.0</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&gt;=</span> termos</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> resultado</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Adicionamos o termo atual à soma</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        novo_resultado <span class="op">=</span> resultado <span class="op">+</span> termo</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculamos o próximo termo</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        novo_i <span class="op">=</span> i <span class="op">+</span> <span class="fl">1</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        novo_termo <span class="op">=</span> <span class="op">-</span>termo <span class="op">*</span> x <span class="op">*</span> x <span class="op">/</span> ((<span class="fl">2</span> <span class="op">*</span> novo_i) <span class="op">*</span> (<span class="fl">2</span> <span class="op">*</span> novo_i <span class="op">+</span> <span class="fl">1</span>))</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">sin_taylor_recursivo</span>(x, novo_i, termos, novo_termo, novo_resultado)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"sin(π/6) recursivo ≈ "</span>, <span class="fu">sin_taylor_recursivo</span>(<span class="cn">π</span><span class="op">/</span><span class="fl">6</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sin(π/6) recursivo ≈ 0.49999999999999994</code></pre>
+</div>
+</div>
+<p>Como podemos observar, a versão recursiva é mais complexa, pois precisamos passar vários parâmetros adicionais para manter o estado entre as chamadas recursivas. A versão com <code>while</code> é mais clara e direta neste caso.</p>
+</section>
+<section id="quando-usar-recursão-e-iteração" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="quando-usar-recursão-e-iteração"><span class="header-section-number">7.4</span> Quando Usar Recursão e Iteração?</h2>
+<p>Tanto a recursão quanto a iteração podem ser usadas para resolver problemas de repetição, cada uma com seus pontos fortes:</p>
+<section id="vantagens-da-iteração" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="vantagens-da-iteração"><span class="header-section-number">7.4.1</span> Vantagens da iteração</h3>
+<ul>
+<li>Geralmente mais eficiente em termos de memória</li>
+<li>Evita o risco de estouro de pilha para entradas grandes</li>
+<li>Pode ser mais intuitivo para operações de repetição simples</li>
+<li>Permite um controle mais detalhado sobre o processo de iteração</li>
+</ul>
+</section>
+<section id="vantagens-da-recursão" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="vantagens-da-recursão"><span class="header-section-number">7.4.2</span> Vantagens da recursão</h3>
+<ul>
+<li>Frequentemente mais elegante para problemas que se decompõem naturalmente</li>
+<li>Pode tornar o código mais conciso e legível para certos algoritmos</li>
+<li>Reflete diretamente definições matemáticas recursivas</li>
+<li>Particularmente útil para estruturas de dados hierárquicas</li>
+</ul>
+<p>Uma regra prática é:</p>
+<ul>
+<li>Use iteração quando precisar repetir uma operação um número fixo ou indeterminado de vezes</li>
+<li>Use recursão quando o problema puder ser naturalmente dividido em subproblemas menores do mesmo tipo</li>
+</ul>
+</section>
+</section>
+<section id="verifique-seu-aprendizado" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="verifique-seu-aprendizado"><span class="header-section-number">7.5</span> Verifique seu Aprendizado</h2>
+<ol type="1">
+<li>Qual é a diferença entre usar recursão e iteração para repetições?</li>
+<li>Implemente uma função que conte o número de dígitos em um número inteiro usando a estrutura <code>while</code>.</li>
+<li>Dado um número inteiro, escreva uma função que inverta seus dígitos (por exemplo, 123 se tornaria 321).</li>
+</ol>
+</section>
+<section id="explore-por-conta-própria" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="explore-por-conta-própria"><span class="header-section-number">7.6</span> Explore por Conta Própria</h2>
+<ol type="1">
+<li>Pesquise sobre otimização de laços (loop unrolling) e tente aplicar esse conceito em uma função com <code>while</code>.</li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -859,13 +1014,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/06-testes-automatizados.html" class="pagination-link" aria-label="Testes automatizados e um pouco mais de código">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testes automatizados e um pouco mais de código</span></span>
+      <a href="../chapters/06-testes-automatizados.html" class="pagination-link" aria-label="Testes Automatizados">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testes Automatizados</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/08-exercicios.html" class="pagination-link" aria-label="Aula de exercícios">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Aula de exercícios</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Aula de exercícios</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

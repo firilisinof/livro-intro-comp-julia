@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Testes automatizados e um pouco mais de código – Uma Introdução à Computação com Julia</title>
+<title>6&nbsp; Testes Automatizados – Uma Introdução à Computação com Julia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../chapters/07-while.html" rel="next">
-<link href="../chapters/05-algoritmos-testes.html" rel="prev">
+<link href="../chapters/05-problemas-recursao.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a34d670291f06f286357e447776a572a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-292c0866b2e53f8190c286d1fd533ef9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -144,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-algoritmos-testes.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/06-testes-automatizados.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testes automatizados e um pouco mais de código</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-testes-automatizados.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/06-testes-automatizados.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testes Automatizados</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -237,62 +237,56 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/05-algoritmos-testes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Mais algoritmos e introdução aos testes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/06-testes-automatizados.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testes automatizados e um pouco mais de código</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testes Automatizados</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-while.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uma outra forma de se fazer laços</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estruturas de Repetição Iterativas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-exercicios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Aula de exercícios</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Aula de exercícios</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-exercicios-cont.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Revisitando a aula passada</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Revisitando a aula passada</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/10-entrada-dados.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Entrada de dados e o começo de listas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Entrada de dados e o começo de listas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/11-exercicios-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Exercícios com vetores</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Exercícios com vetores</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/12-blackjack.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Modelando um problema maior</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Modelando um problema maior</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/13-blackjack-cont.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Continuando a modelagem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Continuando a modelagem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/14-boas-praticas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Boas práticas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Boas práticas</span></span></a>
   </div>
 </li>
       </ul>
@@ -309,13 +303,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/15-matrizes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Indo além de uma dimensão (Matrizes)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Indo além de uma dimensão (Matrizes)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/16-exercicios-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Aula de exercícios sobre Strings</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Aula de exercícios sobre Strings</span></span></a>
   </div>
 </li>
       </ul>
@@ -351,16 +345,25 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#funções-caóticas" id="toc-funções-caóticas" class="nav-link active" data-scroll-target="#funções-caóticas"><span class="header-section-number">7.1</span> Funções caóticas</a></li>
+  <li><a href="#por-que-testar" id="toc-por-que-testar" class="nav-link active" data-scroll-target="#por-que-testar"><span class="header-section-number">6.1</span> Por que Testar?</a></li>
+  <li><a href="#escrevendo-testes-com-condicionais" id="toc-escrevendo-testes-com-condicionais" class="nav-link" data-scroll-target="#escrevendo-testes-com-condicionais"><span class="header-section-number">6.2</span> Escrevendo Testes Com Condicionais</a></li>
+  <li><a href="#testes-com-o-módulo-test" id="toc-testes-com-o-módulo-test" class="nav-link" data-scroll-target="#testes-com-o-módulo-test"><span class="header-section-number">6.3</span> Testes com o Módulo Test</a></li>
+  <li><a href="#mais-exemplos" id="toc-mais-exemplos" class="nav-link" data-scroll-target="#mais-exemplos"><span class="header-section-number">6.4</span> Mais Exemplos</a>
+  <ul class="collapse">
+  <li><a href="#soma-dos-dígitos" id="toc-soma-dos-dígitos" class="nav-link" data-scroll-target="#soma-dos-dígitos"><span class="header-section-number">6.4.1</span> Soma dos Dígitos</a></li>
+  <li><a href="#verificação-de-números-primos" id="toc-verificação-de-números-primos" class="nav-link" data-scroll-target="#verificação-de-números-primos"><span class="header-section-number">6.4.2</span> Verificação de Números Primos</a></li>
+  </ul></li>
+  <li><a href="#verifique-seu-aprendizado" id="toc-verifique-seu-aprendizado" class="nav-link" data-scroll-target="#verifique-seu-aprendizado"><span class="header-section-number">6.5</span> Verifique seu Aprendizado</a></li>
+  <li><a href="#explore-por-conta-própria" id="toc-explore-por-conta-própria" class="nav-link" data-scroll-target="#explore-por-conta-própria"><span class="header-section-number">6.6</span> Explore por Conta Própria</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-algoritmos-testes.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/06-testes-automatizados.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testes automatizados e um pouco mais de código</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-testes-automatizados.html">Parte II: Estruturas Fundamentais e Boas Práticas</a></li><li class="breadcrumb-item"><a href="../chapters/06-testes-automatizados.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testes Automatizados</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Testes automatizados e um pouco mais de código</span></h1>
+<h1 class="title"><span id="sec-testes" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Testes Automatizados</span></span></h1>
 </div>
 
 
@@ -377,134 +380,272 @@ window.Quarto = {
 </header>
 
 
-<p>Vamos começar o capítulo vendo uma forma mais simples de se rodar testes. Nos testes que vimos até agora sempre havia o teste de uma condição booleana associado a uma mensagem de erro quando não funcionasse. Mas, observando que a mensagem de erro geralmente está ligada à condição, por vezes a condição pode ser auto-explicativa.</p>
-<p>Logo, uma forma elegante de expressar as condições pode ser útil na escrita dos testes. Para isso, vamos usar o módulo de testes. Em linguagens modernas, várias das situações repetitivas que enfrentamos podem ser evitadas usando alguma técnica mais moderna.</p>
+<p>Desenvolvemos diversos algoritmos recursivos e, para verificar se eles funcionavam corretamente, realizamos testes manuais executando as funções com diferentes entradas e verificando seus resultados. No entanto, à medida que nossos programas se tornam mais complexos, essa abordagem manual se torna ineficiente e propensa a erros. Neste capítulo, introduziremos o conceito de testes automatizados, que nos permitirá verificar de forma sistemática e confiável se nossas funções estão operando como esperado.</p>
+<section id="por-que-testar" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="por-que-testar"><span class="header-section-number">6.1</span> Por que Testar?</h2>
+<p>Quando escrevemos código, queremos ter certeza de que ele está funcionando corretamente. Os testes automatizados nos ajudam a:</p>
+<ol type="1">
+<li>Verificar se o código produz os resultados esperados para diferentes entradas</li>
+<li>Identificar bugs e erros antes que o programa seja utilizado</li>
+<li>Garantir que modificações no código não quebrem funcionalidades existentes</li>
+<li>Documentar o comportamento esperado de nossas funções</li>
+</ol>
+<p>Em desenvolvimento de software, uma prática comum é o TDD (<em>Test-Driven Development</em>), onde primeiro escrevemos os testes e depois implementamos o código que satisfaz esses testes. Esta abordagem incentiva um design mais claro e uma melhor compreensão dos requisitos antes mesmo de começar a programar.</p>
+</section>
+<section id="escrevendo-testes-com-condicionais" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="escrevendo-testes-com-condicionais"><span class="header-section-number">6.2</span> Escrevendo Testes Com Condicionais</h2>
+<p>Vamos começar com uma abordagem mais simples para criar testes automatizados usando estruturas condicionais. Consideraremos o “Problema das Escadas” que vimos no capítulo anterior.</p>
+<p>Relembrando, o problema consistia em determinar de quantas maneiras diferentes podemos subir uma escada com <span class="math inline">\(n\)</span> degraus, se podemos dar passos de 1 ou 2 degraus por vez. Nossa solução foi:</p>
 <div id="2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Test</span>  </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@testset</span> <span class="st">"Modelo de testes"</span> <span class="cf">begin</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="cn">true</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> !<span class="cn">false</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">maneiras_subir_escada</span>(n)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Casos base</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="fl">0</span> <span class="op">||</span> n <span class="op">==</span> <span class="fl">1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Caso recursivo: soma das maneiras de chegar a partir de n-1 e n-2</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">maneiras_subir_escada</span>(n <span class="op">-</span> <span class="fl">1</span>) <span class="op">+</span> <span class="fu">maneiras_subir_escada</span>(n <span class="op">-</span> <span class="fl">2</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>maneiras_subir_escada (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p>Agora, vamos criar uma função de teste para verificar se nossa implementação está correta:</p>
+<div id="4" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">testa_maneiras_subir_escada</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Geralmente, verificamos alguns casos conhecidos ou que sabemos a resposta</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">maneiras_subir_escada</span>(<span class="fl">1</span>) <span class="op">!=</span> <span class="fl">1</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"Erro para n = 1"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">maneiras_subir_escada</span>(<span class="fl">2</span>) <span class="op">!=</span> <span class="fl">2</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"Erro para n = 2"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">maneiras_subir_escada</span>(<span class="fl">3</span>) <span class="op">!=</span> <span class="fl">3</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"Erro para n = 3"</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">maneiras_subir_escada</span>(<span class="fl">4</span>) <span class="op">!=</span> <span class="fl">5</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"Erro para n = 4"</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"Todos os testes para a função maneiras_subir_escada passaram!"</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cn">true</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Executamos os testes</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="fu">testa_maneiras_subir_escada</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Test Summary:    | Pass  Total  Time
-Modelo de testes |    3      3  0.1s</code></pre>
+<pre><code>Todos os testes para a função maneiras_subir_escada passaram!</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>Test.DefaultTestSet("Modelo de testes", Any[], 3, false, false, true, 1.741131048930295e9, 1.741131049021716e9, false, "/Users/lucas/Desktop/livro-intro-comp-julia/chapters/06-testes-automatizados.qmd")</code></pre>
+<pre><code>true</code></pre>
 </div>
 </div>
-<p>No trecho acima primeiro indicamos que queremos fazer testes. Em seguida usamos o <em>test</em> que espera uma condição ou valor booleano. Finalmente todos os testes são reunidos em um <em>testset</em>.</p>
-<p>Claro que o teste dá infomações relevantes quando falha:</p>
-<div id="4" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Test</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@test</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">!=</span> <span class="fl">4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nesta função de teste, verificamos se a nossa implementação retorna os valores corretos para diferentes entradas. Se algum teste falhar, exibimos uma mensagem indicando qual caso falhou. Se todos os testes passarem, exibimos uma mensagem de sucesso.</p>
+<p>Este é um princípio importante para testes automatizados: <strong>se o teste passar, ele deve indicar apenas que deu certo!</strong> Isso significa que, idealmente, os testes não devem imprimir muitas mensagens quando tudo estiver funcionando corretamente, apenas quando algo der errado.</p>
+<p>Vamos fazer o mesmo para o cálculo do “Coeficiente Binomial”, que também vimos no capítulo anterior:</p>
+<div id="6" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">coeficiente_binomial</span>(n, k)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> k <span class="op">==</span> <span class="fl">0</span> <span class="op">||</span> k <span class="op">==</span> n</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">1</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">coeficiente_binomial</span>(n <span class="op">-</span> <span class="fl">1</span>, k <span class="op">-</span> <span class="fl">1</span>) <span class="op">+</span> <span class="fu">coeficiente_binomial</span>(n <span class="op">-</span> <span class="fl">1</span>, k)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">testa_coeficiente_binomial</span>()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">coeficiente_binomial</span>(<span class="fl">5</span>, <span class="fl">2</span>) <span class="op">!=</span> <span class="fl">10</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"Erro para (5, 2)"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">coeficiente_binomial</span>(<span class="fl">10</span>, <span class="fl">4</span>) <span class="op">!=</span> <span class="fl">210</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"Erro para (10, 4)"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">coeficiente_binomial</span>(<span class="fl">7</span>, <span class="fl">3</span>) <span class="op">!=</span> <span class="fl">35</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"Erro para (7, 3)"</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"Todos os testes para a função coeficiente_binomial passaram!"</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cn">true</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Executamos os testes</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="fu">testa_coeficiente_binomial</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Todos os testes para a função coeficiente_binomial passaram!</code></pre>
 </div>
-<pre><code>Test Failed at REPL[2]:1
-  Expression: 2 + 2 != 4
-   Evaluated: 4 != 4</code></pre>
-<p>Agora sim, vamos pensar em problemas algoritmicos novos. Que tal fazer a soma dos dígitos de um número inteiro. Ou seja, pensar em um número dígito à dígito. Vamos aos testes primeiro:</p>
-<div id="6" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Test</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@testset</span> <span class="st">"Teste da Soma de Dígitos"</span> <span class="cf">begin</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">somaDig</span>(<span class="fl">0</span>) <span class="op">==</span> <span class="fl">0</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">somaDig</span>(<span class="fl">1</span>) <span class="op">==</span> <span class="fl">1</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">somaDig</span>(<span class="fl">100</span>) <span class="op">==</span> <span class="fl">1</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">somaDig</span>(<span class="fl">123</span>) <span class="op">==</span> <span class="fl">6</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">somaDig</span>(<span class="fl">321</span>) <span class="op">==</span> <span class="fl">6</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">somaDig</span>(<span class="fl">99</span>) <span class="op">==</span> <span class="fl">18</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>true</code></pre>
 </div>
-<p>Vamos agora tentar pensar em como “descascar” um número, dado o número 123, uma forma seria pegar o resto por 10 (ou seja 3) e depois dividir por 10 (ou seja 12), e assim por diante. Ou seja.</p>
+</div>
+</section>
+<section id="testes-com-o-módulo-test" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="testes-com-o-módulo-test"><span class="header-section-number">6.3</span> Testes com o Módulo Test</h2>
+<p>Até agora, criamos funções de teste manualmente usando estruturas condicionais. No entanto, Julia fornece um módulo de testes integrado chamado <code>Test</code>, que oferece funcionalidades mais avançadas para testes automatizados.</p>
+<p>Vamos reescrever nossos testes usando o módulo <code>Test</code>:</p>
 <div id="8" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">somaDig</span>(n)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span><span class="fl">0</span> <span class="cf">return</span> <span class="fl">0</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n <span class="op">%</span> <span class="fl">10</span> <span class="op">+</span> <span class="fu">somaDig</span>(n <span class="op">÷</span> <span class="fl">10</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">somaDig</span>(<span class="fl">1234</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Test</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@testset</span> <span class="st">"Testes para maneiras_subir_escada"</span> <span class="cf">begin</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">maneiras_subir_escada</span>(<span class="fl">1</span>) <span class="op">==</span> <span class="fl">1</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">maneiras_subir_escada</span>(<span class="fl">2</span>) <span class="op">==</span> <span class="fl">2</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">maneiras_subir_escada</span>(<span class="fl">3</span>) <span class="op">==</span> <span class="fl">3</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">maneiras_subir_escada</span>(<span class="fl">4</span>) <span class="op">==</span> <span class="fl">5</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="pp">@testset</span> <span class="st">"Testes para coeficiente_binomial"</span> <span class="cf">begin</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">coeficiente_binomial</span>(<span class="fl">5</span>, <span class="fl">2</span>) <span class="op">==</span> <span class="fl">10</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">coeficiente_binomial</span>(<span class="fl">10</span>, <span class="fl">4</span>) <span class="op">==</span> <span class="fl">210</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">coeficiente_binomial</span>(<span class="fl">7</span>, <span class="fl">3</span>) <span class="op">==</span> <span class="fl">35</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>10</code></pre>
+<pre><code>Test Summary:                     | Pass  Total  Time
+Testes para maneiras_subir_escada |    4      4  0.1s
+Test Summary:                    | Pass  Total  Time
+Testes para coeficiente_binomial |    3      3  0.0s</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>Test.DefaultTestSet("Testes para coeficiente_binomial", Any[], 3, false, false, true, 1.74526253061582e9, 1.745262530615851e9, false, "/Users/lucas/Desktop/livro-intro-comp-julia/chapters/06-testes-automatizados.qmd")</code></pre>
 </div>
 </div>
-<p>Vamos agora a um outro problema clássico, a verificação se um número é ou não é primo. Na prática para fazer isso, temos a definição, um número <span class="math inline">\(n\)</span> é primo apenas se for divisível apenas por 1 e por ele mesmo. Ou seja, nenhum número entre 2 e <span class="math inline">\(n - 1\)</span> pode ser divisor de um número primo.</p>
-<p>A forma de se fazer isso é relativamente simples. Vamos pensar em uma função que tenta dividir um número recursivamente, se conseguir devolve falso, se não conseguir devolve verdadeiro.</p>
-<p>Vamos aos código:</p>
+<p>Com o módulo <code>Test</code>, utilizamos a macro <code>@testset</code> para agrupar testes relacionados e a macro <code>@test</code> para verificar condições específicas. Se um teste falha, o módulo exibe automaticamente informações úteis sobre a falha, como a expressão que falhou e os valores esperados versus os valores obtidos.</p>
+<p>Além disso, o módulo <code>Test</code> oferece outras macros úteis:</p>
+<ul>
+<li><code>@test_throws</code>: verifica se uma expressão lança uma exceção específica</li>
+<li><code>@test_approx_eq</code>: verifica se dois valores de ponto flutuante são aproximadamente iguais (considerando erros de arredondamento)</li>
+<li><code>@test_broken</code>: marca um teste que é esperado falhar (útil para documentar bugs conhecidos)</li>
+</ul>
+</section>
+<section id="mais-exemplos" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="mais-exemplos"><span class="header-section-number">6.4</span> Mais Exemplos</h2>
+<p>Vamos implementar duas novas funções e seus respectivos testes: uma função para calcular a soma dos dígitos de um número e outra para verificar se um número é primo.</p>
+<section id="soma-dos-dígitos" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="soma-dos-dígitos"><span class="header-section-number">6.4.1</span> Soma dos Dígitos</h3>
+<p>Primeiramente, vamos criar uma função que calcula a soma dos dígitos de um número inteiro. Por exemplo, para o número 123, a soma dos dígitos seria 1 + 2 + 3 = 6.</p>
+<p>Antes de implementar a função, vamos pensar nos casos de teste:</p>
+<ul>
+<li>Se a função recebe um inteiro de um único dígito ela deve retornar esse dígito</li>
+<li>Se a função recebe 100, ela deve retornar 1 + 0 + 0 = 1</li>
+<li>Se a função recebe 123, ela deve retornar 1 + 2 + 3 = 6</li>
+<li>Se a função recebe 99, ela deve retornar 9 + 9 = 18</li>
+</ul>
+<p>Podemos implementar a função usando recursão. A ideia é “descascar” o número, extraindo um dígito de cada vez:</p>
 <div id="10" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">divide</span>(n, i)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">%</span> i <span class="op">==</span> <span class="fl">0</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elseif</span> i <span class="op">==</span> n <span class="op">-</span> <span class="fl">1</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">true</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">divide</span>(n, i <span class="op">+</span> <span class="fl">1</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">soma_digitos</span>(n)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="fl">0</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">0</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Obtemos o último dígito com o resto da divisão por 10</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        ultimo_digito <span class="op">=</span> n <span class="op">%</span> <span class="fl">10</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Removemos o último dígito com a divisão inteira por 10</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        resto_numero <span class="op">=</span> n <span class="op">÷</span> <span class="fl">10</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Somamos o último dígito com a soma dos dígitos do resto do número</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ultimo_digito <span class="op">+</span> <span class="fu">soma_digitos</span>(resto_numero)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>divide (generic function with 1 method)</code></pre>
+<pre><code>soma_digitos (generic function with 1 method)</code></pre>
 </div>
 </div>
-<p>Que pode ser chamada por:</p>
+<p>Os casos de teste discutidos acima podem ser implementados utilizando o módulo <code>Test</code>:</p>
 <div id="12" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">éPrimo</span>(n)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">divide</span>(n, <span class="fl">2</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@testset</span> <span class="st">"Testes para soma_digitos"</span> <span class="cf">begin</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">soma_digitos</span>(<span class="fl">0</span>) <span class="op">==</span> <span class="fl">0</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">soma_digitos</span>(<span class="fl">1</span>) <span class="op">==</span> <span class="fl">1</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">soma_digitos</span>(<span class="fl">100</span>) <span class="op">==</span> <span class="fl">1</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">soma_digitos</span>(<span class="fl">123</span>) <span class="op">==</span> <span class="fl">6</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">soma_digitos</span>(<span class="fl">99</span>) <span class="op">==</span> <span class="fl">18</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Summary:            | Pass  Total  Time
+Testes para soma_digitos |    5      5  0.0s</code></pre>
+</div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>éPrimo (generic function with 1 method)</code></pre>
+<pre><code>Test.DefaultTestSet("Testes para soma_digitos", Any[], 5, false, false, true, 1.745262530772914e9, 1.745262530775204e9, false, "/Users/lucas/Desktop/livro-intro-comp-julia/chapters/06-testes-automatizados.qmd")</code></pre>
 </div>
 </div>
-<p>Mais um exemplo, o método de Newton para o cálculo de raiz quadrada. Para achar a raiz de <span class="math inline">\(x\)</span>, a partir de um chute inicial (por exemplos <span class="math inline">\(y= x /2\)</span>), chegamos a um novo chute que é a média de <span class="math inline">\(y\)</span> e <span class="math inline">\(x/y\)</span>.</p>
-<p>Mas, sim, vamos começar com os testes. Como estamos usando números do tipo <em>double</em> é bom sempre ter uma tolerância, por isso vamos usar uma comparação aproximada. Também poderiamos ter usado a função <em>isapprox</em> da linguagem Julia.</p>
-<div id="14" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Test</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">quaseIgual</span>(a, b)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">abs</span>(a <span class="op">-</span> b) <span class="op">&lt;=</span> <span class="fl">1e-10</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">true</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@testset</span> <span class="st">"Teste da raiz pelo método de Newton"</span> <span class="cf">begin</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">quaseIgual</span>(<span class="fl">3.0</span>, <span class="fu">raiz</span>(<span class="fl">3.0</span> <span class="op">*</span> <span class="fl">3.0</span>))</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">quaseIgual</span>(<span class="fl">33.7</span>, <span class="fu">raiz</span>(<span class="fl">33.7</span> <span class="op">*</span> <span class="fl">33.7</span>))</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">quaseIgual</span>(<span class="fl">223.7</span>, <span class="fu">raiz</span>(<span class="fl">223.7</span> <span class="op">*</span> <span class="fl">223.7</span>))</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">quaseIgual</span>(<span class="fl">0.7</span>, <span class="fu">raiz</span>(<span class="fl">0.7</span> <span class="op">*</span> <span class="fl">0.7</span>))</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">quaseIgual</span>(<span class="fl">1.0</span>, <span class="fu">raiz</span>(<span class="fl">1.0</span> <span class="op">*</span> <span class="fl">1.0</span>))</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="verificação-de-números-primos" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="verificação-de-números-primos"><span class="header-section-number">6.4.2</span> Verificação de Números Primos</h3>
+<p>Vamos criar uma função para verificar se um número é primo. Um número primo é aquele que é divisível apenas por 1 e por ele mesmo. Antes de escrever a função vamos pensar nos testes:</p>
+<ul>
+<li>Por definição, qualquer número menor ou igual a 1 não é primo</li>
+<li>O número 2 é primo (fácil de verificar)</li>
+<li>O número 3 é primo (também fácil de verificar)</li>
+<li>O número 4 não é primo, pois 2 também divide 4</li>
+<li>O número 17 é primo</li>
+<li>O número 25 não é primo, pois 5 também divide 25</li>
+</ul>
+<p>Podemos implementar a função usando uma abordagem recursiva que tenta dividir o número por cada inteiro de 2 até a raiz quadrada do número:</p>
+<div id="14" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">verifica_divisor</span>(n, divisor)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Se encontramos um divisor, o número não é primo</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">%</span> divisor <span class="op">==</span> <span class="fl">0</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Se já testamos até a raiz quadrada, o número é primo</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elseif</span> divisor <span class="op">*</span> divisor <span class="op">&gt;</span> n</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">true</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Continua verificando com o próximo divisor</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">verifica_divisor</span>(n, divisor <span class="op">+</span> <span class="fl">1</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">e_primo</span>(n)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="fl">1</span> <span class="co"># Por definição</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elseif</span> n <span class="op">==</span> <span class="fl">2</span> <span class="co"># Primeiro primo</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">true</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Verifica se n tem algum divisor começando com 2</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">verifica_divisor</span>(n, <span class="fl">2</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>e_primo (generic function with 1 method)</code></pre>
 </div>
-<p>Note que como estamos comparando números em ponto flutuante, não usamos a comparação exata.</p>
-<p>A solução final é:</p>
+</div>
+<p>Os testes podem ser escritos como:</p>
 <div id="16" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">newton</span>(c, n)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    q <span class="op">=</span> n <span class="op">/</span> c</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">quaseIgual</span>(q, c)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> q</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">newton</span>( (c <span class="op">+</span> q) <span class="op">/</span> <span class="fl">2.0</span>, n)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">raiz</span>(n)</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span>  <span class="fu">newton</span>(n <span class="op">/</span> <span class="fl">2.0</span>, n)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"a raiz de "</span>, n, <span class="st">" é "</span>, a)</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@testset</span> <span class="st">"Testes para e_primo"</span> <span class="cf">begin</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">e_primo</span>(<span class="fl">2</span>) <span class="op">==</span> <span class="cn">true</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">e_primo</span>(<span class="fl">3</span>) <span class="op">==</span> <span class="cn">true</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">e_primo</span>(<span class="fl">4</span>) <span class="op">==</span> <span class="cn">false</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">e_primo</span>(<span class="fl">17</span>) <span class="op">==</span> <span class="cn">true</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="fu">e_primo</span>(<span class="fl">25</span>) <span class="op">==</span> <span class="cn">false</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test Summary:       | Pass  Total  Time
+Testes para e_primo |    5      5  0.0s</code></pre>
+</div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>raiz (generic function with 1 method)</code></pre>
+<pre><code>Test.DefaultTestSet("Testes para e_primo", Any[], 5, false, false, true, 1.745262530786754e9, 1.745262530794611e9, false, "/Users/lucas/Desktop/livro-intro-comp-julia/chapters/06-testes-automatizados.qmd")</code></pre>
 </div>
 </div>
-<section id="funções-caóticas" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="funções-caóticas"><span class="header-section-number">7.1</span> Funções caóticas</h2>
-<p>Vamos brincar um pouco agora com funções caóticas :), isso é, funções, que conforme o comportamento de uma constante <span class="math inline">\(k\)</span>, apresentam resultados que podem convergir ou não. Isso é, a cada passo, quero saber o valor do próximo ponto aplicando a função novamente, isso é: <span class="math display">\[x_1 = f(x_0), x_2 = f(x_1), \ldots, x_n  = f(x_{n - 1})\]</span></p>
-<p>As funções caóticas desempenham um papel significativo em diversas áreas da matemática e da física, com aplicações que vão desde a modelagem de crescimento populacional até a previsão de padrões climáticos. Elas também são fundamentais na análise de circuitos elétricos não lineares, onde pequenas variações nas condições iniciais podem levar a resultados drasticamente diferentes.</p>
-<p>Para o nosso teste, a função <span class="math inline">\(f\)</span> é extremamente simples: <span class="math inline">\(x_{i + 1}=x_i * (1 -  x_i) * k\)</span>.</p>
-<p>Implemente a função e imprima os 30 primeiros resultados. Comece com um valor de <span class="math inline">\(x\)</span> entre 0 e 1, como 0.2. Use constantes <span class="math inline">\(k = 2.1, 2.5, 2.8\)</span> e <span class="math inline">\(3.1\)</span> o que ocorre com <span class="math inline">\(k = 3.7\)</span>?</p>
-<p>Entregue o código e um pequeno relatório sobre o que acontece.</p>
+</section>
+</section>
+<section id="verifique-seu-aprendizado" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="verifique-seu-aprendizado"><span class="header-section-number">6.5</span> Verifique seu Aprendizado</h2>
+<ol type="1">
+<li>Qual é a diferença entre usar estruturas condicionais e o módulo Test para testes automatizados?</li>
+<li>Por que os testes automatizados são importantes no desenvolvimento de software?</li>
+</ol>
+</section>
+<section id="explore-por-conta-própria" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="explore-por-conta-própria"><span class="header-section-number">6.6</span> Explore por Conta Própria</h2>
+<ol type="1">
+<li>Explore outras macros disponíveis no módulo Test de Julia e experimente usá-las em seus próprios testes.</li>
+</ol>
 
 
 </section>
@@ -929,13 +1070,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/05-algoritmos-testes.html" class="pagination-link" aria-label="Mais algoritmos e introdução aos testes">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Mais algoritmos e introdução aos testes</span></span>
+      <a href="../chapters/05-problemas-recursao.html" class="pagination-link" aria-label="Mais Problemas Envolvendo Recursão">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Mais Problemas Envolvendo Recursão</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/07-while.html" class="pagination-link" aria-label="Uma outra forma de se fazer laços">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Uma outra forma de se fazer laços</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/07-while.html" class="pagination-link" aria-label="Estruturas de Repetição Iterativas">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estruturas de Repetição Iterativas</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
