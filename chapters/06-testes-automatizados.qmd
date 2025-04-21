@@ -1,183 +1,242 @@
 ---
 engine: julia
 ---
-# Testes automatizados e um pouco mais de código
+# Testes Automatizados {#sec-testes}
 
-Vamos começar o capítulo vendo uma forma mais simples de se rodar testes. Nos testes
-que vimos até agora sempre havia o teste de uma condição booleana associado a uma
-mensagem de erro quando não funcionasse. Mas, observando que a mensagem de erro geralmente
-está ligada à condição, por vezes a condição pode ser auto-explicativa.
+Desenvolvemos diversos algoritmos recursivos e, para verificar se eles funcionavam corretamente, realizamos testes manuais executando as funções com diferentes entradas e verificando seus resultados. No entanto, à medida que nossos programas se tornam mais complexos, essa abordagem manual se torna ineficiente e propensa a erros. Neste capítulo, introduziremos o conceito de testes automatizados, que nos permitirá verificar de forma sistemática e confiável se nossas funções estão operando como esperado.
 
-Logo, uma forma elegante de expressar as condições pode ser útil na escrita dos testes.
-Para isso, vamos usar o módulo de testes. Em linguagens modernas, várias das situações
-repetitivas que enfrentamos podem ser evitadas usando alguma técnica mais moderna.
+## Por que Testar?
 
+Quando escrevemos código, queremos ter certeza de que ele está funcionando corretamente. Os testes automatizados nos ajudam a:
 
-```{julia}
-using Test  
-@testset "Modelo de testes" begin
-    @test 2 == 1 + 1
-    @test true
-    @test !false
-end
-```
+1. Verificar se o código produz os resultados esperados para diferentes entradas
+2. Identificar bugs e erros antes que o programa seja utilizado
+3. Garantir que modificações no código não quebrem funcionalidades existentes
+4. Documentar o comportamento esperado de nossas funções
 
-No trecho acima primeiro indicamos que queremos fazer testes. Em
-seguida usamos o *test* que espera uma condição ou valor
-booleano. Finalmente todos os testes são reunidos em um *testset*.
+Em desenvolvimento de software, uma prática comum é o TDD (_Test-Driven Development_), onde primeiro escrevemos os testes e depois implementamos o código que satisfaz esses testes. Esta abordagem incentiva um design mais claro e uma melhor compreensão dos requisitos antes mesmo de começar a programar.
 
-Claro que o teste dá infomações relevantes quando falha:
+## Escrevendo Testes Com Condicionais
 
+Vamos começar com uma abordagem mais simples para criar testes automatizados usando estruturas condicionais. Consideraremos o "Problema das Escadas" que vimos no capítulo anterior.
+
+Relembrando, o problema consistia em determinar de quantas maneiras diferentes podemos subir uma escada com $n$ degraus, se podemos dar passos de 1 ou 2 degraus por vez. Nossa solução foi:
 
 ```{julia}
-#| eval: false
-using Test
-@test 2 + 2 != 4
-```
-
-```
-Test Failed at REPL[2]:1
-  Expression: 2 + 2 != 4
-   Evaluated: 4 != 4
-```
-
-Agora sim, vamos pensar em problemas algoritmicos novos. Que tal fazer a soma
-dos dígitos de um número inteiro. Ou seja, pensar em um número dígito à dígito.
-Vamos aos testes primeiro:
-
-```{julia}
-#| eval: false
-using Test
-@testset "Teste da Soma de Dígitos" begin
-    @test somaDig(0) == 0
-    @test somaDig(1) == 1
-    @test somaDig(100) == 1
-    @test somaDig(123) == 6
-    @test somaDig(321) == 6
-    @test somaDig(99) == 18
-end
-```
-
-
-
-
-Vamos agora tentar pensar em como "descascar" um número, dado o número 123, uma
-forma seria pegar o resto por 10 (ou seja 3) e depois dividir por 10 (ou seja 12),
-e assim por diante. Ou seja.
-
-```{julia}
-function somaDig(n)
-    if n <=0 return 0
+function maneiras_subir_escada(n)
+    # Casos base
+    if n == 0 || n == 1
+        return 1
     else
-        return n % 10 + somaDig(n ÷ 10)
-    end
-end
-
-println(somaDig(1234))
-```
-
-Vamos agora a um outro problema clássico, a verificação se um número é ou não é primo.
-Na prática para fazer isso, temos a definição, um número $n$ é primo apenas se for
-divisível apenas por 1 e por ele mesmo. Ou seja, nenhum número entre 2 e $n - 1$ pode
-ser divisor de um número primo.
-
-A forma de se fazer isso é relativamente simples. Vamos pensar em uma função que tenta
-dividir um número recursivamente, se conseguir devolve falso, se não conseguir devolve
-verdadeiro.
-
-Vamos aos código:
-
-```{julia}
-function divide(n, i)
-    if n % i == 0
-        return false
-    elseif i == n - 1
-        return true
-    else
-        return divide(n, i + 1)
+        # Caso recursivo: soma das maneiras de chegar a partir de n-1 e n-2
+        return maneiras_subir_escada(n - 1) + maneiras_subir_escada(n - 2)
     end
 end
 ```
 
-
-Que pode ser chamada por:
-
-```{julia}
-function éPrimo(n)
-    return divide(n, 2)
-end
-```
-
-
-Mais um exemplo, o método de Newton para o cálculo de raiz quadrada. Para achar
-a raiz de $x$, a partir de um chute inicial (por exemplos $y= x /2$), chegamos a um
-novo chute que é a média de $y$ e $x/y$.
-
-Mas, sim, vamos começar com os testes. Como estamos usando números do tipo *double* é bom
-sempre ter uma tolerância, por isso vamos usar uma comparação aproximada. Também poderiamos ter
-usado a função *isapprox* da linguagem Julia.
-
+Agora, vamos criar uma função de teste para verificar se nossa implementação está correta:
 
 ```{julia}
-#| eval: false
-using Test
-function quaseIgual(a, b)
-    if abs(a - b) <= 1e-10
-        return true
-    else
+function testa_maneiras_subir_escada()
+    # Geralmente, verificamos alguns casos conhecidos ou que sabemos a resposta
+    if maneiras_subir_escada(1) != 1
+        println("Erro para n = 1")
         return false
     end
+    
+    if maneiras_subir_escada(2) != 2
+        println("Erro para n = 2")
+        return false
+    end
+    
+    if maneiras_subir_escada(3) != 3
+        println("Erro para n = 3")
+        return false
+    end
+    
+    if maneiras_subir_escada(4) != 5
+        println("Erro para n = 4")
+        return false
+    end
+    
+    println("Todos os testes para a função maneiras_subir_escada passaram!")
+    return true
 end
 
-
-@testset "Teste da raiz pelo método de Newton" begin
-    @test quaseIgual(3.0, raiz(3.0 * 3.0))
-    @test quaseIgual(33.7, raiz(33.7 * 33.7))
-    @test quaseIgual(223.7, raiz(223.7 * 223.7))
-    @test quaseIgual(0.7, raiz(0.7 * 0.7))
-    @test quaseIgual(1.0, raiz(1.0 * 1.0))
-end
+# Executamos os testes
+testa_maneiras_subir_escada()
 ```
 
-Note que como estamos comparando números em ponto flutuante, não usamos a
-comparação exata.
+Nesta função de teste, verificamos se a nossa implementação retorna os valores corretos para diferentes entradas. Se algum teste falhar, exibimos uma mensagem indicando qual caso falhou. Se todos os testes passarem, exibimos uma mensagem de sucesso.
 
-A solução final é:
+Este é um princípio importante para testes automatizados: **se o teste passar, ele deve indicar apenas que deu certo!** Isso significa que, idealmente, os testes não devem imprimir muitas mensagens quando tudo estiver funcionando corretamente, apenas quando algo der errado.
 
+Vamos fazer o mesmo para o cálculo do "Coeficiente Binomial", que também vimos no capítulo anterior:
 
 ```{julia}
-function newton(c, n)
-    q = n / c
-    if quaseIgual(q, c)
-        return q
+function coeficiente_binomial(n, k)
+    if k == 0 || k == n
+        return 1
     else
-        return newton( (c + q) / 2.0, n)
+        return coeficiente_binomial(n - 1, k - 1) + coeficiente_binomial(n - 1, k)
     end
 end
 
+function testa_coeficiente_binomial()
+    if coeficiente_binomial(5, 2) != 10
+        println("Erro para (5, 2)")
+        return false
+    end
+    
+    if coeficiente_binomial(10, 4) != 210
+        println("Erro para (10, 4)")
+        return false
+    end
+    
+    if coeficiente_binomial(7, 3) != 35
+        println("Erro para (7, 3)")
+        return false
+    end
+    
+    println("Todos os testes para a função coeficiente_binomial passaram!")
+    return true
+end
 
-function raiz(n)
-    a =  newton(n / 2.0, n)
-    println("a raiz de ", n, " é ", a)
-    return a
+# Executamos os testes
+testa_coeficiente_binomial()
+```
+
+## Testes com o Módulo Test
+
+Até agora, criamos funções de teste manualmente usando estruturas condicionais. No entanto, Julia fornece um módulo de testes integrado chamado `Test`, que oferece funcionalidades mais avançadas para testes automatizados.
+
+Vamos reescrever nossos testes usando o módulo `Test`:
+
+```{julia}
+using Test
+
+@testset "Testes para maneiras_subir_escada" begin
+    @test maneiras_subir_escada(1) == 1
+    @test maneiras_subir_escada(2) == 2
+    @test maneiras_subir_escada(3) == 3
+    @test maneiras_subir_escada(4) == 5
+end
+
+@testset "Testes para coeficiente_binomial" begin
+    @test coeficiente_binomial(5, 2) == 10
+    @test coeficiente_binomial(10, 4) == 210
+    @test coeficiente_binomial(7, 3) == 35
 end
 ```
 
+Com o módulo `Test`, utilizamos a macro `@testset` para agrupar testes relacionados e a macro `@test` para verificar condições específicas. Se um teste falha, o módulo exibe automaticamente informações úteis sobre a falha, como a expressão que falhou e os valores esperados versus os valores obtidos.
 
-## Funções caóticas
+Além disso, o módulo `Test` oferece outras macros úteis:
 
-Vamos brincar um pouco agora com funções caóticas :), isso é, funções, que
-conforme o comportamento de uma constante $k$, apresentam resultados que podem
-convergir ou não. Isso é, a cada passo, quero saber o valor do próximo ponto
-aplicando a função novamente, isso é:
-$$x_1 = f(x_0), x_2 = f(x_1), \ldots, x_n  = f(x_{n - 1})$$
+- `@test_throws`: verifica se uma expressão lança uma exceção específica
+- `@test_approx_eq`: verifica se dois valores de ponto flutuante são aproximadamente iguais (considerando erros de arredondamento)
+- `@test_broken`: marca um teste que é esperado falhar (útil para documentar bugs conhecidos)
 
-As funções caóticas desempenham um papel significativo em diversas áreas da matemática e da física, com aplicações que vão desde a modelagem de crescimento populacional até a previsão de padrões climáticos. Elas também são fundamentais na análise de circuitos elétricos não lineares, onde pequenas variações nas condições iniciais podem levar a resultados drasticamente diferentes.
+## Mais Exemplos
 
-Para o nosso teste, a função $f$ é extremamente simples: $x_{i + 1}=x_i * (1 -  x_i) * k$.
+Vamos implementar duas novas funções e seus respectivos testes: uma função para calcular a soma dos dígitos de um número e outra para verificar se um número é primo.
 
-Implemente a função e imprima os 30 primeiros resultados.
-Comece com um valor de $x$ entre 0 e 1, como 0.2. Use constantes $k = 2.1, 2.5, 2.8$ e $3.1$
-o que ocorre com $k = 3.7$?
+### Soma dos Dígitos
 
-Entregue o código e um pequeno relatório sobre o que acontece.
+Primeiramente, vamos criar uma função que calcula a soma dos dígitos de um número inteiro. Por exemplo, para o número 123, a soma dos dígitos seria 1 + 2 + 3 = 6.
+
+Antes de implementar a função, vamos pensar nos casos de teste:
+
+- Se a função recebe um inteiro de um único dígito ela deve retornar esse dígito
+- Se a função recebe 100, ela deve retornar 1 + 0 + 0 = 1
+- Se a função recebe 123, ela deve retornar 1 + 2 + 3 = 6
+- Se a função recebe 99, ela deve retornar 9 + 9 = 18
+
+Podemos implementar a função usando recursão. A ideia é "descascar" o número, extraindo um dígito de cada vez:
+
+```{julia}
+function soma_digitos(n)
+    if n <= 0
+        return 0
+    else
+        # Obtemos o último dígito com o resto da divisão por 10
+        ultimo_digito = n % 10
+        # Removemos o último dígito com a divisão inteira por 10
+        resto_numero = n ÷ 10
+        # Somamos o último dígito com a soma dos dígitos do resto do número
+        return ultimo_digito + soma_digitos(resto_numero)
+    end
+end
+```
+
+Os casos de teste discutidos acima podem ser implementados utilizando o módulo `Test`:
+
+```{julia}
+@testset "Testes para soma_digitos" begin
+    @test soma_digitos(0) == 0
+    @test soma_digitos(1) == 1
+    @test soma_digitos(100) == 1
+    @test soma_digitos(123) == 6
+    @test soma_digitos(99) == 18
+end
+```
+
+### Verificação de Números Primos
+
+Vamos criar uma função para verificar se um número é primo. Um número primo é aquele que é divisível apenas por 1 e por ele mesmo. Antes de escrever a função vamos pensar nos testes:
+
+- Por definição, qualquer número menor ou igual a 1 não é primo
+- O número 2 é primo (fácil de verificar)
+- O número 3 é primo (também fácil de verificar)
+- O número 4 não é primo, pois 2 também divide 4
+- O número 17 é primo
+- O número 25 não é primo, pois 5 também divide 25
+
+Podemos implementar a função usando uma abordagem recursiva que tenta dividir o número por cada inteiro de 2 até a raiz quadrada do número:
+
+```{julia}
+function verifica_divisor(n, divisor)
+    # Se encontramos um divisor, o número não é primo
+    if n % divisor == 0
+        return false
+    # Se já testamos até a raiz quadrada, o número é primo
+    elseif divisor * divisor > n
+        return true
+    else
+        # Continua verificando com o próximo divisor
+        return verifica_divisor(n, divisor + 1)
+    end
+end
+
+function e_primo(n)
+    if n <= 1 # Por definição
+        return false
+    elseif n == 2 # Primeiro primo
+        return true
+    else
+        # Verifica se n tem algum divisor começando com 2
+        return verifica_divisor(n, 2)
+    end
+end
+```
+
+Os testes podem ser escritos como:
+
+```{julia}
+@testset "Testes para e_primo" begin
+    @test e_primo(2) == true
+    @test e_primo(3) == true
+    @test e_primo(4) == false
+    @test e_primo(17) == true
+    @test e_primo(25) == false
+end
+```
+
+## Verifique seu Aprendizado
+
+1. Qual é a diferença entre usar estruturas condicionais e o módulo Test para testes automatizados?
+2. Por que os testes automatizados são importantes no desenvolvimento de software?
+
+## Explore por Conta Própria
+
+1. Explore outras macros disponíveis no módulo Test de Julia e experimente usá-las em seus próprios testes.

@@ -2,109 +2,200 @@
 engine: julia
 ---
 
-# Uma outra forma de se fazer laços
+# Estruturas de Repetição Iterativas {#sec-while}
 
-Até o momento vimos que o computador é muito bom para fazer contas 
-e repetições. Fizemos isso até agora com funções recursivas. Mas, existe
-um outro comando para isso, o while. A motivação é que enquanto alguma
-condição for válida, o computador continua repetindo os comandos.
+Até o momento, vimos que o computador é muito bom para fazer cálculos e repetições. Realizamos essas repetições utilizando funções recursivas, onde uma função chama a si mesma para resolver problemas menores. Agora, vamos explorar uma forma alternativa de realizar repetições: a abordagem iterativa.
 
-O formato básico é o seguinte:
+## Introdução ao `while`
 
-``` 
+A estrutura `while` é uma das formas mais fundamentais de criar laços (em inglês, _loops_) em programação. Ela permite que um bloco de código seja executado repetidamente enquanto uma condição específica for verdadeira, de forma iterativa. A sintaxe básica do `while` em Julia é:
+
+```{julia}
+#| eval: false
 while condição
-  # execute obloco
-end  
+    # Bloco de código a ser repetido
+end
 ```
 
-Enquanto a condição continuar verdadeira, o computador vai seguir repetindo o bloco
-que pode ser formado por várias intruções. Logo, para que a repetição, ou laço, não 
-seja repetido indefinidamente, é essencial que algo ligado a condição seja atualizado 
-no corpo do while.
+O funcionamento do `while` segue estes passos:
 
-Vejamos o exemplo simples da contagem regressiva:
+1. A condição é avaliada
+2. Se a condição for verdadeira, o bloco de código é executado
+3. Após a execução do bloco, a condição é avaliada novamente
+4. Este ciclo continua até que a condição se torne falsa
 
-``` {julia}
-n = 5
-while n > 0
-  println(n)
-  n = n - 1
-end
-println("Acabou")  
-``` 
+Um aspecto importante para entender sobre o `while` é que para evitar um loop infinito (um laço que nunca termina), algo relacionado à condição deve ser modificado dentro do bloco de código.
 
-Mas, vamos ver abaixo um caso onde o uso de while deixa o código mais Claro 
-que com a recursão (onde é ruim fazer uma com vários parãmetros). Veja a 
-resolução da série de Taylor abaixo:
+Vamos começar com um exemplo simples: contagem regressiva.
 
-``` {julia}
- function sinTaylor2(x)
-   i = 1
-   termo = x
-   soma = 0.0
-   while i <= 15
-     soma = soma + termo
-     termo = -1 * termo * x * x / ((2 * i) * (2 * i + 1))
-     i = i + 1
-   end
-   return soma
+```{julia}
+function contagem_regressiva(n)
+    while n > 0
+        println(n)
+        n = n - 1  # Esta linha é essencial para evitar um loop infinito
+    end
+    println("Fim!")
 end
 
-``` 
+contagem_regressiva(5)
+```
 
-Nela são calculados os 15 primeiros termos. 
+Neste exemplo, a condição `n > 0` é inicialmente verdadeira (assumindo que `n` começa com um valor positivo). O bloco de código imprime o valor atual de `n` e, em seguida, decrementa `n` em 1. Eventualmente, `n` chegará a zero, tornando a condição falsa e encerrando o loop.
 
-Observem a versão recursiva:
+## Comparando Recursão e Iteração
 
-``` {julia}
-function sinTaylor(x)
-    return sinTaylorRec(1, 15, x, 1, x)
-end
+Para entender melhor a diferença entre recursão e iteração, vamos reescrever algumas funções que implementamos anteriormente usando recursão.
 
-function sinTaylorRec(i, n, x, sinal, termo)
-    if n == i
-      return 0.0
+### Contagem Regressiva
+
+Primeiro, vamos relembrar a versão recursiva da contagem regressiva:
+
+```{julia}
+function contagem_recursiva(n)
+    if n <= 0
+        println("Fim!")
     else
-      return sinal * termo +
-         sinTaylorRec(i + 1, n, x, -1 * sinal, termo * x * x/ (2*i * (2*i+1)))
+        println(n)
+        contagem_recursiva(n - 1)
     end
 end
-``` 
 
+contagem_recursiva(5)
+```
 
-Podemos também fazer operações com os dígitos de um número inteiro, para isso operações 
-como o resto da divisão por 10 e a divisão inteira por 10 são bastante úteis. Abaixo 
-temos as duas versões que fazem a soma dos dígitos de um número inteiro.
+Comparando as duas implementações, podemos observar que:
+- Na versão recursiva, o caso base (`n <= 0`) corresponde à condição de parada do `while`
+- A chamada recursiva com `n - 1` corresponde à atualização de `n` no `while`
 
+Ambas as versões produzem o mesmo resultado, mas com abordagens diferentes.
 
-``` {julia}
-using Test
-function testaSD()
-  @test sd(123) == 6
-  @test sd(321) == 6
-  @test sd(0) == 0
-  @test sd(1001) == 2
-  @test sd(3279) == 21
-  println("Fim dos testes")
+### Soma dos Primeiros N Números
+
+Vamos implementar uma função que calcula a soma dos primeiros `n` números inteiros positivos (1 + 2 + ... + n), usando tanto recursão quanto `while`.
+
+Versão recursiva:
+
+```{julia}
+function soma_recursiva(n)
+    if n <= 0
+        return 0
+    else
+        return n + soma_recursiva(n - 1)
+    end
 end
 
-function sd(x)
-  if x == 0
-     return 0
-  else
-     d = x % 10
-     return d + sd(div(x, 10))
-  end
+println("Soma dos primeiros 5 números (recursiva): ", soma_recursiva(5))
+```
+
+Versão com `while`:
+
+```{julia}
+function soma_while(n)
+    soma = 0
+    i = 1
+    
+    while i <= n
+        soma = soma + i
+        i = i + 1
+    end
+    
+    return soma
 end
 
-function sd1(x)
-  soma = 0
-  while x != 0
-   d = x % 10
-   soma = soma + d
-   x = div(x, 10)
-  end
-  return soma
+println("Soma dos primeiros 5 números (while): ", soma_while(5))
+```
+
+Na versão recursiva, temos um caso base explícito (`n <= 0`) e uma chamada recursiva que reduz o problema. Na versão com `while`, utilizamos uma variável de controle `i` que é incrementada a cada iteração, e uma variável acumuladora `soma` que armazena o resultado parcial.
+
+## Calculando Séries Matemáticas
+
+As estruturas de repetição são especialmente úteis para calcular somas de séries matemáticas. Vamos implementar uma função para calcular a aproximação do seno usando a série de Taylor:
+
+$$\sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \ldots$$
+
+Esta série pode ser representada como:
+
+$$\sin(x) = \sum_{n=0}^{\infty} \frac{(-1)^n \cdot x^{2n+1}}{(2n+1)!}$$
+
+Implementação usando `while`:
+
+```{julia}
+function sin_taylor(x, termos = 10)
+    resultado = 0.0
+    termo = x
+    i = 0
+    
+    while i < termos
+        # Adicionamos o termo atual à soma
+        resultado = resultado + termo
+        
+        # Calculamos o próximo termo
+        i = i + 1
+        termo = -termo * x * x / ((2 * i) * (2 * i + 1))
+    end
+    
+    return resultado
 end
-testaSD()
-``` 
+
+# Teste com π/6 (30 graus), cujo seno é 0.5
+println("sin(π/6) ≈ ", sin_taylor(π/6))
+println("sin(π/6) exato: ", sin(π/6))
+```
+
+Observe como o `while` permite um controle preciso sobre o número de termos da série que queremos calcular.
+
+Vamos comparar com uma implementação recursiva:
+
+```{julia}
+function sin_taylor_recursivo(x, i = 0, termos = 10, termo = x, resultado = 0.0)
+    if i >= termos
+        return resultado
+    else
+        # Adicionamos o termo atual à soma
+        novo_resultado = resultado + termo
+        
+        # Calculamos o próximo termo
+        novo_i = i + 1
+        novo_termo = -termo * x * x / ((2 * novo_i) * (2 * novo_i + 1))
+        
+        return sin_taylor_recursivo(x, novo_i, termos, novo_termo, novo_resultado)
+    end
+end
+
+println("sin(π/6) recursivo ≈ ", sin_taylor_recursivo(π/6))
+```
+
+Como podemos observar, a versão recursiva é mais complexa, pois precisamos passar vários parâmetros adicionais para manter o estado entre as chamadas recursivas. A versão com `while` é mais clara e direta neste caso.
+
+## Quando Usar Recursão e Iteração?
+
+Tanto a recursão quanto a iteração podem ser usadas para resolver problemas de repetição, cada uma com seus pontos fortes:
+
+### Vantagens da iteração
+
+- Geralmente mais eficiente em termos de memória
+- Evita o risco de estouro de pilha para entradas grandes
+- Pode ser mais intuitivo para operações de repetição simples
+- Permite um controle mais detalhado sobre o processo de iteração
+
+### Vantagens da recursão
+
+- Frequentemente mais elegante para problemas que se decompõem naturalmente
+- Pode tornar o código mais conciso e legível para certos algoritmos
+- Reflete diretamente definições matemáticas recursivas
+- Particularmente útil para estruturas de dados hierárquicas
+
+Uma regra prática é:
+
+- Use iteração quando precisar repetir uma operação um número fixo ou indeterminado de vezes
+- Use recursão quando o problema puder ser naturalmente dividido em subproblemas menores do mesmo tipo
+
+## Verifique seu Aprendizado
+
+1. Qual é a diferença entre usar recursão e iteração para repetições?
+2. Implemente uma função que conte o número de dígitos em um número inteiro usando a estrutura `while`.
+3. Dado um número inteiro, escreva uma função que inverta seus dígitos (por exemplo, 123 se tornaria 321).
+
+## Explore por Conta Própria
+
+1. Pesquise sobre otimização de laços (loop unrolling) e tente aplicar esse conceito em uma função com `while`.

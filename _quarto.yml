@@ -23,7 +23,6 @@ book:
         - chapters/05-problemas-recursao.qmd
     - part: "Parte II: Estruturas Fundamentais e Boas Práticas"
       chapters:
-        - chapters/05-algoritmos-testes.qmd
         - chapters/06-testes-automatizados.qmd
         - chapters/07-while.qmd
         - chapters/08-exercicios.qmd
