@@ -13,32 +13,25 @@ book:
   date: "last-modified"
   chapters:
     - index.qmd
-    - agradecimentos.qmd
-    - part: "Parte I: Conceitos Básicos"
-      chapters:
-        - chapters/01-evolucao-computacao.qmd
-        - chapters/02-calculadora-repl.qmd
-        - chapters/03-condicionais.qmd
-        - chapters/04-funcoes-recursao.qmd
-        - chapters/05-problemas-recursao.qmd
-    - part: "Parte II: Estruturas Fundamentais e Boas Práticas"
-      chapters:
-        - chapters/06-testes-automatizados.qmd
-        - chapters/07-while.qmd
-        - chapters/08-exercicios.qmd
-        - chapters/09-exercicios-cont.qmd
-        - chapters/10-entrada-dados.qmd
-        - chapters/11-exercicios-2.qmd
-        - chapters/12-blackjack.qmd
-        - chapters/13-blackjack-cont.qmd
-        - chapters/14-boas-praticas.qmd
-    - part: "Parte III: Conceitos Avançados"
-      chapters:
-        - chapters/15-matrizes.qmd
-        - chapters/16-exercicios-3.qmd
-    - part: "Em andamento..."
+    - 00-agradecimentos.qmd
+    - 01-evolucao-computacao.qmd
+    - 02-calculadora-repl.qmd
+    - 03-condicionais.qmd
+    - 04-funcoes-recursao.qmd
+    - 05-problemas-recursao.qmd
+    - 06-testes-automatizados.qmd
+    - 07-while.qmd
+    - 08-exercicios.qmd
+    - 09-exercicios-cont.qmd
+    - 10-entrada-dados.qmd
+    - 11-exercicios-2.qmd
+    - 12-blackjack.qmd
+    - 13-blackjack-cont.qmd
+    - 14-boas-praticas.qmd
+    - 15-matrizes.qmd
+    - 16-exercicios-3.qmd
   appendices:
-    - appendices/01-questionario.qmd
+    - A01-questionario.qmd
 
 execute:
   cache: true

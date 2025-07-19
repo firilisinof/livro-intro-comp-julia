@@ -1,0 +1,311 @@
+---
+engine: julia
+---
+
+# Modelando Blackjack com Programação
+
+Neste capítulo, vamos criar uma versão simplificada do jogo Blackjack para terminal e usar simulações computacionais para avaliar diferentes estratégias de jogo. O Blackjack (também conhecido como "21") é um jogo de cartas onde o objetivo é chegar mais perto de 21 pontos que o adversário, sem ultrapassar esse valor.
+
+Este projeto nos permitirá praticar conceitos importantes de programação enquanto exploramos como a simulação pode ajudar a resolver problemas do mundo real.
+
+## Versão Interativa do Jogo
+
+O primeiro passo, antes de pensar na implementação, é entender o que desejamos modelar. Blackjack é jogado por duas pessoas: o jogador e o _dealer_ (banca ou casino). No nosso jogo, o dealer será o computador. Além disso, vamos considerar as seguintes regras de jogo:
+
+1. Inicialmente, o jogador e o dealer recebem duas cartas.
+2. Durante o turno do jogador, o jogador pode escolher duas opções: pegar outra carta (_hit_) ou não pegar mais cartas (_sit_).
+3. Durante o turno do dealer, o dealer irá adotar a seguinte estratégia: pegar cartas enquanto o total for inferior a 17 ou parar caso contrário.
+
+O objetivo do jogador é chegar mais perto de 21 do que o dealer, mas sem ultrapassar esse valor.
+
+O valor de cada carta corresponde ao seu valor nominal. As cartas Dama (Q), Valete (J) e Rei (K) valem 10 pontos. O Ás pode valer 1 ou 11 (a depender da estratégia do jogador). Vamos considerar que um Ás é contado como 11, a menos que isso faça com que a mão ultrapasse 21 (estourar). Nesse caso, o Ás vale 1. Agora que sabemos as regras do jogo podemos implementá-lo.
+
+Vamos começar criando um baralho de 52 cartas. Uma maneira simples de representá-lo é usando um vetor (vamos chamar de `baralho`) onde cada elemento representa um tipo de carta e armazena a quantidade disponível desse tipo, ou seja, se `baralho[i]` valer 4, significa que há 4 cartas do tipo `i` disponíveis no baralho.
+
+Para a representação numérica das cartas, o Ás corresponde ao 1, o Dois ao 2, e assim sucessivamente até o 10. A Dama é representada pelo 11, o Valete pelo 12 e o Rei pelo 13. Como o naipe não importa, vamos considerar que existem quatro cartas de cada tipo no baralho completo.
+
+```{julia}
+function criaBaralho()
+	baralho = zeros(Int8, 13)
+
+	i = 1
+	while i < 14
+		baralho[i] = 4
+		i = i + 1
+	end
+
+	return baralho
+end
+```
+
+Além de criar o baralho, precisamos de uma função para pegar uma carta dele. Na vida real, o baralho estaria embaralhado com as cartas viradas para baixo, e para pegar uma carta bastaria puxar aquela no topo. O problema é que nossa modelagem não permite esse tipo de comportamento, já que o vetor apenas representa o número de cartas de um determinado tipo.
+
+Para simular esse comportamento, podemos sortear um número aleatório entre 1 e 13 e verificar se existem cartas daquele tipo. Se existirem, removemos uma carta do baralho e retornamos o número sorteado. Caso contrário, continuamos sorteando números até encontrarmos um tipo que ainda possua cartas disponíveis.
+
+```{julia}
+function pegaCarta(baralho)
+	i = rand(1:13)
+
+	# Verifica se existem cartas do tipo sorteado
+	while baralho[i] == 0
+		i = rand(1:13)
+	end
+
+	baralho[i] = baralho[i] - 1
+
+	return i
+end
+```
+
+Agora que temos um baralho e podemos pegar cartas dele, precisamos de uma função para calcular o valor de uma mão. Para representar as mãos do jogador e do dealer, vamos utilizar um vetor que armazena os valores das cartas recebidas. As duas mãos serão definidas numa função futura.
+
+```{julia}
+function calculaValorMao(mao)
+	ases = 0
+    valor = 0
+	tamanhoMao = length(mao)
+
+	i = 1
+	while i <= tamanhoMao
+		if mao[i] == 1 # Ás
+			ases = ases + 1
+			valor = valor + 11
+		elseif mao[i] >= 11 # Dama, Valete ou Rei
+			valor = valor + 10
+		else
+			valor = valor + mao[i]
+		end
+		i = i + 1
+	end
+
+	# Ajusta o valor dos Ases se necessário
+	while ases > 0 && valor > 21
+		valor = valor - 10
+		ases = ases - 1
+	end
+
+	return valor
+end
+```
+
+Essa função percorre todas as cartas da mão e calcula o valor total. Primeiro, assumimos que todos os Ases valem 11. Se o valor total ultrapassar 21 e ainda houver Ases contados como 11, convertemos um Ás por vez de 11 para 1 até que o valor fique dentro do limite ou não haja mais Ases para converter.
+
+Vamos criar funções auxiliares para exibir as cartas de forma mais amigável:
+
+```{julia}
+function nomeCartaTexto(carta)
+    nomes = ["Ás", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Dama", "Valete", "Rei"]
+    return nomes[carta]
+end
+
+function exibeMao(mao, jogador)
+    print("$jogador possui as cartas: ")
+	i = 1
+	tamanhoMao = length(mao)
+    while i <= tamanhoMao
+        print(nomeCartaTexto(mao[i]), " ")
+		i = i + 1
+    end
+	println()
+    println("Valor da mão: $(calculaValorMao(mao))")
+    println()
+end
+```
+
+Agora podemos implementar a lógica principal do jogo de acordo com as regras definidas anteriormente.
+
+```{julia}
+function jogarBlackjack()
+	baralho = criaBaralho()
+	maoJogador = Int[]
+	maoDealer = Int[]
+
+	push!(maoJogador, pegaCarta(baralho))
+	push!(maoDealer, pegaCarta(baralho))
+	push!(maoJogador, pegaCarta(baralho))
+	push!(maoDealer, pegaCarta(baralho))
+
+	println("=== BLACKJACK ===")
+    println()
+
+	println("Dealer possui a carta: $(nomeCartaTexto(maoDealer[1]))")
+	println()
+
+	exibeMao(maoJogador, "Você")
+
+	valorJogador = calculaValorMao(maoJogador)
+	while valorJogador < 21
+		print("Deseja pedir mais uma carta? (s/n): ")
+		resposta = readline()
+
+		if resposta == "s" || resposta == "S"
+            novaCarta = pegaCarta(baralho)
+            push!(maoJogador, novaCarta)
+			valorJogador = calculaValorMao(maoJogador)
+            println("Você recebeu: $(nomeCartaTexto(novaCarta))")
+            println()
+            exibeMao(maoJogador, "Você")
+        else
+            break
+        end
+	end
+
+	if valorJogador > 21
+        println("Você estourou! Perdeu o jogo.")
+        return
+    end
+
+	println("Vez do dealer...")
+	println()
+
+	exibeMao(maoDealer, "Dealer")
+
+	valorDealer = calculaValorMao(maoDealer)
+	while valorDealer < 17
+		novaCarta = pegaCarta(baralho)
+		push!(maoDealer, novaCarta)
+		valorDealer = calculaValorMao(maoDealer)
+		println("Dealer recebeu: $(nomeCartaTexto(novaCarta))")
+		println()
+		exibeMao(maoDealer, "Dealer")
+	end
+
+	if valorDealer > 21
+		println("Dealer estourou! Você ganhou!")
+    elseif valorJogador > valorDealer
+        println("Você ganhou com $valorJogador pontos contra $valorDealer do dealer!")
+    elseif valorDealer > valorJogador
+        println("Dealer ganhou com $valorDealer pontos contra seus $valorJogador pontos!")
+    else
+        println("Empate! Ambos fizeram $valorJogador pontos.")
+    end
+end
+```
+
+A função principal `jogarBlackjack()` coordena todo o fluxo do jogo. Primeiro, cria um baralho novo e inicializa as mãos vazias. Em seguida, distribui duas cartas para cada jogador e exibe o estado inicial, ocultando uma das cartas do dealer para simular o jogo real.
+
+Durante o turno do jogador, o programa pergunta se ele deseja mais cartas até que ele pare ou estoure (ultrapasse 21). No turno do dealer, as regras são automáticas: ele deve pedir cartas enquanto o valor total for menor que 17.
+
+Por fim, o programa compara os valores finais e determina o vencedor. Se ambos os jogadores estourarem, o dealer vence (regra padrão do Blackjack).
+
+Para testar nosso jogo, basta chamar a função principal:
+
+```{julia}
+#| eval: false
+jogarBlackjack()
+```
+
+## Descobrindo a Melhor Estratégia através de Simulação
+
+Agora que temos um jogo funcionando, podemos usar o poder da computação para responder uma pergunta interessante: qual é a melhor estratégia para o Blackjack? Em vez de jogar milhares de partidas manualmente (o que seria impossível), vamos criar diferentes estratégias automáticas e simular milhares de jogos para descobrir qual funciona melhor. Vamos definir diferentes estratégias através de funções que retornam o valor final da mão após aplicar a estratégia em questão.
+
+A primeira estratégia será mais conservadora. O jogador fica apenas com as duas primeiras cartas e não pega mais nenhuma.
+
+```{julia}
+function estrategia1(baralho)
+  mao = Int[]
+  push!(mao, pegaCarta(baralho))
+  push!(mao, pegaCarta(baralho))
+  return calculaValorMao(mao)
+end
+```
+
+Para os outros jogadores, vamos usar estratégias mais agressivas, ou seja o jogador pega cartas enquanto não chegar a um valor pré-determinado, por exemplo, 21, 19, 17, 15 e 13.
+
+```{julia}
+function estrategia2(baralho, valorMaximo)
+  mao = Int[]
+  push!(mao, pegaCarta(baralho))
+  push!(mao, pegaCarta(baralho))
+
+  while calculaValorMao(mao) < valorMaximo
+    push!(mao, pegaCarta(baralho))
+  end
+  return calculaValorMao(mao)
+end
+```
+
+Agora que temos as estratégias, podemos definir uma partida que aplica diferentes estratégias e devolve a pontuação de cada jogador. Isso será útil para encontrar o vencedor.
+
+```{julia}
+function partida()
+  baralho = criaBaralho()
+
+  jogadores = zeros(Int8, 6)
+  jogadores[1] = estrategia1(baralho)
+  jogadores[2] = estrategia2(baralho, 21)
+  jogadores[3] = estrategia2(baralho, 20)
+  jogadores[4] = estrategia2(baralho, 19)
+  jogadores[5] = estrategia2(baralho, 18)
+  jogadores[6] = estrategia2(baralho, 17)
+
+  return jogadores
+end
+```
+
+Para encontar o vencedor podemos comparar o valor de todos os jogadores, verificando quem estourou e quem chegou mais próximo de 21.
+
+```{julia}
+function vencedor(jogadores)
+	totalJogadores = length(jogadores)
+	resultado = zeros(Int8, totalJogadores)
+
+	maximo = 0
+	i = 1
+
+	# Descobre a maior pontuação válida
+	while i <= totalJogadores
+		pontuacaoAtual = jogadores[i]
+
+		if pontuacaoAtual > 21
+			pontuacaoAtual = 0
+		end
+
+		if pontuacaoAtual > maximo
+			maximo = pontuacaoAtual
+		end
+
+		i = i + 1
+	end
+
+	i = 1
+	
+	# Marca os jogadores com a maior pontuação como vencedores
+	while i <= totalJogadores
+		pontuacaoAtual = jogadores[i]
+
+		if pontuacaoAtual == maximo
+			resultado[i] = 1
+		end
+
+		i = i + 1
+	end
+
+	return resultado
+end
+```
+
+A função a `vencedor` devolve um vetor com os vencedores. Esse vetor possui todas as entradas iguais a zero (0), exceto a entrada do vencedor cuja o valor é um (1). Note que em caso de empate estamos considerando os jogadores empatados como vencedores.
+
+Por fim, podemos simular milhares de partidas e descobrir qual a melhor estratégia.
+
+```{julia}
+function melhorEstrategia()
+	numeroPartidas = 100000
+	contagemResultados = zeros(Int64, 6)
+
+	i = 1
+	while i <= numeroPartidas
+		contagemResultados = contagemResultados + vencedor(partida())
+		i = i + 1
+	end
+
+	println(contagemResultados / numeroPartidas)
+end
+
+melhorEstrategia()
+```
+
+Os resultados da simulação mostram claramente qual estratégia funciona melhor no Blackjack. A estratégia mais conservadora (parar sempre com 2 cartas) vence apenas 13% das vezes, enquanto a estratégia ótima - parar quando atingir 19 pontos - vence 28% das partidas. Interessantemente, ser muito agressivo e pedir cartas até 21 também não funciona bem, vencendo apenas 18% das vezes.
+
+Podemos concluir o seguinte: existe um ponto ideal entre ser muito cauteloso e muito arriscado. Parar em 19 pontos oferece o melhor equilíbrio, mais que dobrando as chances de vitória comparado à estratégia conservadora.
