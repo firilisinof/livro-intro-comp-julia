@@ -38,6 +38,8 @@ execute:
   freeze: auto
   daemon: 120
 
+engines: ['julia']
+
 format:
   html:
     theme: cosmo

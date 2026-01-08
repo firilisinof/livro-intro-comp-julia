@@ -6,8 +6,13 @@
   - Testado na versão 1.6.40
 - [Julia](https://julialang.org/)
   - Testado na versão 1.11.2
+- Distribuição de LaTeX
 
-## Instalação
+## Instalação (Recomendada)
+
+Atualmente, o Quarto suporta a execução de códigos Julia sem a necessidade de instalar o Jupyter (através da engine `julia`). Tudo deve funcionar depois de instalar o Quarto e o Julia, sem a necessidade de instalar os componentes adicionais.
+
+## Instalação (Jupyter)
 
 Após a instalação de Julia e Quarto, será preciso instalar alguns componentes para fazê-los funcionar juntos. Esses componentes são
 
@@ -24,7 +29,6 @@ Os diretórios são estruturado da seguinte forma:
 - `_book/`: diretório onde o PDF e o HTML são gerados. Versionar apenas o PDF.
 - `_freeze/`: diretório onde o cache das execuções do Quarto são armazenadas. Versionar.
 - `.github/`: diretório com arquivos de configuração do GitHub. Contém o workflow que faz o deploy do livro no GitHub Pages.
-- `chapters/`: diretório com os capítulos do livro. Cada capítulo é um arquivo `.qmd`.
 
 No diretório raiz, temos os seguintes arquivos:
 
@@ -36,14 +40,15 @@ No diretório raiz, temos os seguintes arquivos:
 - `index.qmd`: arquivo obrigatório que contém a página inicial do livro.
 - `agradecimentos.qmd`: arquivo que contém os agradecimentos do livro.
 - `sobre-o-curso.qmd`: arquivo que contém informações sobre o curso.
+- `XX-nome-do-capitulo.qmd`: arquivos de capítulos do livro.
 
 ## Adicionando um novo capítulo
 
-Para adicionar um novo capítulo, crie um arquivo `.qmd` no diretório `chapters/`. Além disso, adicione uma nova entrada no arquivo `_quarto.yml` na entrada `book.chapters`. O Quarto irá renderizar os capítulos na ordem em que eles aparecem no arquivo de configuração.
+Para adicionar um novo capítulo, crie um arquivo `.qmd` no diretório raíz. Além disso, adicione uma nova entrada no arquivo `_quarto.yml` na entrada `book.chapters`. O Quarto irá renderizar os capítulos na ordem em que eles aparecem no arquivo de configuração.
 
 Caso o capítulo utilize algum pacote Julia, adicione a dependência da seguinte forma:
 
-- Execute o comando `julia --project` para abrir o REPL do Julia no contexto do projeto.
+- Execute o comando `julia --project=@.` para abrir o REPL do Julia no contexto do projeto.
 - Entre no modo de pacotes pressionando `]`.
 - Adicione o pacote com o comando `add NomeDoPacote`.
 
