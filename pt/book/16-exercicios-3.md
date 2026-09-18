@@ -289,9 +289,9 @@ end
 
 ## Retorno de múltiplos valores
 
-Como visto no exercício anterior, Julia permite que uma função retorne múltiplos valores. Isso permite que você envie mais de um resultado ao chamar uma função, tornando o código mais conciso e fácil de entender. Essa funcionalidade é especialmente útil em situações onde você precisa de mais de um resultado, como em operações matemáticas, decomposições, ou processamento de dados.
+Como visto no exercício anterior, Julia permite que uma função retorne múltiplos valores. Isso é útil quando você precisa de mais de um resultado ao chamar uma função, como em operações matemáticas, decomposições ou processamento de dados.
 
-Para retornar múltiplos valores em Julia, você pode simplesmente separá-los por vírgulas. Aqui está um exemplo simples:
+Para retornar múltiplos valores em Julia, basta separá-los por vírgulas, como no exemplo abaixo:
 
 ```{code-cell} julia
 function troca(a,b)

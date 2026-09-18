@@ -43,7 +43,7 @@ Vamos examinar os principais operadores de comparação em Julia:
 42 >= 42
 ```
 
-É importante observar que em linguagens de programação, incluindo Julia, o sinal de igual (`=`) é usado para atribuição de valores a variáveis, enquanto o operador de igualdade (`==`) é usado para comparações.
+Em linguagens de programação, incluindo Julia, o sinal de igual (`=`) é usado para atribuição de valores a variáveis, enquanto o operador de igualdade (`==`) é usado para comparações.
 
 Podemos verificar o tipo de uma expressão de comparação:
 

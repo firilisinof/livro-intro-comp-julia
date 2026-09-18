@@ -7,11 +7,11 @@ kernelspec:
 (sec-while)=
 # Estruturas de Repetição Iterativas
 
-Até o momento, vimos que o computador é muito bom para fazer cálculos e repetições. Realizamos essas repetições utilizando funções recursivas, onde uma função chama a si mesma para resolver problemas menores. Agora, vamos explorar uma forma alternativa de realizar repetições: a abordagem iterativa.
+Até agora, vimos que o computador é muito bom para fazer cálculos e repetições. Fizemos essas repetições com funções recursivas, que chamam a si mesmas para resolver problemas menores. Agora vamos ver uma forma alternativa de repetir: a abordagem iterativa.
 
 ## Introdução ao `while`
 
-A estrutura `while` é uma das formas mais fundamentais de criar laços (em inglês, _loops_) em programação. Ela permite que um bloco de código seja executado repetidamente enquanto uma condição específica for verdadeira, de forma iterativa. A sintaxe básica do `while` em Julia é:
+A estrutura `while` é uma das formas mais básicas de criar laços (em inglês, _loops_) em programação. Ela permite repetir um bloco de código enquanto uma condição for verdadeira. A sintaxe básica do `while` em Julia é:
 
 ```julia
 while condição
@@ -26,7 +26,7 @@ O funcionamento do `while` segue estes passos:
 3. Após a execução do bloco, a condição é avaliada novamente
 4. Este ciclo continua até que a condição se torne falsa
 
-Um aspecto importante para entender sobre o `while` é que para evitar um loop infinito (um laço que nunca termina), algo relacionado à condição deve ser modificado dentro do bloco de código.
+É importante lembrar que, para evitar um loop infinito (um laço que nunca termina), algo relacionado à condição precisa mudar dentro do bloco de código.
 
 Vamos começar com um exemplo simples: contagem regressiva.
 
@@ -144,7 +144,7 @@ println("sin(π/6) ≈ ", sin_taylor(π/6))
 println("sin(π/6) exato: ", sin(π/6))
 ```
 
-Observe como o `while` permite um controle preciso sobre o número de termos da série que queremos calcular.
+Note que o `while` permite controlar com precisão o número de termos da série que queremos calcular.
 
 Vamos comparar com uma implementação recursiva:
 
@@ -167,7 +167,7 @@ end
 println("sin(π/6) recursivo ≈ ", sin_taylor_recursivo(π/6))
 ```
 
-Como podemos observar, a versão recursiva é mais complexa, pois precisamos passar vários parâmetros adicionais para manter o estado entre as chamadas recursivas. A versão com `while` é mais clara e direta neste caso.
+A versão recursiva é mais complexa, pois precisamos passar vários parâmetros extras para manter o estado entre as chamadas. A versão com `while` é mais clara e direta neste caso.
 
 ## Quando Usar Recursão e Iteração?
 

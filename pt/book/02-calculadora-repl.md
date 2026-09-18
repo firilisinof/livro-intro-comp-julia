@@ -46,7 +46,7 @@ Para multiplicar outros dois número:
 40 * 4
 ```
 
-Como esperado, podemos utilizar as operações básicas de soma (`+`), subtração (`-`) e multiplicação (`*`), e os resultados ocorrem como previsto. No entanto, observaremos a seguir que o comportamento da divisão apresenta algumas particularidades:
+Como esperado, as operações básicas de soma (`+`), subtração (`-`) e multiplicação (`*`) funcionam normalmente. No entanto, veremos a seguir que a divisão tem algumas particularidades:
 
 ```{code-cell} julia
 a = 84 
@@ -97,13 +97,13 @@ Ou:
 ```
 
 
-O exemplo acima demonstra mais um código escrito de forma clara para pessoas, onde ao utilizarmos `2.0` deixamos explícito que o segundo parâmetro é um número de ponto flutuante (float). É fundamental compreender que números de ponto flutuante possuem precisão **limitada**, portanto não se surpreenda ao encontrar resultados inesperados como os demonstrados abaixo:
+O exemplo acima mostra outro código escrito de forma clara para pessoas, já que usar `2.0` deixa explícito que o segundo parâmetro é um número de ponto flutuante (float). Números de ponto flutuante têm precisão **limitada**, então não se surpreenda ao encontrar resultados inesperados como os demonstrados abaixo:
 
 ```{code-cell} julia
 1.2 - 1.0
 ```
 
-Erros como esse são bastante raros, tanto que normalmente depositamos total confiança nas contas realizadas por computadores e calculadoras. No entanto, é importante reconhecer que existem limitações (veja os exemplos abaixo).
+Erros como esse são raros, tanto que normalmente confiamos totalmente nas contas feitas por computadores e calculadoras. Mas existem limitações, como mostram os exemplos abaixo.
 
 ```{code-cell} julia
 2.6 - 0.7 - 1.9
@@ -123,7 +123,7 @@ Esses problemas de precisão estão ligados à limitação de como os números s
 2^63
 ```
 
-No entanto, para um curso introdutório, é suficiente estar ciente dessas limitações. O tratamento dessas questões faz parte de disciplinas mais avançadas. Vale ressaltar que o erro mencionado anteriormente é um *erro silencioso*, ou seja, ao trabalharmos com números inteiros, pode acontecer que o valor a ser representado exceda a capacidade do número de bits disponível, resultando em uma falha que ocorre sem notificação explícita.
+No entanto, para um curso introdutório, é suficiente estar ciente dessas limitações. O tratamento dessas questões faz parte de disciplinas mais avançadas. O erro mencionado anteriormente é um *erro silencioso*: ao trabalharmos com números inteiros, o valor a ser representado pode exceder a capacidade do número de bits disponível, causando uma falha que ocorre sem notificação explícita.
 
 Voltando às contas. Um outro operador interessante é o `%` que calcula o resto da divisão
 
@@ -231,7 +231,7 @@ a = 7
 
 Quando escrevemos `a = 7`, estamos realizando uma operação chamada **atribuição**. O operador `=` em Julia (e na maioria das linguagens de programação) não representa igualdade matemática, mas sim uma instrução para armazenar o valor à direita na variável à esquerda. Podemos visualizar isso como se estivéssemos colocando o valor `7` dentro de uma caixa chamada `a`. 
 
-É importante destacar que as variáveis em Julia podem receber novos valores, e o tipo da variável é determinado pela última atribuição realizada. A função `typeof` pode ser usada para identificar o tipo da variável especificada.
+As variáveis em Julia podem receber novos valores, e o tipo da variável é determinado pela última atribuição realizada. A função `typeof` pode ser usada para identificar o tipo da variável especificada.
 
 ```{code-cell} julia
 a = 3
@@ -251,7 +251,7 @@ b = b * 0.5
 typeof(b)
 ```
 
-A capacidade de alterar o tipo da variável é conhecida como **tipagem dinâmica**. Esta característica apresenta diversas vantagens, como a flexibilidade de reutilizar variáveis para armazenar diferentes tipos de dados ao longo do tempo e a menor verbosidade, pois não é necessário especificar o tipo de cada variável, o que melhora a legibilidade do código. Neste contexto, podemos observar que Julia possui vários tipos primitivos, sendo os principais:
+A capacidade de alterar o tipo da variável é conhecida como **tipagem dinâmica**. Essa característica traz vantagens, como a flexibilidade de reutilizar variáveis para armazenar diferentes tipos de dados ao longo do tempo e a menor verbosidade, já que não é necessário especificar o tipo de cada variável, o que melhora a legibilidade do código. Julia possui vários tipos primitivos, sendo os principais:
 
 ```{code-cell} julia
 typeof(1)
@@ -297,7 +297,7 @@ x += 1  # '+= 1' equivale a '= x + 1', também funciona para os operadores *, - 
 
 O código acima utiliza comentários (tudo depois do `#`). Esses comentários são ignorados pelo interpretador e podem ser usados para tornar o código mais legível.
 
-Ainda sobre variáveis, há algumas regras referentes aos seus nomes: devem começar com uma letra (ou com `_`), podem conter dígitos e não podem ser palavras reservadas. Vale ressaltar que Julia, por ser uma linguagem moderna, aceita caracteres unicode e emojis nos nomes, como por exemplo o Δ (`\Delta`).
+Ainda sobre variáveis, há algumas regras referentes aos seus nomes: devem começar com uma letra (ou com `_`), podem conter dígitos e não podem ser palavras reservadas. Julia, por ser uma linguagem moderna, aceita caracteres unicode e emojis nos nomes, como por exemplo o Δ (`\Delta`).
 
 ```{code-cell} julia
 Δ = 2

@@ -6,18 +6,11 @@ kernelspec:
 
 # Revisitando a aula passada
 
-Além de discutirmos o que vimos na aula passada. Nessa aula,
-vimos uma nova solução para o problema de verificar de um número é
-palíndromo.
+Nessa aula, além de revisarmos o que vimos na aula passada, vimos uma nova solução para o problema de verificar se um número é palíndromo.
 
-Para isso usamos uma técnica um pouco diferente, ou seja, ao invés
-de inverter o número e compará-lo com o original. Verificamos se
-os seus extremos são iguais.
+Para isso, usamos uma técnica um pouco diferente: em vez de inverter o número e compará-lo com o original, verificamos se os seus extremos são iguais.
 
-Observe o número 234432, o primeiro passo seria verificar que nos extremos,
-mais significativo e menos significativo, temos os números 2. Em seguida,
-podemos continuar com a verificação para o número 3443. Se em algum momento
-a verificação falhar o número não é palíndromo.
+Observe o número 234432: o primeiro passo é verificar que, nos extremos mais significativo e menos significativo, temos o número 2. Em seguida, continuamos a verificação com o número 3443. Se em algum momento a verificação falhar, o número não é palíndromo.
 
 Seguem os testes e o código abaixo.
 
@@ -58,8 +51,7 @@ end
 
 ## Aleatoreidade
 
-Em julia temos a função rand() que devolve um número em ponto flutuante entre 0 e 1.
-Conforme os parâmetros, podemos ter outros tipos de número como:
+Em Julia, temos a função rand(), que devolve um número em ponto flutuante entre 0 e 1. Dependendo dos parâmetros, podemos obter outros tipos de número, como:
 
 ```{code-cell} julia
 rand(Int)  # devolve um inteiro
@@ -67,18 +59,11 @@ rand(1:10) # devolve um número entre 1 e 10
 rand(Bool) # devolve verdadeiro ou falso
 ```
 
-Mas, antes de ver um código com rand(). Vamos pensar em um problema da vida real. Imagine 
-que temos que fazer um sorteio justo, e o único instrumento que possuímos para o sorteio
-é uma moeda viciada. Que tem como resultado muito mais faces do que coroas. Dá para usar
-essa moeda em um sorteio justo?
+Mas antes de ver um código com rand(), vamos pensar em um problema da vida real. Imagine que precisamos fazer um sorteio justo, e o único instrumento que temos é uma moeda viciada, que sai cara com muito mais frequência do que coroa. Dá para usar essa moeda em um sorteio justo?
 
-A ideia para resolver o problema é olhar para pares de sorteios. Ou seja, vamos ignorar
-sorteios onde tenhamos duas faces ou duas coroas. Nos outros, teremos uma coroa e
-uma face ou vice versa. As chances das duas serão de 50%. Logo podemos assim, corrigir a 
-moeda viciada.
+A ideia para resolver o problema é olhar para pares de sorteios: vamos ignorar os pares em que saem duas caras ou duas coroas. Nos outros pares, teremos uma cara e uma coroa, em alguma ordem, e as chances de cada ordem são de 50%. Assim, conseguimos corrigir a moeda viciada.
 
-Para simplificar o exercício, a moeda pode devolver 0, ou 1, correspondentes
-a cara ou a coroa. Observe a seguinte função que simula uma moeda viciada.
+Para simplificar o exercício, a moeda pode devolver 0 ou 1, correspondentes a cara ou coroa. Observe a seguinte função que simula uma moeda viciada.
 
 ```{code-cell} julia
 function sorteio()
@@ -90,8 +75,7 @@ function sorteio()
 end
 ```
 
-Pode se observar que a função devolve 0 na maior parte das vezes. Podemos
-inclusive ver isso, fazendo mil sorteios:
+Podemos observar que a função devolve 0 na maior parte das vezes. Para confirmar isso, vamos fazer mil sorteios:
 
 ```{code-cell} julia
 function verificaSorteio()
@@ -110,7 +94,7 @@ function verificaSorteio()
 end
 ```
 
-Mas, podemos corrigir o sorteio da seguinte forma:
+Mas podemos corrigir o sorteio da seguinte forma:
 
 ```{code-cell} julia
 function sorteioBom()
@@ -143,8 +127,7 @@ function verificaSorteio()
 end
 ```
 
-Podemos ainda aproximar o número de Euler (𝑒), constante matemática que é a base dos logaritmos naturais, usando uma simulação probabilística.
-A ideia por trás desse código é que o número médio de tentativas necessárias para que a soma de números aleatórios entre 0 e 1 ultrapasse 1 se aproxima do valor de 𝑒. Isso é baseado em uma relação matemática que conecta essa situação ao número 𝑒.
+Podemos ainda aproximar o número de Euler (𝑒), a constante matemática que é a base dos logaritmos naturais, usando uma simulação probabilística. A ideia é que o número médio de tentativas necessárias para que a soma de números aleatórios entre 0 e 1 ultrapasse 1 se aproxima do valor de 𝑒.
 
 ```{code-cell} julia
 function calculaEuler(total)
@@ -167,10 +150,7 @@ println("Estimativa de e (100000000 iterações): ", calculaEuler(100000000))
 ```
 
 
-Para terminar a aula vamos aplicar o método de Monte Carlo para o cálculo de Pi.
-Imaginem o primeiro quadrante, onde temos um semi-círculo de raio 1, dentro de um
-quadrado de lado 1. Podemos sortear valores, os que sairem dentro do círculo podem
-contar para a área desse. Mais informações podem ser vistas aqui (https://pt.wikipedia.org/wiki/M%C3%A9todo_de_Monte_Carlo)
+Para terminar a aula, vamos aplicar o método de Monte Carlo para o cálculo de Pi. Imagine o primeiro quadrante, onde temos um semicírculo de raio 1 dentro de um quadrado de lado 1. Podemos sortear pontos e contar os que caem dentro do círculo para estimar essa área. Mais informações podem ser vistas aqui (https://pt.wikipedia.org/wiki/M%C3%A9todo_de_Monte_Carlo)
 
 ```{code-cell} julia
 function calculaPi(total)

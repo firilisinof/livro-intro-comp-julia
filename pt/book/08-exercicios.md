@@ -10,9 +10,7 @@ kernelspec:
 
 ## Revisitando o cálculo do fatorial, recursivo e interativo
 
-Agora que aprendemos a fazer também repetições com o comando while, sempre é 
-bom pensar em qual o comando mais adequado. Vejamos o exemplo abaixo com duas
-versões da função para o cálculo do Fatorial.
+Agora que também aprendemos a fazer repetições com o comando while, é sempre bom pensar em qual comando é mais adequado. Vejamos o exemplo abaixo com duas versões da função que calcula o fatorial.
 
 
 ```{code-cell} julia
@@ -44,25 +42,15 @@ end
 println(fatorial_recursivo(3))
 ```
 
-No código acima temos uma novidade, nos parâmetros da função, o tipo está sendo 
-declarado expicitamente. No caso, estamos dizendo que o valor n que a função vai 
-receber é de um tipo específico. Ou seja um Inteiro de 64 bits.
+No código acima temos uma novidade: nos parâmetros da função, o tipo está sendo declarado expicitamente. Ou seja, estamos dizendo que o valor n que a função vai receber precisa ser de um tipo específico, um inteiro de 64 bits.
 
-O estilo de código está um pouco diferente do que antes, pois foi escrito por
-outra pessoa. A monitora. Vemos que ela tem o hábito de usar nomes de variáveis maiores 
-além do que usar contrações como += e *=.
+O estilo de código está um pouco diferente do que antes, pois foi escrito por outra pessoa: a monitora. Ela tem o hábito de usar nomes de variáveis mais longos e também usa contrações como += e *=.
 
 ## Aproximação da raiz quadrada
 
-Para o próximo exemplo, vamos ver o método de Newthon-Raphson para o cálculo
-da raiz quadrada. É um método recursivo no qual o próximo valor é baseado no 
-valor anterior. Quanto mais chamadas forem feitas, mais próximo do valor final
-vai se chegar.
+Para o próximo exemplo, vamos ver o método de Newthon-Raphson para calcular a raiz quadrada. É um método recursivo no qual o próximo valor é baseado no valor anterior: quanto mais chamadas forem feitas, mais perto do valor final chegamos.
 
-Mais informações sobre o método podem ser encontradas em [aqui](https://pt.wikipedia.org/wiki/M%C3%A9todo_de_Newton%E2%80%93Raphson).
-Mas para o momento temos que pensar na seguinte implementação. Para se calcular 
-a raiz, podemos usar a seguinte fórmula, a partir de um palpite inicial r, para
-o valor da raiz de x.
+Mais informações sobre o método podem ser encontradas em [aqui](https://pt.wikipedia.org/wiki/M%C3%A9todo_de_Newton%E2%80%93Raphson). Por enquanto, vamos pensar na implementação a seguir. Para calcular a raiz, podemos usar a seguinte fórmula, partindo de um palpite inicial r para o valor da raiz de x.
 
 $$ r_{n+1} = 0.5 * (r + x / r)$$
 
@@ -97,14 +85,11 @@ function aproxima_raiz(x::Float64, epsilon::Float64)::Float64
 end
 ```
 
-Notem que foi introduzido um comando novo, o break, esse comando apenas interrompe a 
-execução do while. Ou seja, força a saída do laço.
+Notem que foi introduzido um comando novo, o break. Esse comando interrompe a execução do while, ou seja, força a saída do laço.
 
 ## Verificar se um número é primo
 
-No próximo exemplo, vamos verificar se um número é primo, ou seja, se os seus únicos 
-divisores são 1 e o próprio. A forma mais simples de se fazer isso é procurando 
-dividir o número por outros. Se algum dividir, o número não é primo.
+No próximo exemplo, vamos verificar se um número é primo, ou seja, se os seus únicos divisores são 1 e ele mesmo. A forma mais simples de fazer isso é tentar dividir o número por outros números: se algum dividir, o número não é primo.
 
 ```{code-cell} julia
 function verifica_primo(num :: Int64)
@@ -125,16 +110,11 @@ end
 
 ```
 
-Assim, como o comando break é usado para interromper a execução de um laço, o 
-comando return, pode ser usado para terminar a execução de uma função, a qualquer
-momento.
+Assim como o comando break interrompe a execução de um laço, o comando return pode ser usado para terminar a execução de uma função a qualquer momento.
 
 ## Verificar se um número é palíndromo
 
-Um número palíndromo é um número que é simétrico. Ou seja, a leitura dos dígitos 
-da esquerda para a direita é igual a leitura dos dígitos na ordem inversa. Por
-exemplo, o número 121 é palíndromo, assim como o 11 e o 25677652. Os números 
-de um dígito também são.
+Um número palíndromo é um número simétrico, ou seja, a leitura dos dígitos da esquerda para a direita é igual à leitura dos dígitos na ordem inversa. Por exemplo, o número 121 é palíndromo, assim como 11 e 25677652. Números de um dígito também são.
 
 ```{code-cell} julia
 function e_palindromo(n::Int64)

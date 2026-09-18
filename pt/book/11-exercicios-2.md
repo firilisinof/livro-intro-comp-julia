@@ -6,20 +6,13 @@ kernelspec:
 
 # Exercícios com vetores  
 
-Os vetores permitem que sejam realizados algoritmos bem mais complexos, nesse capítulo
-veremos algums exercícios.
+Os vetores permitem fazer algoritmos bem mais complexos. Nesse capítulo, veremos alguns exercícios.
 
 ## Permutação
 
-Dado um vetor com inteiros, queremos verificar se esse vetor contém uma permutação.
-Para isso, temos que verificar em um vetor de tamanho n, se ele contém os números de
-1 a n exatamente uma vez cada 1. O vetor [3, 1, 2] é uma permutação, pois tem tamanho
-3 e os elementos de 1 a 3 aparecem uma vez.
+Dado um vetor de inteiros, queremos verificar se ele é uma permutação. Para isso, verificamos se, em um vetor de tamanho n, os números de 1 a n aparecem exatamente uma vez cada. O vetor [3, 1, 2] é uma permutação, pois tem tamanho 3 e os elementos de 1 a 3 aparecem uma vez.
 
-Uma forma de se resolver esse problema é por meio de um indicador de passagem. Inicialmente
-vamos supor que o vetor é uma permutação, em seguida verificamos se todos os números entre
-1 e n estão no vetor. Isso pode ser feito com comando in, que verifica se um elemento pertence
-ao vetor.
+Uma forma de resolver esse problema é usando um indicador de passagem: supomos, de início, que o vetor é uma permutação, e depois verificamos se todos os números entre 1 e n estão nele. Isso pode ser feito com o comando in, que verifica se um elemento pertence ao vetor.
 
 ```{code-cell} julia
 function permutação(l)
@@ -37,9 +30,7 @@ end
 ```
 
 
-Uma outra alternativa é verificar se para cada elemento do vetor, se ele está entre 1 e n,
-e é unico. Ou seja, verificamos se o primeiro elemento está entre 1 e n, e depois percorremos
-o vetor para ver se ele é único. Em seguida fazemos isso para os elementos seguintes.
+Uma outra alternativa é verificar, para cada elemento do vetor, se ele está entre 1 e n e se é único. Ou seja, verificamos se o primeiro elemento está entre 1 e n e, depois, percorremos o vetor para ver se ele é único. Em seguida, fazemos isso para os elementos seguintes.
 O código fica:
 
 ```{code-cell} julia
@@ -64,9 +55,7 @@ function permutação(l)
 end
 ```
 
-Uma outra alternativa é ter um vetor auxiliar onde contamos as ocorrências de cada número entre 1 e n.
-Ao final, todos os elementos desse vetor auxiliar tem que valer 1. Dessa vez, aproveitamos e já colocamos
-os testes automatizados.
+Uma outra alternativa é usar um vetor auxiliar, no qual contamos as ocorrências de cada número entre 1 e n. Ao final, todos os elementos desse vetor auxiliar têm que valer 1. Dessa vez, já aproveitamos e colocamos os testes automatizados.
 
 
 ```{code-cell} julia
@@ -108,8 +97,7 @@ end
 
 ## Histograma
 
-Já que vimos o exemplo anterior onde "contamos" o número, podemos ir um pouco além e 
-calcular o histograma de um vetor com números entre 1 e 10.
+Já que vimos, no exemplo anterior, como "contamos" o número, podemos ir um pouco além e calcular o histograma de um vetor com números entre 1 e 10.
 
 ```{code-cell} julia
 using Test
@@ -141,22 +129,11 @@ end
 
 ## Modelando problemas com o computador
 
-O computador pode ser uma ferramenta bem poderosa para a modelagem de problemas reais.
-Para isso vamos pegar o caso do problema dos aniversários. Esse problema também é conhecido
-pelo paradoxo do aniversário: Calcular a probabilidade de que em uma sala com n pessoas, 
-pelo menos duas possuam a mesma data de aniversário. Esse problema pode ser resolvido usando 
-probabilidade, por meio da qual se descobre que se a sala tem 23 pessoas a chance de duas
-terem a mesma data é de pouco mais de 50%.
+O computador pode ser uma ferramenta bem poderosa para modelar problemas reais. Vamos usar como exemplo o problema dos aniversários, também conhecido como paradoxo do aniversário: calcular a probabilidade de que, em uma sala com n pessoas, pelo menos duas façam aniversário na mesma data. Esse problema pode ser resolvido usando probabilidade, e o resultado mostra que, com 23 pessoas na sala, a chance de duas terem a mesma data é pouco mais de 50%.
 
-Mas, também podemos modelar esse problema computacionalmente. Para isso, o primeiro passo
-é simplificar as datas, ao invés de mês e ano, podemos codificar os dias em um número entre
-1 e 365, sendo que 1 corresponderia a primeiro de janeiro. Para resolver o problema, podemos
-sortear n datas, e ver se há alguma repetição, se houver encontramos duas pessoas com a mesma
-data.
+Mas também podemos modelar esse problema computacionalmente. Para isso, o primeiro passo é simplificar as datas: em vez de mês e ano, podemos codificar os dias em um número entre 1 e 365, sendo que 1 corresponde ao primeiro de janeiro. Para resolver o problema, podemos sortear n datas e ver se há alguma repetição. Se houver, encontramos duas pessoas com a mesma data.
 
-Isso está representado na função experimento_niver abaixo. Mas, para saber a chance real, temos
-que repetr o experimento várias vezes. Na função main() abaixo, pedimos a quantidade de experimentos
-e o número de pessoas para executar a simulação.
+Isso está representado na função experimento_niver abaixo. Mas, para saber a chance real, temos que repetir o experimento várias vezes. Na função main() abaixo, pedimos a quantidade de experimentos e o número de pessoas para executar a simulação.
 
 
 ```julia
@@ -196,9 +173,7 @@ main()
 
 ```
 
-A parte interessante é que podemos com pequenas variações ter outros experimentos, como
-verificar se mais do que duas pessoas fazem aniversário na mesma data. Para isso, abaixo,
-contamos o número de repetições.
+A parte interessante é que, com pequenas variações, podemos ter outros experimentos, como verificar se mais de duas pessoas fazem aniversário na mesma data. Para isso, abaixo, contamos o número de repetições.
 
 
 ```{code-cell} julia

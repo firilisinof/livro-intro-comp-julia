@@ -8,7 +8,7 @@ kernelspec:
 
 Neste capítulo, vamos criar uma versão simplificada do jogo Blackjack para terminal e usar simulações computacionais para avaliar diferentes estratégias de jogo. O Blackjack (também conhecido como "21") é um jogo de cartas onde o objetivo é chegar mais perto de 21 pontos que o adversário, sem ultrapassar esse valor.
 
-Este projeto nos permitirá praticar conceitos importantes de programação enquanto exploramos como a simulação pode ajudar a resolver problemas do mundo real.
+Este projeto nos permitirá praticar conceitos importantes de programação enquanto exploramos como a simulação pode ajudar a resolver problemas reais.
 
 ## Versão Interativa do Jogo
 
@@ -198,7 +198,7 @@ jogarBlackjack()
 
 ## Descobrindo a Melhor Estratégia através de Simulação
 
-Agora que temos um jogo funcionando, podemos usar o poder da computação para responder uma pergunta interessante: qual é a melhor estratégia para o Blackjack? Em vez de jogar milhares de partidas manualmente (o que seria impossível), vamos criar diferentes estratégias automáticas e simular milhares de jogos para descobrir qual funciona melhor. Vamos definir diferentes estratégias através de funções que retornam o valor final da mão após aplicar a estratégia em questão.
+Agora que temos um jogo funcionando, podemos usar a computação para responder uma pergunta interessante: qual é a melhor estratégia para o Blackjack? Em vez de jogar milhares de partidas manualmente (o que seria impossível), vamos criar diferentes estratégias automáticas e simular milhares de jogos para descobrir qual funciona melhor. Vamos definir diferentes estratégias através de funções que retornam o valor final da mão após aplicar a estratégia em questão.
 
 A primeira estratégia será mais conservadora. O jogador fica apenas com as duas primeiras cartas e não pega mais nenhuma.
 
@@ -244,7 +244,7 @@ function partida()
 end
 ```
 
-Para encontar o vencedor podemos comparar o valor de todos os jogadores, verificando quem estourou e quem chegou mais próximo de 21.
+Para encontrar o vencedor, podemos comparar o valor de todos os jogadores, verificando quem estourou e quem chegou mais próximo de 21.
 
 ```{code-cell} julia
 function vencedor(jogadores)
@@ -286,7 +286,7 @@ function vencedor(jogadores)
 end
 ```
 
-A função a `vencedor` devolve um vetor com os vencedores. Esse vetor possui todas as entradas iguais a zero (0), exceto a entrada do vencedor cuja o valor é um (1). Note que em caso de empate estamos considerando os jogadores empatados como vencedores.
+A função `vencedor` devolve um vetor com os vencedores. Esse vetor tem todas as entradas iguais a zero (0), exceto a entrada do vencedor, cujo valor é um (1). Note que, em caso de empate, consideramos os jogadores empatados como vencedores.
 
 Por fim, podemos simular milhares de partidas e descobrir qual a melhor estratégia.
 
@@ -307,6 +307,6 @@ end
 melhorEstrategia()
 ```
 
-Os resultados da simulação mostram claramente qual estratégia funciona melhor no Blackjack. A estratégia mais conservadora (parar sempre com 2 cartas) vence apenas 13% das vezes, enquanto a estratégia ótima - parar quando atingir 19 pontos - vence 28% das partidas. Interessantemente, ser muito agressivo e pedir cartas até 21 também não funciona bem, vencendo apenas 18% das vezes.
+Os resultados da simulação mostram qual estratégia funciona melhor no Blackjack. A estratégia mais conservadora (parar sempre com 2 cartas) vence apenas 13% das vezes, enquanto a estratégia ótima, parar quando atingir 19 pontos, vence 28% das partidas. Ser muito agressivo e pedir cartas até 21 também não funciona bem, vencendo apenas 18% das vezes.
 
-Podemos concluir o seguinte: existe um ponto ideal entre ser muito cauteloso e muito arriscado. Parar em 19 pontos oferece o melhor equilíbrio, mais que dobrando as chances de vitória comparado à estratégia conservadora.
+Existe, portanto, um ponto ideal entre ser muito cauteloso e muito arriscado. Parar em 19 pontos dá o melhor equilíbrio, mais que dobrando as chances de vitória em relação à estratégia conservadora.

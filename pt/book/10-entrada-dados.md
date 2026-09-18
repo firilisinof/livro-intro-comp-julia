@@ -5,18 +5,12 @@ kernelspec:
 ---
 
 # Entrada de dados e o começo de listas
-Nessa aula, temos dois tópicos principais, como fazer a entrada de dados,
-através de comandos de entrada e com argumentos na linha de comando. Além disso
-também veremos como tratar de um tipo especial de variável, onde é possível,
-guardar mais de um valor.
+Nessa aula, temos dois tópicos principais: como fazer a entrada de dados, por meio de comandos de entrada e de argumentos na linha de comando, e como tratar um tipo especial de variável, que permite guardar mais de um valor.
 
 ## O comando input
-Quando queremos inserir dados, em Julia, basta colocar dados. Mas, como podemos
-fazer para entrar dados em um programa comum?
+Quando estamos usando Julia interativamente, basta digitar os dados diretamente. Mas, em um programa comum, como fazemos para receber dados de entrada?
 
-Para isso temos o comando readline(), que interrompe a execução do programa e
-espera pela entrada de uma String, o que ocorre quando a tecla "enter" é
-pressionada.
+Para isso, temos o comando readline(), que interrompe a execução do programa e espera a entrada de uma string, que é registrada quando a tecla "enter" é pressionada.
 
 ```julia
 
@@ -25,12 +19,9 @@ resposta = readline()
 println("O seu nome é: ", resposta)
 ```
 
-Caso, ao rodar o programa, você digitar `Maria`, e pressionar a tecla enter, a resposta final do seu programa será `O seu nome é: Maria`.
+Se, ao rodar o programa, você digitar `Maria` e pressionar a tecla enter, a resposta final do programa será `O seu nome é: Maria`.
 
-Como o readline() lê Strings, se quisermos ler números, é
-necessário usar o comando parse. O comando parse de forma simples 
-possui dois parâmetros, o primeiro corresponde ao tipo que se quer 
-transformar, e o segundo o valor original.
+Como o readline() lê strings, se quisermos ler números, é necessário usar o comando parse. De forma simples, o parse tem dois parâmetros: o primeiro é o tipo para o qual queremos converter, e o segundo é o valor original.
 
 ```julia
 
@@ -40,8 +31,7 @@ println("O numero digitado foi ", valor)
 ```
 
 
-Sabendo ler números do teclado, vamos a um exercício simples, ler uma
-sequência de números inteiros terminada por zero e devolver a sua soma.
+Agora que sabemos ler números do teclado, vamos a um exercício simples: ler uma sequência de números inteiros terminada por zero e devolver a soma deles.
 
 ```julia
 
@@ -74,9 +64,7 @@ function leQ()
 end
 ```
 
-Notem que o readline também pode receber uma variável de arquivo para
-que dados sejam lidos diretamente. Mas, nesse caso temos que tomar Ocuidado para
-abrir (open()) e fechar (close()) o arquivo. Como abaixo:
+Notem que o readline também pode receber uma variável de arquivo, para que os dados sejam lidos diretamente dele. Mas, nesse caso, temos que tomar cuidado para abrir (open()) e fechar (close()) o arquivo, como abaixo:
 
 ```julia
 
@@ -97,19 +85,16 @@ end
 
 ## Lendo através da linha de comando
 
-A outra forma de ler comandos é através da constante ARGS que é
-preparada na chamada de um programa. Para entender melhor isso, vamos
-ver o seguinte programa.
+A outra forma de ler comandos é por meio da constante ARGS, que é preparada na chamada de um programa. Para entender melhor isso, vamos ver o seguinte programa.
 
 ```julia
 
 println(ARGS)
 ```
 
-Se a linha acima está no arquivo args.jl, ao chamar julia args.jl com diversos
-parâmetros, teremos diversos resultados diferentes.
+Se a linha acima estiver no arquivo args.jl, ao chamarmos julia args.jl com parâmetros diferentes, teremos resultados diferentes.
 
-Por exemplo ao chamar:
+Por exemplo, ao chamar:
 
 julia args.jl 1 2 3 abc
 
@@ -132,15 +117,10 @@ for i in 1:tam
 end
 ```
 
- Olhando o código acima, podemos ver que a função length() devolve
-o número de argumentos, ou seja, o tamanho da lista ARGS. Além disso
-com os colchetes é possível acessar a cada posição da lista de forma
-individual.
+Olhando o código acima, podemos ver que a função length() devolve o número de argumentos, ou seja, o tamanho da lista ARGS. Além disso, com os colchetes é possível acessar cada posição da lista individualmente.
 
 
-O exemplo abaixo  soma os parâmetros inteiros dados como argumentos. Ele
-também ilustra uma boa prática que é, sempre colocar o código em módulos,
-no caso abaixo em funções:
+O exemplo abaixo soma os parâmetros inteiros dados como argumentos. Ele também ilustra uma boa prática, que é sempre colocar o código em módulos, no caso abaixo em funções:
 
 ```julia
 
@@ -159,8 +139,7 @@ end
 SomaEntrada()
 ```
 
-A flexibilidade que temos ao usar listas é enorme! Por isso,
-listas ou vetores, merecem um tópico próprio.
+A flexibilidade que temos ao usar listas é enorme, por isso listas, ou vetores, merecem um tópico próprio.
 
 ## Listas
 
@@ -175,9 +154,7 @@ vetor[1] = 2 * vetor[3]
 println(vetor)
 ``` 
 
-Como disse antes, o for foi feito para manipular vetores,
-vamos ver umas funções, a primeira que imprime os elementos de um vetor
-um por linha.
+Como disse antes, o for foi feito para manipular vetores. Vamos ver algumas funções, a primeira delas imprime os elementos de um vetor, um por linha.
 
 ```julia
 
@@ -199,8 +176,7 @@ function imprimeVetor(v)
 end
 ```
 
-Como cada posição é independente, podemos calcular a soma dos
-elementos ímpares de um vetor
+Como cada posição é independente, podemos calcular a soma dos elementos ímpares de um vetor.
 
 ```julia
 
@@ -257,8 +233,7 @@ function imprimeDivisivelPor5(v)
 end
 ```
 
-Com uma pequena variação e usando o comando push!() podemos ver como devolver
-um vetor com os números divisíveis por 5.
+Com uma pequena variação e usando o comando push!(), podemos ver como devolver um vetor com os números divisíveis por 5.
 
 ```julia
 
@@ -276,8 +251,7 @@ end
 
 ## Álgebra linear e Listas
 
-A manipulação de listas é uma parte fundamental da álgebra linear, que estuda vetores e matrizes. Funções como o produto escalar de dois vetores são exemplos clássicos. Abaixo temos dois exemplos de produto escalar de dois vetores. lembrado esse é definido
-como a soma dos produtos de elementos em posições iguais.
+A manipulação de listas é uma parte fundamental da álgebra linear, que estuda vetores e matrizes. Funções como o produto escalar de dois vetores são exemplos clássicos. Abaixo temos dois exemplos de produto escalar de dois vetores, lembrando que ele é definido como a soma dos produtos de elementos em posições iguais.
 
 ```julia
 
@@ -293,8 +267,7 @@ function dotProduct(a, b)
 end
 ```
 
-Acima vimos que um caso especial do uso do for, consiste em fazer Ofor varias entre 
-1 e um tamanho (1:lenght(a))
+Acima vimos que um caso especial do uso do for consiste em fazer o for variar entre 1 e um tamanho (1:lenght(a))
 
 Observem a diferença na versão abaixo:
 
@@ -321,7 +294,7 @@ Para terminar, vamos fazer uma função onde dado um vetor de inteiros
 de tamanho $n$, verifica se esse vetor é uma permutação dos números de
 1 a $n$. Para isso, veremos se cada número de 1 a $n$ está no vetor.
 
-Mas, sem esquecer dos testes:
+Mas sem esquecer dos testes:
 
 ```julia
 
@@ -352,4 +325,4 @@ function permuta(v)
 end
 ```
 
-Foi usado o comando in de Julia que verifica se um elemento está no vetor.
+Foi usado o comando in de Julia, que verifica se um elemento está no vetor.

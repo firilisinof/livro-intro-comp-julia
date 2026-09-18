@@ -63,7 +63,7 @@ Se você olhar atentamente para essa sequência de resultados, perceberá que el
 
 Quando queremos calcular potências como $a^n$, a abordagem mais simples seria multiplicar $a$ por si mesmo $n$ vezes. Por exemplo, para calcular $2^8$, faríamos $2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2$, realizando 7 multiplicações. Mas existe uma abordagem muito mais eficiente usando recursão.
 
-O método de potenciação por quadrados que vamos apresentar consegue calcular o mesmo valor realizando apenas cerca de $\log_2 n$ operações. Por exemplo, para calcular $2^8$, precisaríamos apenas de 3 multiplicações. Para números grandes, essa diferença é ainda mais significativa - calcular $2^{1000}$ exigiria 999 multiplicações com o método simples, mas apenas cerca de 10 multiplicações com nosso método recursivo.
+O método de potenciação por quadrados que vamos apresentar consegue calcular o mesmo valor realizando apenas cerca de $\log_2 n$ operações. Por exemplo, para calcular $2^8$, precisaríamos apenas de 3 multiplicações. Para números grandes, essa diferença é ainda mais significativa: calcular $2^{1000}$ exigiria 999 multiplicações com o método simples, mas apenas cerca de 10 multiplicações com nosso método recursivo.
 
 A ideia baseia-se nas seguintes propriedades matemáticas:
 

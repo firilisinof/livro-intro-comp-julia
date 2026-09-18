@@ -18,15 +18,11 @@ function jogador1(cards)
 end  
 ```
 
-Notem que acima, usamos a estratégia de usar o Ás da forma mais vantajosa.
+Notem que, acima, usamos a estratégia de usar o Ás da forma mais vantajosa.
 
-Para os outros jogadores, vamos usar estratégias mais elaboradas, ou seja o 
-jogador fica pegando cartas enquanto não chegar a um valor pré-determinado, como
-por exemplo 21, 19, 17, 15 e 13.
+Para os outros jogadores, vamos usar estratégias mais elaboradas: o jogador pega cartas enquanto não chegar a um valor pré-determinado, como, por exemplo, 21, 19, 17, 15 e 13.
 
-Como cada jogador pode ter um número grande de cartas e no caso dele ter um 
-Ás, a conta tem que ser feita da maneira mais vantajosa, vamos usar uma função
-que recebe um vetor de cartas e calcula a soma.
+Como cada jogador pode ter um número grande de cartas e, caso tenha um Ás, a conta precisa ser feita da maneira mais vantajosa, vamos usar uma função que recebe um vetor de cartas e calcula a soma.
 
 ```{code-cell} julia
 function somaCartas(c)
@@ -46,7 +42,7 @@ function somaCartas(c)
 end
 ```
 
-De posse do soma cartas, podemos modelar os jogadores.
+Com a função somaCartas pronta, podemos modelar os jogadores.
 
 ```{code-cell} julia
 function jogador2(cards)
@@ -100,9 +96,7 @@ function jogador6(cards)
 end
 ```
 
-Agora que temos todos os jogadores, podemos modelar uma partida.
-Para isso criamos um baralho e fazemos com que cada jogador siga 
-a sua estratégia
+Agora que temos todos os jogadores, podemos modelar uma partida. Para isso, criamos um baralho e fazemos com que cada jogador siga a sua estratégia.
 
 ```{code-cell} julia
 function partida()
@@ -119,10 +113,7 @@ end
 
 Não deu tempo de continuar, ficou para a próxima aula.
 
-No capítulo anterior ficamos com uma partida, mas sem a verificação do vencedor,
-ou seja o jogador com o maior valor, menor ou igual a 21. Uma decisão de projeto
-é dizer que no caso de empate, os jogadores, com os maiores valores ganham e
-dividem o prêmio.
+No capítulo anterior, ficamos com uma partida, mas sem a verificação do vencedor, ou seja, do jogador com o maior valor, menor ou igual a 21. Uma decisão de projeto é dizer que, no caso de empate, os jogadores com os maiores valores ganham e dividem o prêmio.
 
 
 ```{code-cell} julia
@@ -168,8 +159,7 @@ end
 
 ```
 
-A rotinha ganhador devolve um vetor com os vencedores, com 1 na posição de quem ganhou
-e zero na posição dos perdedores. 
+A rotina ganhador devolve um vetor com os vencedores, com 1 na posição de quem ganhou e zero na posição dos perdedores.
 
 Uma das vantagens de se usar um computador é que podemos ter milhares de partidas de 21
 para encontrar qual seria a melhor estratégia.
@@ -207,8 +197,7 @@ function jogador2(cards, valor)
 end
 ```
 
-Como a função tem um parâmetro novo, temos que acertar a partida. Mas,
-agora podemos usar todos os valores.
+Como a função tem um parâmetro novo, temos que ajustar a partida. Mas agora podemos usar todos os valores.
 
 
 ```{code-cell} julia

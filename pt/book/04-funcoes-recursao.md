@@ -40,7 +40,7 @@ resultado2 = dobro(3.5)  # Chama a função com o argumento 3.5
 println(resultado2)      # Imprime 7.0
 ```
 
-É importante entender a diferença entre declaração e chamada de funções:
+Há uma diferença entre declaração e chamada de funções:
 
 - **Declaração**: Define como a função deve se comportar (ocorre uma vez)
 - **Chamada**: Executa a função com valores específicos (pode ocorrer múltiplas vezes)
