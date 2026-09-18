@@ -1,0 +1,10 @@
+name: jubook
+channels:
+  - conda-forge
+dependencies:
+  # conda-forge does not ship the Julia runtime for macOS ARM; Juliaup
+  # provides the same Julia 1.11 toolchain on that platform.
+  - juliaup
+  - jupyter-book
+  - typst
+  - mystmd

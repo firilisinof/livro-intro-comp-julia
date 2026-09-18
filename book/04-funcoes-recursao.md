@@ -1,7 +1,10 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
-# Introdução às Funções {#sec-functions}
+(sec-functions)=
+# Introdução às Funções
 
 O objetivo deste capítulo é compreender o conceito de funções em programação e como elas são implementadas em Julia. Vamos explorar como criar nossas próprias funções, como elas podem receber parâmetros e retornar valores, além de introduzir o conceito de recursão.
 
@@ -19,7 +22,7 @@ Até agora, vimos exemplos de **chamadas de funções** como `sin(0.5)` ou `sqrt
 
 Mas como essas funções são criadas? Em Julia, podemos declarar nossas próprias funções usando a palavra-chave `function`:
 
-```{julia}
+```{code-cell} julia
 function dobro(x)
     return x * 2
 end
@@ -29,7 +32,7 @@ Aqui, `dobro` é o nome da função, `x` é um parâmetro (um valor que a funç�
 
 Após declarar a função, podemos chamá-la várias vezes com diferentes argumentos:
 
-```{julia}
+```{code-cell} julia
 resultado1 = dobro(5)    # Chama a função com o argumento 5
 println(resultado1)      # Imprime 10
 
@@ -44,11 +47,11 @@ println(resultado2)      # Imprime 7.0
 
 Funções como `sin()`, `sqrt()` e `big()` já vêm declaradas em Julia, por isso podemos utilizá-las diretamente.
 
-### Funções Chamando Outras Funções
+## Funções Chamando Outras Funções
 
 Uma função pode chamar outra função, permitindo a composição de operações mais complexas:
 
-```{julia}
+```{code-cell} julia
 function imprime(a)
    println("Vou imprimir ", a)
 end
@@ -61,62 +64,59 @@ end
 
 Testando nossa nova função:
 
-```{julia}
+```{code-cell} julia
 imprimeduasvezes(13)
 ```
 
-### Acessando a Documentação de Funções
+## Acessando a Documentação de Funções
 
 Podemos pedir ajuda ao interpretador para entender melhor como essas funções funcionam. Para isso, usamos o ponto de interrogação `?` ou o macro `@doc` antes do nome da função:
 
-```{julia}
-#| eval: false
+```julia
 # Exemplos de como acessar a documentação
 @doc typeof
 ```
 
-```{julia}
-#| eval: false
+```julia
 @doc div
 ```
 
-```{julia}
-#| eval: false
+```julia
 @doc println
 ```
 
 Ao consultar a documentação, descobrimos que algumas funções como `div()` podem ser utilizadas com uma sintaxe alternativa, como por exemplo `\div`. Esse tipo de notação é particularmente útil para operações matemáticas.
 
-### Funções de Conversão
+## Funções de Conversão
 
 Uma categoria importante de funções em Julia são as funções de conversão, que transformam valores de um tipo em outro. Vejamos alguns exemplos:
 
-```{julia}
+```{code-cell} julia
 # Converte uma string para um número em ponto flutuante
 parse(Float64, "32")
 ```
 
-```{julia}
+```{code-cell} julia
 # Converte um número em ponto flutuante para um inteiro (removendo a parte decimal)
 trunc(Int64, 2.25)
 ```
 
-```{julia}
+```{code-cell} julia
 # Converte um inteiro para um número em ponto flutuante
 float(2)
 ```
 
-```{julia}
+```{code-cell} julia
 # Converte um número para uma string
 string(3)
 ```
 
-```{julia}
+```{code-cell} julia
 # Converte um número em ponto flutuante para uma string
 string(3.57)
 ```
 
-### Funções Matemáticas
+## Funções Matemáticas
 
 Julia possui uma grande biblioteca de funções matemáticas prontas para uso. Aqui estão algumas das mais comuns:
 
@@ -139,11 +139,11 @@ Julia possui uma grande biblioteca de funções matemáticas prontas para uso. A
 
 Uma boa prática para se familiarizar com essas funções é experimentá-las com diferentes valores e verificar os resultados. Para funções mais complexas, é possível que já existam implementações prontas em Julia. Uma dica útil é pesquisar na internet usando palavras-chave como "julia lang hiperbolic sin" para encontrar a função desejada. Em geral, pesquisar em inglês tende a produzir melhores resultados.
 
-### Sobrecarga de Funções
+## Sobrecarga de Funções
 
 Em Julia, podemos ter funções com o mesmo nome, mas com diferentes números ou tipos de parâmetros. Isso é chamado de "sobrecarga de funções":
 
-```{julia}
+```{code-cell} julia
 function recebe(a)
   println("Recebi um parâmetro: ", a)
 end
@@ -155,17 +155,17 @@ end
 
 O interpretador decide qual versão da função chamar com base nos argumentos fornecidos:
 
-```{julia}
+```{code-cell} julia
 recebe(1)
 ```
 
-```{julia}
+```{code-cell} julia
 recebe(1, 2)
 ```
 
 Também podemos chamar funções usando variáveis e expressões como argumentos:
 
-```{julia}
+```{code-cell} julia
 a = 10
 recebe(a)
 recebe(a, a + 1)
@@ -177,7 +177,7 @@ Até agora, vimos funções que apenas imprimem mensagens, mas não devolvem nen
 
 No entanto, frequentemente queremos que nossas funções calculem e retornem valores. Para isso, usamos a palavra-chave `return`:
 
-```{julia}
+```{code-cell} julia
 function soma1(a)
   return a + 1
 end
@@ -185,19 +185,19 @@ end
 
 Agora podemos usar essa função em expressões e atribuições:
 
-```{julia}
+```{code-cell} julia
 resultado = soma1(5)
 println("O resultado é: ", resultado)
 ```
 
-```{julia}
+```{code-cell} julia
 # Também podemos usar o resultado em outras expressões
 println("Resultado multiplicado por 2: ", soma1(5) * 2)
 ```
 
 Podemos criar funções para cálculos mais complexos:
 
-```{julia}
+```{code-cell} julia
 function hipotenusa(a, b)
   hip = sqrt(a^2 + b^2)
   return hip
@@ -206,7 +206,7 @@ end
 
 Testando nossa função:
 
-```{julia}
+```{code-cell} julia
 # Calculando a hipotenusa de um triângulo 3-4-5
 hipotenusa(3, 4)
 ```
@@ -224,7 +224,7 @@ O fatorial pode ser definido recursivamente como:
 
 Vamos implementar isso em Julia:
 
-```{julia}
+```{code-cell} julia
 function fatorial(n)
   if n == 0
     return 1  # Caso base
@@ -236,7 +236,7 @@ end
 
 Testando nossa função:
 
-```{julia}
+```{code-cell} julia
 fatorial(5)
 ```
 
@@ -261,11 +261,11 @@ A recursão tem duas partes fundamentais:
 
 É necessário que a recursão sempre alcance o caso base, caso contrário, a função continuará chamando a si mesma indefinidamente, causando um erro de estouro de pilha (stack overflow).
 
-### Mais Exemplos de Recursão
+## Mais Exemplos de Recursão
 
 Vamos implementar uma função recursiva para contagem regressiva:
 
-```{julia}
+```{code-cell} julia
 function contagem(n)
     if n < 0
         println("Fim!")
@@ -278,13 +278,13 @@ end
 
 Testando nossa função:
 
-```{julia}
+```{code-cell} julia
 contagem(5)
 ```
 
 Podemos também usar recursão para calcular a soma dos primeiros $n$ números inteiros:
 
-```{julia}
+```{code-cell} julia
 function soma(n)
   if n == 0
     return 0  # Caso base
@@ -296,13 +296,13 @@ end
 
 Testando nossa função:
 
-```{julia}
+```{code-cell} julia
 soma(10)
 ```
 
 Outro exemplo interessante é o cálculo da soma dos termos da série harmônica:
 
-```{julia}
+```{code-cell} julia
 function somaharmonica(atual, n)
   # Caso base: quando chegamos ao último termo
   if atual > n
@@ -316,7 +316,7 @@ end
 
 Vamos calcular a soma dos 10 primeiros termos da série harmônica:
 
-```{julia}
+```{code-cell} julia
 somaharmonica(1, 10)
 ```
 

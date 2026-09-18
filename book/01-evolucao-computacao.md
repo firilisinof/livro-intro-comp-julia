@@ -4,7 +4,7 @@
 
 Mas, afinal, o que é um computador? Precisamos mesmo saber a resposta para começar a programar? Na verdade, não. Porém, entender como um computador funciona nos torna bons programadores. Definir o que é um computador pode ser mais complicado do que parece. Veremos que a ideia de "computador" mudou muito ao longo da história, sempre ligada à necessidade de contar. Antes de mergulhar na história, vamos explorar diferentes respostas para essa pergunta.
 
-Logo no começo das aulas de 2025, na matéria MAC115 - Introdução à Computação para Ciências Exatas e Tecnologia, fizemos uma pergunta simples aos alunos: "O que é um computador?". Anotamos as respostas (ver @sec-questionario) e apesar de algumas respostas engraçadas, como “um robô que vai controlar os humanos um dia”, notamos que a maioria dos alunos pensava em coisas parecidas:
+Logo no começo das aulas de 2025, na matéria MAC115 - Introdução à Computação para Ciências Exatas e Tecnologia, fizemos uma pergunta simples aos alunos: "O que é um computador?". Anotamos as respostas (ver {ref}`sec-questionario`) e apesar de algumas respostas engraçadas, como “um robô que vai controlar os humanos um dia”, notamos que a maioria dos alunos pensava em coisas parecidas:
 
 1. Um computador é um objeto físico; uma máquina ou dispositivo.
 2. Ele é capaz de processar informações ou dados.

@@ -1,4 +1,4 @@
-# Página Inicial {.unnumbered}
+# Página Inicial
 
 Seja bem-vindo(a) ao livro "Uma Introdução à Computação com Julia". Este livro reúne as notas de aula da disciplina MAC0115 - Introdução à Computação para Ciências Exatas e Tecnologia. Com linguagem simples e objetiva, o livro apresenta os principais conceitos de programação, complementados por exemplos práticos de código.
 

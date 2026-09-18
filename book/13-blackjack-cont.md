@@ -1,10 +1,12 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
 
 # Continuando a modelagem
 
-``` {julia}
+```{code-cell} julia
 function jogador1(cards)
   carta1 = pegarCarta(cards)
   carta2 = pegarCarta(cards)
@@ -26,7 +28,7 @@ Como cada jogador pode ter um número grande de cartas e no caso dele ter um
 Ás, a conta tem que ser feita da maneira mais vantajosa, vamos usar uma função
 que recebe um vetor de cartas e calcula a soma.
 
-``` {julia}
+```{code-cell} julia
 function somaCartas(c)
   soma = 0
   temAz = false
@@ -46,7 +48,7 @@ end
 
 De posse do soma cartas, podemos modelar os jogadores.
 
-``` {julia}
+```{code-cell} julia
 function jogador2(cards)
   cartas = []
   push!(cartas, pegarCarta(cards))
@@ -102,7 +104,7 @@ Agora que temos todos os jogadores, podemos modelar uma partida.
 Para isso criamos um baralho e fazemos com que cada jogador siga 
 a sua estratégia
 
-```  {julia}
+```{code-cell} julia
 function partida()
   cards = criaBaralho()
   jogadores = zeros(Int8, 6)
@@ -123,7 +125,7 @@ ou seja o jogador com o maior valor, menor ou igual a 21. Uma decisão de projet
 dividem o prêmio.
 
 
-```  {julia}
+```{code-cell} julia
 function partida()
   cards = criaBaralho()
   jogadores = zeros(Int8, 6)
@@ -140,7 +142,7 @@ end
 Logo, a partida devolve a pontuação de cada jogador, para podermos verificar na
 rotina ganhador quem ganhou.
 
-```  {julia}
+```{code-cell} julia
 function ganhador(v)
     i = 1
     maximo = 0
@@ -172,7 +174,7 @@ e zero na posição dos perdedores.
 Uma das vantagens de se usar um computador é que podemos ter milhares de partidas de 21
 para encontrar qual seria a melhor estratégia.
 
-```  {julia}
+```{code-cell} julia
 function porcentagem()
     i = 1
     porc = zeros(Int64, 6)
@@ -193,7 +195,7 @@ problemas de código é a duplicação. No caso acima, podemos evitá-la adicion
 um parâmetro à função Jogador, de forma que esse seja o limite a ser considerado no
 laço. A função jogador2 fica assim:
 
-```  {julia}
+```{code-cell} julia
 function jogador2(cards, valor)
     cartas = []
     push!(cartas, pegarCarta(cards))
@@ -209,7 +211,7 @@ Como a função tem um parâmetro novo, temos que acertar a partida. Mas,
 agora podemos usar todos os valores.
 
 
-```  {julia}
+```{code-cell} julia
 function partida()
    cards = criaBaralho()
    jogadores = zeros(Int8, 6)
@@ -228,7 +230,7 @@ Notem que não há mudança na função ganhador, que continua funcionando.
 Para terminar, podemos ter agora uma versão interativa que permite que
 um jogador humano jogue com o computador.
 
-```  {julia}
+```{code-cell} julia
 function partidaComHumano()
     cards = criaBaralho()
     humano = []
