@@ -7,7 +7,7 @@ name: Publish Jupyter Book
 
 env:
   # GitHub Pages serves this project from /<repository-name>/.
-  BASE_URL: /${{ github.event.repository.name }}
+  BASE_PATH: /${{ github.event.repository.name }}
 
 permissions:
   contents: read
@@ -44,18 +44,39 @@ jobs:
           julia --project=. -e 'using Pkg; Pkg.instantiate()'
           julia --project=. -e 'using IJulia; installkernel("Julia Livro", "--project=${{ github.workspace }}")'
 
-      - name: Build website and PDF
+      - name: Build Portuguese website and PDF
         shell: bash -el {0}
+        working-directory: pt
+        env:
+          BASE_URL: ${{ env.BASE_PATH }}/pt
         run: |
           jupyter book build --execute --html
           jupyter book build --typst --execute
           mkdir -p _build/html/downloads
           cp _build/exports/livro-intro-comp-julia.pdf _build/html/downloads/livro-intro-comp-julia.pdf
 
+      - name: Build English website and PDF
+        shell: bash -el {0}
+        working-directory: en
+        env:
+          BASE_URL: ${{ env.BASE_PATH }}/en
+        run: |
+          jupyter book build --execute --html
+          jupyter book build --typst --execute
+          mkdir -p _build/html/downloads
+          cp _build/exports/intro-computing-julia.pdf _build/html/downloads/intro-computing-julia.pdf
+
+      - name: Assemble combined site
+        run: |
+          mkdir -p _site
+          cp web/index.html _site/index.html
+          cp -R pt/_build/html _site/pt
+          cp -R en/_build/html _site/en
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _build/html
+          path: _site
 
   deploy:
     needs: build
