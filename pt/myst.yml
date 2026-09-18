@@ -88,3 +88,6 @@ project:
 
 site:
   template: book-theme
+  actions:
+    - title: English
+      url: https://firilisinof.github.io/livro-intro-comp-julia/en/
