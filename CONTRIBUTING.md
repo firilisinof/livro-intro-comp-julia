@@ -2,56 +2,58 @@
 
 ## Requisitos
 
-- [Quarto](https://quarto.org/)
-  - Testado na versão 1.6.40
-- [Julia](https://julialang.org/)
-  - Testado na versão 1.11.2
-- Distribuição de LaTeX
+- [micromamba](https://mamba.readthedocs.io/en/latest/)
+- [Julia](https://julialang.org/) 1.11
+- Jupyter Book, MyST e Typst (instalados por `environment.yml`)
 
-## Instalação (Recomendada)
+## Ambiente de desenvolvimento
 
-Atualmente, o Quarto suporta a execução de códigos Julia sem a necessidade de instalar o Jupyter (através da engine `julia`). Tudo deve funcionar depois de instalar o Quarto e o Julia, sem a necessidade de instalar os componentes adicionais.
+Na raiz do repositório, crie ou atualize o ambiente:
 
-## Instalação (Jupyter)
+```bash
+micromamba create --file environment.yml
+micromamba run --name jubook juliaup add 1.11
+```
 
-Após a instalação de Julia e Quarto, será preciso instalar alguns componentes para fazê-los funcionar juntos. Esses componentes são
+Instale as dependências Julia e o kernel usado pelas células executáveis:
 
-- IJulia
-- Revise.jl
-- Jupyter Cache
+```bash
+micromamba run --name jubook julia --project=. -e 'using Pkg; Pkg.instantiate()'
+micromamba run --name jubook julia --project=. -e 'using IJulia; installkernel("Julia Livro", "--project=$(pwd)")'
+```
 
-As instruções podem ser encontradas na documentação do Quarto em [Using Julia](https://quarto.org/docs/computations/julia.html). Recomendo instalar o ecossistema Jupyter através do pacote IJulia (veja instruções no link anterior).
+## Estrutura do projeto
 
-## Estrutura do repositório
+- `book/`: fontes Markdown/MyST do livro.
+- `myst.yml`: ordem do livro, tema do site e exportação do PDF.
+- `_build/`: artefatos gerados; não versionar.
+- `Project.toml` e `Manifest.toml`: ambiente Julia usado pelas células.
+- `.github/workflows/publish.yml`: publicação do site e do PDF no GitHub Pages.
 
-Os diretórios são estruturado da seguinte forma:
+## Adicionando conteúdo
 
-- `_book/`: diretório onde o PDF e o HTML são gerados. Versionar apenas o PDF.
-- `_freeze/`: diretório onde o cache das execuções do Quarto são armazenadas. Versionar.
-- `.github/`: diretório com arquivos de configuração do GitHub. Contém o workflow que faz o deploy do livro no GitHub Pages.
+Crie ou edite um arquivo Markdown em `book/` e adicione-o na posição desejada das listas `project.toc` e `project.exports[].articles` em `myst.yml`. Para uma célula Julia executável, use:
 
-No diretório raiz, temos os seguintes arquivos:
+````markdown
+```{code-cell} julia
+1 + 2
+```
+````
 
-- `.gitignore`: arquivo de configuração do git para ignorar arquivos e diretórios.
-- `CONTRIBUTING.md`: este arquivo.
-- `README.md`: arquivo de apresentação do repositório.
-- `_quarto.yml`: arquivo de configuração do Quarto.
-- `Project.toml` e `Manifest.toml`: arquivos de configuração do Julia.
-- `index.qmd`: arquivo obrigatório que contém a página inicial do livro.
-- `agradecimentos.qmd`: arquivo que contém os agradecimentos do livro.
-- `sobre-o-curso.qmd`: arquivo que contém informações sobre o curso.
-- `XX-nome-do-capitulo.qmd`: arquivos de capítulos do livro.
+Use `{ref}` e rótulos MyST para referências cruzadas, por exemplo:
 
-## Adicionando um novo capítulo
+```markdown
+(minha-secao)=
+## Minha seção
+```
 
-Para adicionar um novo capítulo, crie um arquivo `.qmd` no diretório raíz. Além disso, adicione uma nova entrada no arquivo `_quarto.yml` na entrada `book.chapters`. O Quarto irá renderizar os capítulos na ordem em que eles aparecem no arquivo de configuração.
+## Validação local
 
-Caso o capítulo utilize algum pacote Julia, adicione a dependência da seguinte forma:
+Execute os mesmos passos do CI:
 
-- Execute o comando `julia --project=@.` para abrir o REPL do Julia no contexto do projeto.
-- Entre no modo de pacotes pressionando `]`.
-- Adicione o pacote com o comando `add NomeDoPacote`.
+```bash
+micromamba run --name jubook jupyter book build --execute --html
+micromamba run --name jubook jupyter book build --typst --execute
+```
 
-## Subindo as alterações
-
-Após adicionar um novo capítulo e antes de subir as alterações para o repositório, execute o comando `quarto render --to all` para gerar o PDF e o HTML do livro. Versione apenas o PDF no diretório `_book/` e o cache no diretório `_freeze/`.
+O site será gerado em `_build/html/` e o PDF em `_build/exports/livro-intro-comp-julia.pdf`.

@@ -1,5 +1,7 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
 
 # Revisitando a aula passada
@@ -19,7 +21,7 @@ a verificação falhar o número não é palíndromo.
 
 Seguem os testes e o código abaixo.
 
-``` {julia}
+```{code-cell} julia
 using Test
 
 function testaPal()
@@ -59,7 +61,7 @@ end
 Em julia temos a função rand() que devolve um número em ponto flutuante entre 0 e 1.
 Conforme os parâmetros, podemos ter outros tipos de número como:
 
-``` {julia}
+```{code-cell} julia
 rand(Int)  # devolve um inteiro
 rand(1:10) # devolve um número entre 1 e 10
 rand(Bool) # devolve verdadeiro ou falso
@@ -78,7 +80,7 @@ moeda viciada.
 Para simplificar o exercício, a moeda pode devolver 0, ou 1, correspondentes
 a cara ou a coroa. Observe a seguinte função que simula uma moeda viciada.
 
-``` {julia}
+```{code-cell} julia
 function sorteio()
   if rand() > 0.90
     return 1
@@ -91,7 +93,7 @@ end
 Pode se observar que a função devolve 0 na maior parte das vezes. Podemos
 inclusive ver isso, fazendo mil sorteios:
 
-``` {julia}
+```{code-cell} julia
 function verificaSorteio()
    cara = 0
    coroa = 0
@@ -110,7 +112,7 @@ end
 
 Mas, podemos corrigir o sorteio da seguinte forma:
 
-``` {julia}
+```{code-cell} julia
 function sorteioBom()
    sorteio1 = sorteio()
    sorteio2 = sorteio()
@@ -124,7 +126,7 @@ end
 
 Podemos usar o verificaSorteio para ver a diferença.
 
-``` {julia}
+```{code-cell} julia
 function verificaSorteio()
    cara = 0
    coroa = 0
@@ -144,7 +146,7 @@ end
 Podemos ainda aproximar o número de Euler (𝑒), constante matemática que é a base dos logaritmos naturais, usando uma simulação probabilística.
 A ideia por trás desse código é que o número médio de tentativas necessárias para que a soma de números aleatórios entre 0 e 1 ultrapasse 1 se aproxima do valor de 𝑒. Isso é baseado em uma relação matemática que conecta essa situação ao número 𝑒.
 
-```{julia}
+```{code-cell} julia
 function calculaEuler(total)
     soma_tentativas = 0
     for i in 1:total
@@ -170,7 +172,7 @@ Imaginem o primeiro quadrante, onde temos um semi-círculo de raio 1, dentro de 
 quadrado de lado 1. Podemos sortear valores, os que sairem dentro do círculo podem
 contar para a área desse. Mais informações podem ser vistas aqui (https://pt.wikipedia.org/wiki/M%C3%A9todo_de_Monte_Carlo)
 
-``` {julia}
+```{code-cell} julia
 function calculaPi(total)
    noAlvo = 0
    i = 0

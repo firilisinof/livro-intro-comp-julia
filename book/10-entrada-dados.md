@@ -1,5 +1,7 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
 
 # Entrada de dados e o começo de listas
@@ -16,8 +18,7 @@ Para isso temos o comando readline(), que interrompe a execução do programa e
 espera pela entrada de uma String, o que ocorre quando a tecla "enter" é
 pressionada.
 
-```{julia}
-#| eval: false
+```julia
 
 println("Digite o seu nome")
 resposta = readline()
@@ -31,8 +32,7 @@ necessário usar o comando parse. O comando parse de forma simples
 possui dois parâmetros, o primeiro corresponde ao tipo que se quer 
 transformar, e o segundo o valor original.
 
-```{julia}
-#| eval: false
+```julia
 
 println("Digite um inteiro")
 valor = parse(Int64, readline())
@@ -43,8 +43,7 @@ println("O numero digitado foi ", valor)
 Sabendo ler números do teclado, vamos a um exercício simples, ler uma
 sequência de números inteiros terminada por zero e devolver a sua soma.
 
-```{julia}
-#| eval: false
+```julia
 
 function somaVarios()
     soma = 0.0
@@ -62,8 +61,7 @@ end
 Observe o seguinte exemplo que calcula os quadrados dos números de uma
 lista terminada por zero.
 
-```{julia}
-#| eval: false
+```julia
 
 function leQ()
   x = readline()
@@ -80,8 +78,7 @@ Notem que o readline também pode receber uma variável de arquivo para
 que dados sejam lidos diretamente. Mas, nesse caso temos que tomar Ocuidado para
 abrir (open()) e fechar (close()) o arquivo. Como abaixo:
 
-```{julia}
-#| eval: false
+```julia
 
 function leQ()
     println("Digite um número")
@@ -104,8 +101,7 @@ A outra forma de ler comandos é através da constante ARGS que é
 preparada na chamada de um programa. Para entender melhor isso, vamos
 ver o seguinte programa.
 
-```{julia}
-#| eval: false
+```julia
 
 println(ARGS)
 ```
@@ -119,8 +115,7 @@ julia args.jl 1 2 3 abc
 
 Teremos como resposta
 
-```{julia}
-#| eval: false
+```julia
 
 ["1", "2", "3", "abc"]
 ```
@@ -128,8 +123,7 @@ Teremos como resposta
 Vamos analisar um pouco melhor essa resposta observando que cada
 parâmetro está em uma posição.
 
-```{julia}
-#| eval: false
+```julia
 
 tam = length(ARGS)
 println("O tamanho dos argumentos é: ", tam)
@@ -148,8 +142,7 @@ O exemplo abaixo  soma os parâmetros inteiros dados como argumentos. Ele
 também ilustra uma boa prática que é, sempre colocar o código em módulos,
 no caso abaixo em funções:
 
-```{julia}
-#| eval: false
+```julia
 
 function SomaEntrada()
     tam = length(ARGS)
@@ -173,7 +166,7 @@ listas ou vetores, merecem um tópico próprio.
 
 Vamos primeiro brincar um pouco no console.
 
-```{julia}
+```{code-cell} julia
 vetor = [1, 2, 3]
 println(vetor[1])
 println(length(vetor))
@@ -186,8 +179,7 @@ Como disse antes, o for foi feito para manipular vetores,
 vamos ver umas funções, a primeira que imprime os elementos de um vetor
 um por linha.
 
-```{julia}
-#| eval: false
+```julia
 
 function imprimeVetor(v)
     for el in v
@@ -198,8 +190,7 @@ end
 
 Isso também pode ser feito por meio dos índices do vetor:
 
-```{julia}
-#| eval: false
+```julia
 
 function imprimeVetor(v)
     for i in 1:lenght(v)
@@ -211,8 +202,7 @@ end
 Como cada posição é independente, podemos calcular a soma dos
 elementos ímpares de um vetor
 
-```{julia}
-#| eval: false
+```julia
 
 function somaImpVetor(v)
     soma = 0
@@ -228,8 +218,7 @@ end
 Também vimos em aula alguns outros exemplos, como calcular a média dos
 elementos em um vetor.
 
-```{julia}
-#| eval: false
+```julia
 
 function mediaV(v)
    soma = 0.0
@@ -242,8 +231,7 @@ end
 
 Devolver a soma dos elementos ímpares de um vetor
 
-```{julia}
-#| eval: false
+```julia
 
 function somaImpar(v)
     soma = 0
@@ -258,8 +246,7 @@ end
 
 Imprimir os números divisíveis por 5 de um vetor.
 
-```{julia}
-#| eval: false
+```julia
 
 function imprimeDivisivelPor5(v)
     for i in v
@@ -273,8 +260,7 @@ end
 Com uma pequena variação e usando o comando push!() podemos ver como devolver
 um vetor com os números divisíveis por 5.
 
-```{julia}
-#| eval: false
+```julia
 
 function devolveDivisivelPor5(v)
     x = []  # começa com um vetor vazio
@@ -288,13 +274,12 @@ end
 ``` 
 
 
-### Álgebra linear e Listas
+## Álgebra linear e Listas
 
 A manipulação de listas é uma parte fundamental da álgebra linear, que estuda vetores e matrizes. Funções como o produto escalar de dois vetores são exemplos clássicos. Abaixo temos dois exemplos de produto escalar de dois vetores. lembrado esse é definido
 como a soma dos produtos de elementos em posições iguais.
 
-```{julia}
-#| eval: false
+```julia
 
 function dotProduct(a, b)
     soma = 0
@@ -314,8 +299,7 @@ Acima vimos que um caso especial do uso do for, consiste em fazer Ofor varias en
 Observem a diferença na versão abaixo:
 
 
-```{julia}
-#| eval: false
+```julia
 
 function dotProduct(a, b)
     soma = 0
@@ -331,7 +315,7 @@ function dotProduct(a, b)
 end
 ```
 
-### Exercício de permutação
+## Exercício de permutação
 
 Para terminar, vamos fazer uma função onde dado um vetor de inteiros
 de tamanho $n$, verifica se esse vetor é uma permutação dos números de
@@ -339,8 +323,7 @@ de tamanho $n$, verifica se esse vetor é uma permutação dos números de
 
 Mas, sem esquecer dos testes:
 
-```{julia}
-#| eval: false
+```julia
 
 @testset "Verifica Permutação" begin
     @test permuta([1,2,3])
@@ -356,8 +339,7 @@ end
 
 e o código:
 
-```{julia}
-#| eval: false
+```julia
 
 function permuta(v)
    tam = length(v)

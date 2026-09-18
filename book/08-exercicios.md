@@ -1,5 +1,7 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
 
 # Aula de exercícios
@@ -13,7 +15,7 @@ bom pensar em qual o comando mais adequado. Vejamos o exemplo abaixo com duas
 versões da função para o cálculo do Fatorial.
 
 
-``` {julia}
+```{code-cell} julia
 function fatorial_recursivo(n::Int64) # Com o ::Int64 estamos definindo que o parâmetro da função deve ser um número inteiro
     # Caso base do fatorial: 0! e 1! são iguais a 1
     if n == 0 || n == 1
@@ -67,7 +69,7 @@ $$ r_{n+1} = 0.5 * (r + x / r)$$
 Como o código abaixo é mais complicado, foram usados comentários.
 
 
-``` {julia}
+```{code-cell} julia
 function aproxima_raiz(x::Float64, epsilon::Float64)::Float64
     if x < 0
         return nothing
@@ -104,7 +106,7 @@ No próximo exemplo, vamos verificar se um número é primo, ou seja, se os seus
 divisores são 1 e o próprio. A forma mais simples de se fazer isso é procurando 
 dividir o número por outros. Se algum dividir, o número não é primo.
 
-``` {julia}
+```{code-cell} julia
 function verifica_primo(num :: Int64)
     if num <= 1
         return false
@@ -134,7 +136,7 @@ da esquerda para a direita é igual a leitura dos dígitos na ordem inversa. Por
 exemplo, o número 121 é palíndromo, assim como o 11 e o 25677652. Os números 
 de um dígito também são.
 
-``` {julia}
+```{code-cell} julia
 function e_palindromo(n::Int64)
     #=
         Guarda os dígitos de n que ainda devem ser invertidos

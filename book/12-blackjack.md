@@ -1,5 +1,7 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
 
 # Modelando Blackjack com Programação
@@ -24,7 +26,7 @@ Vamos começar criando um baralho de 52 cartas. Uma maneira simples de represent
 
 Para a representação numérica das cartas, o Ás corresponde ao 1, o Dois ao 2, e assim sucessivamente até o 10. A Dama é representada pelo 11, o Valete pelo 12 e o Rei pelo 13. Como o naipe não importa, vamos considerar que existem quatro cartas de cada tipo no baralho completo.
 
-```{julia}
+```{code-cell} julia
 function criaBaralho()
 	baralho = zeros(Int8, 13)
 
@@ -42,7 +44,7 @@ Além de criar o baralho, precisamos de uma função para pegar uma carta dele. 
 
 Para simular esse comportamento, podemos sortear um número aleatório entre 1 e 13 e verificar se existem cartas daquele tipo. Se existirem, removemos uma carta do baralho e retornamos o número sorteado. Caso contrário, continuamos sorteando números até encontrarmos um tipo que ainda possua cartas disponíveis.
 
-```{julia}
+```{code-cell} julia
 function pegaCarta(baralho)
 	i = rand(1:13)
 
@@ -59,7 +61,7 @@ end
 
 Agora que temos um baralho e podemos pegar cartas dele, precisamos de uma função para calcular o valor de uma mão. Para representar as mãos do jogador e do dealer, vamos utilizar um vetor que armazena os valores das cartas recebidas. As duas mãos serão definidas numa função futura.
 
-```{julia}
+```{code-cell} julia
 function calculaValorMao(mao)
 	ases = 0
     valor = 0
@@ -92,7 +94,7 @@ Essa função percorre todas as cartas da mão e calcula o valor total. Primeiro
 
 Vamos criar funções auxiliares para exibir as cartas de forma mais amigável:
 
-```{julia}
+```{code-cell} julia
 function nomeCartaTexto(carta)
     nomes = ["Ás", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Dama", "Valete", "Rei"]
     return nomes[carta]
@@ -114,7 +116,7 @@ end
 
 Agora podemos implementar a lógica principal do jogo de acordo com as regras definidas anteriormente.
 
-```{julia}
+```{code-cell} julia
 function jogarBlackjack()
 	baralho = criaBaralho()
 	maoJogador = Int[]
@@ -190,8 +192,7 @@ Por fim, o programa compara os valores finais e determina o vencedor. Se ambos o
 
 Para testar nosso jogo, basta chamar a função principal:
 
-```{julia}
-#| eval: false
+```julia
 jogarBlackjack()
 ```
 
@@ -201,7 +202,7 @@ Agora que temos um jogo funcionando, podemos usar o poder da computação para r
 
 A primeira estratégia será mais conservadora. O jogador fica apenas com as duas primeiras cartas e não pega mais nenhuma.
 
-```{julia}
+```{code-cell} julia
 function estrategia1(baralho)
   mao = Int[]
   push!(mao, pegaCarta(baralho))
@@ -212,7 +213,7 @@ end
 
 Para os outros jogadores, vamos usar estratégias mais agressivas, ou seja o jogador pega cartas enquanto não chegar a um valor pré-determinado, por exemplo, 21, 19, 17, 15 e 13.
 
-```{julia}
+```{code-cell} julia
 function estrategia2(baralho, valorMaximo)
   mao = Int[]
   push!(mao, pegaCarta(baralho))
@@ -227,7 +228,7 @@ end
 
 Agora que temos as estratégias, podemos definir uma partida que aplica diferentes estratégias e devolve a pontuação de cada jogador. Isso será útil para encontrar o vencedor.
 
-```{julia}
+```{code-cell} julia
 function partida()
   baralho = criaBaralho()
 
@@ -245,7 +246,7 @@ end
 
 Para encontar o vencedor podemos comparar o valor de todos os jogadores, verificando quem estourou e quem chegou mais próximo de 21.
 
-```{julia}
+```{code-cell} julia
 function vencedor(jogadores)
 	totalJogadores = length(jogadores)
 	resultado = zeros(Int8, totalJogadores)
@@ -289,7 +290,7 @@ A função a `vencedor` devolve um vetor com os vencedores. Esse vetor possui to
 
 Por fim, podemos simular milhares de partidas e descobrir qual a melhor estratégia.
 
-```{julia}
+```{code-cell} julia
 function melhorEstrategia()
 	numeroPartidas = 100000
 	contagemResultados = zeros(Int64, 6)

@@ -1,4 +1,4 @@
-# Agradecimentos {.unnumbered}
+# Agradecimentos
 
 Diversas pessoas contribuíram, direta ou indiretamente, para a realização deste livro.
 

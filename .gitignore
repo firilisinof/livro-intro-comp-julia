@@ -1,9 +1,7 @@
 venv
 .venv
-.quarto
 *~
 .ipynb_checkpoints
-/.quarto/
 .DS_Store
-_book/
-**/*.quarto_ipynb
+# Jupyter Book and MyST build outputs
+_build/

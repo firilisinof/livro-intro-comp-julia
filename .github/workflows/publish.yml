@@ -3,10 +3,19 @@ on:
   push:
     branches: main
 
-name: Quarto Publish
+name: Publish Jupyter Book
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -14,14 +23,43 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
+      - name: Set up micromamba
+        uses: mamba-org/setup-micromamba@v2
         with:
-          tinytex: true
+          environment-file: environment.yml
+          environment-name: jubook
+          cache-environment: true
 
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
+      - name: Install Julia
+        shell: bash -el {0}
+        run: juliaup add 1.11
+
+      - name: Install Julia dependencies and kernel
+        shell: bash -el {0}
+        run: |
+          julia --project=. -e 'using Pkg; Pkg.instantiate()'
+          julia --project=. -e 'using IJulia; installkernel("Julia Livro", "--project=${{ github.workspace }}")'
+
+      - name: Build website and PDF
+        shell: bash -el {0}
+        run: |
+          jupyter book build --execute --html
+          jupyter book build --typst --execute
+          mkdir -p _build/html/downloads
+          cp _build/exports/livro-intro-comp-julia.pdf _build/html/downloads/livro-intro-comp-julia.pdf
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: _build/html
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

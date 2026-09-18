@@ -1,5 +1,7 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
 
 # Indo além de uma dimensão (Matrizes)
@@ -10,7 +12,7 @@ entre elas e como isso pode ser usado ao nosso favor.
 
 Vamos começar com as listas:
 
-```{julia}
+```{code-cell} julia
 v = [1, 2, 3]
 typeof(v)
 ```
@@ -19,14 +21,14 @@ O tipo devolvido é: Vector{Int64} (alias for Array{Int64, 1}). No caso isso sig
 que v é um vetor de inteiros, ou um array de uma dimensão. Da mesma forma 
 
 
-```{julia}
+```{code-cell} julia
 v = zeros(Int64, 3)
 typeof(v)
 ```
 
 Mas, vetores podem ser mais flexíveis, como por exemplo abaixo:
 
-```{julia}
+```{code-cell} julia
 v = [1, 2.0, "três"]
 typeof(v)
 ```
@@ -36,7 +38,7 @@ ou seja Vector{Any} (alias for Array{Any, 1}).
 
 Mais ainda, imaginem a seguinte situação:
 
-```{julia}
+```{code-cell} julia
 a = [1, 2, 3]
 push!(v, a)
 typeof(v)
@@ -52,7 +54,7 @@ Por outro lado, podemos ter estruturas com mais de uma dimensão, no caso
 elas são denominadas matrizes. Elas podem ser criadas com a função zeros que
 já usamos acima.
 
-```{julia}
+```{code-cell} julia
 m = zeros(Int64, 3, 2)
 typeof(m)
 ```
@@ -60,16 +62,16 @@ typeof(m)
 Acima foi criada uma matriz de duas dimensões com 3 linhas e duas colunas.
 Seus elementos podem se acessados como em um vetor, mas agora com dois indíces.
 
-```{julia}
+```{code-cell} julia
 m[1, 2]  = 10
 ```
-```{julia}
+```{code-cell} julia
 function imprime(m::Array{Int64,2})
     println(m)
 end
 ```
 
-```{julia}
+```{code-cell} julia
 function imprime(m::Vector{Vector{Int64}})
     println(m[1])
     println(m[2])
@@ -77,7 +79,7 @@ end
 ```
 
 
-```{julia}
+```{code-cell} julia
 function imprime(m::Vector{Vector{Int64}})
     for i in m
         println(i)
@@ -87,7 +89,7 @@ function imprime(m::Vector{Vector{Int64}})
 ```
 
 
-```{julia}
+```{code-cell} julia
 function imprime(m::Vector{Vector{Int64}})
     for i in m
         for j in m[i]
@@ -98,7 +100,7 @@ end
 ```
 
 
-```{julia}
+```{code-cell} julia
 function imprime(m::Vector{Vector{Int64}})
     for i in m
         print("|")
@@ -110,14 +112,14 @@ function imprime(m::Vector{Vector{Int64}})
 end
 ```
 
-```{julia}
+```{code-cell} julia
 function imprimeMatriz(m::Matrix{Int64})
     println(m)
 end 
 ```
 
 
-```{julia}
+```{code-cell} julia
 function imprimeMatriz(m::Matrix{Int64})
     i = 1
     while i < size(m)[1]
@@ -127,7 +129,7 @@ function imprimeMatriz(m::Matrix{Int64})
 end
 ```
 
-```{julia}
+```{code-cell} julia
 function imprimeMatriz(m::Matrix{Int64})
     i = 1
     while i < size(m)[1]
@@ -143,7 +145,7 @@ end
 
 ```
 
-```{julia}
+```{code-cell} julia
 function preencheMatriz(m::Matrix{Int64})
     i = 1
     while i <= length(m)
@@ -154,7 +156,7 @@ end
 
 ```
 
-```{julia}
+```{code-cell} julia
 function criaIdentidate(tam::Int64)
     m = zeros(Int64, tam, tam)
     i = 1

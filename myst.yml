@@ -1,0 +1,90 @@
+version: 1
+
+project:
+  id: 752d3602-e089-4c92-87b1-b8edf3ecdf86
+  title: Uma Introdução à Computação com Julia
+  description: Uma breve introdução à ciência da computação com Julia
+  authors:
+    - name: Alfredo Goldman
+      email: gold@ime.usp.br
+      affiliations:
+        - id: usp
+          institution: University of São Paulo
+          department: Institute of Mathematics, Statistics and Computer Science
+      github: AlfredoGoldman
+    - name: Lucas de Sousa Rosa
+      email: roses.lucas@ime.usp.br
+      affiliation: usp
+      github: firilisinof
+  github: https://github.com/firilisinof/livro-intro-comp-julia
+  toc:
+    - file: book/index.md
+    - file: book/00-agradecimentos.md
+    - file: book/01-evolucao-computacao.md
+    - file: book/02-calculadora-repl.md
+    - file: book/03-condicionais.md
+    - file: book/04-funcoes-recursao.md
+    - file: book/05-problemas-recursao.md
+    - file: book/06-testes-automatizados.md
+    - file: book/07-while.md
+    - file: book/08-exercicios.md
+    - file: book/09-exercicios-cont.md
+    - file: book/10-entrada-dados.md
+    - file: book/11-exercicios-2.md
+    - file: book/12-blackjack.md
+    - file: book/13-blackjack-cont.md
+    - file: book/14-boas-praticas.md
+    - file: book/15-matrizes.md
+    - file: book/16-exercicios-3.md
+    - file: book/A01-questionario.md
+  exports:
+    - format: typst
+      template: plain_typst_book
+      output: _build/exports/livro-intro-comp-julia.pdf
+      papersize: a4
+      fontsize: 12
+      justification: true
+      margin_left: 10
+      margin_right: 10
+      articles:
+        - file: book/index.md
+          level: 1
+        - file: book/00-agradecimentos.md
+          level: 1
+        - file: book/01-evolucao-computacao.md
+          level: 1
+        - file: book/02-calculadora-repl.md
+          level: 1
+        - file: book/03-condicionais.md
+          level: 1
+        - file: book/04-funcoes-recursao.md
+          level: 1
+        - file: book/05-problemas-recursao.md
+          level: 1
+        - file: book/06-testes-automatizados.md
+          level: 1
+        - file: book/07-while.md
+          level: 1
+        - file: book/08-exercicios.md
+          level: 1
+        - file: book/09-exercicios-cont.md
+          level: 1
+        - file: book/10-entrada-dados.md
+          level: 1
+        - file: book/11-exercicios-2.md
+          level: 1
+        - file: book/12-blackjack.md
+          level: 1
+        - file: book/13-blackjack-cont.md
+          level: 1
+        - file: book/14-boas-praticas.md
+          level: 1
+        - file: book/15-matrizes.md
+          level: 1
+        - file: book/16-exercicios-3.md
+          level: 1
+        - file: book/A01-questionario.md
+          level: 1
+
+site:
+  template: book-theme

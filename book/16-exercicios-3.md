@@ -1,5 +1,7 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
 
 # Aula de exercícios sobre Strings
@@ -10,7 +12,7 @@ Nesta aula, vamos explorar funções que manipulam strings e criar testes para v
 
 A primeira função `concatena` concatena as primeiras duas e as últimas duas letras de uma string.
 
-```{julia}
+```{code-cell} julia
 function concatena(s::String)::String
     if length(s) < 2
         return "Erro: tamanho da string menor do que 2"
@@ -24,7 +26,7 @@ Awui utulizamos `s[1:2]` para obter as duas primeiras letras de s, que é uma fo
 
 Para verificar se a função está funcionando corretamente, podemos utilizar o seguinte teste:
 
-```{julia}
+```{code-cell} julia
 using Test
 
 function testeConcatena()
@@ -40,7 +42,7 @@ end
 
 Devemos criar uma função que interte uma string, retornando os caracteres na ordem reversa.
 
-```{julia}
+```{code-cell} julia
 function inverte(s::String)::String
     # Inicializamos uma string vazia
     inversa=""
@@ -60,7 +62,7 @@ O laço é configurado para decrementar o índice a cada iteração, especifican
 
 Agora podemos criar uma função de teste para verificar o funcionamento da nossa função `inverte`.
 
-```{julia}
+```{code-cell} julia
 using Test
 
 function testeInverte()
@@ -71,18 +73,18 @@ function testeInverte()
 end
 ```
 
-### Função reverse
+## Função reverse
 
 
 É interessante notar que Julia já fornece uma função chamada `reverse`, que pode ser utilizada para inverter tanto vetores quanto strings. Por exemplo:
 
-```{julia}
+```{code-cell} julia
 reversa = reverse("exemplo")
 ```
 
 Neste exemplo, a função `reverse` recebe como parâmetro apenas o objeto a ser invertido, mas no caso de vetores, podemos ainda informar exatamente o intervalo que desejamos que seja invertido.
 
-```{julia}
+```{code-cell} julia
 vetor = [1, 2, 3, 4, 5]
 reversa = reverse(vetor, 2, 4)
 ```
@@ -91,7 +93,7 @@ reversa = reverse(vetor, 2, 4)
 
 A terceira função modifica altera uma string que termina com "ing" para adicionar "ly" ou, caso contrário, adiciona "ing". 
 
-```{julia}
+```{code-cell} julia
 function modifica(s::String)::String
     if length(s) < 3
         return "Erro: tamanho da string menor do que 3"
@@ -110,7 +112,7 @@ end
 
 Neste exemplo, verificamos manualmente os últimos três caracteres da string s. No entanto, Julia oferece uma função mais prática e legível chamada `endswith`, que podemos usar para simplificar essa verificação.
 
-```{julia}
+```{code-cell} julia
 function modifica(s::String)::String
     if length(s) < 3
         return "Erro: tamanho da string menor do que 3"
@@ -128,7 +130,7 @@ end
 
 Vamos então escrever o teste que verifica o correto funcionamento das funções anteriores
 
-```{julia}
+```{code-cell} julia
 using Test
 function testaModifica()
   @test modifica("doing") == "doingly"
@@ -146,7 +148,7 @@ Podemos verificar se uma letra é maiúscula ou minúscula usando a tabela ASCII
 
 Para saber mais sobre a tabela ASCII você pode acessar [essa página](https://www.ime.usp.br/~kellyrb/mac2166_2015/tabela_ascii.html).
 
-```{julia}
+```{code-cell} julia
 function rearranja(s::String)::String
     maiusculos=""
     minusculos=""
@@ -166,7 +168,7 @@ end
 
 Uma abordagem mais legível é utilizar as funções `islowercase` e `isuppercase`, que verificam se uma letra é minúscula ou maiúscula, respectivamente.
 
-```{julia}
+```{code-cell} julia
 function rearranja(s::String)::String
     maiusculos=""
     minusculos=""
@@ -186,7 +188,7 @@ end
 
 Podemos então escrever o teste para nossas funções.
 
-```{julia}
+```{code-cell} julia
 using Test
 
 function testaRearranja()
@@ -205,7 +207,7 @@ end
 
 Nossa última função deve receber uma lista de palavras e retornar a maior delas, junto de seu tamanho.
 
-```{julia}
+```{code-cell} julia
 function maior_palavra(vetor::Vector{String})
     # Inicialmente, a maoior palavra que encontramos é uma string vazia
     maior_palavra = ""
@@ -226,14 +228,14 @@ end
 
 Apesar de parecer correto, esse código não lida com o caso de haver mais de uma palavra com o maior tamanho. Como por exemplo:
 
-```{julia}
+```{code-cell} julia
 vetor = ["boa", "bem", "oi"]
 maior_palavra(vetor)
 ```
 
 Nesse caso, apenas a palavra "boa" será retornada, mesmo que "bem" tenha o mesmo tamanho. Para consertar a função devemos alterar a variável em que guardamos a maior palavra, para que possamos armazenar mais de uma palavra, para isso vamos usar um vetor de strings.
 
-```{julia}
+```{code-cell} julia
 function maiores_palavras(vetor::Vector{String})
     maiores_palavras = String[]
     maior_tamanho = 0
@@ -261,7 +263,7 @@ end
 
 Assim podemos escrever testes para esta última função .
 
-```{julia}
+```{code-cell} julia
 using Test
 
 function testeMaioresPalavras()
@@ -291,7 +293,7 @@ Como visto no exercício anterior, Julia permite que uma função retorne múlti
 
 Para retornar múltiplos valores em Julia, você pode simplesmente separá-los por vírgulas. Aqui está um exemplo simples:
 
-```{julia}
+```{code-cell} julia
 function troca(a,b)
     aux = a
     a = b
@@ -303,6 +305,6 @@ end
 
 Ao chamar essa função, você pode capturar os múltiplos valores retornados em variáveis separadas:
 
-```{julia}
+```{code-cell} julia
 a, b = troca(1, 10)
 ```

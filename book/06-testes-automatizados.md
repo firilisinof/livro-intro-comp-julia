@@ -1,7 +1,10 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
-# Testes Automatizados {#sec-testes}
+(sec-testes)=
+# Testes Automatizados
 
 Desenvolvemos diversos algoritmos recursivos e, para verificar se eles funcionavam corretamente, realizamos testes manuais executando as funções com diferentes entradas e verificando seus resultados. No entanto, à medida que nossos programas se tornam mais complexos, essa abordagem manual se torna ineficiente e propensa a erros. Neste capítulo, introduziremos o conceito de testes automatizados, que nos permitirá verificar de forma sistemática e confiável se nossas funções estão operando como esperado.
 
@@ -22,7 +25,7 @@ Vamos começar com uma abordagem mais simples para criar testes automatizados us
 
 Relembrando, o problema consistia em determinar de quantas maneiras diferentes podemos subir uma escada com $n$ degraus, se podemos dar passos de 1 ou 2 degraus por vez. Nossa solução foi:
 
-```{julia}
+```{code-cell} julia
 function maneiras_subir_escada(n)
     # Casos base
     if n == 0 || n == 1
@@ -36,7 +39,7 @@ end
 
 Agora, vamos criar uma função de teste para verificar se nossa implementação está correta:
 
-```{julia}
+```{code-cell} julia
 function testa_maneiras_subir_escada()
     # Geralmente, verificamos alguns casos conhecidos ou que sabemos a resposta
     if maneiras_subir_escada(1) != 1
@@ -73,7 +76,7 @@ Este é um princípio importante para testes automatizados: **se o teste passar,
 
 Vamos fazer o mesmo para o cálculo do "Coeficiente Binomial", que também vimos no capítulo anterior:
 
-```{julia}
+```{code-cell} julia
 function coeficiente_binomial(n, k)
     if k == 0 || k == n
         return 1
@@ -112,7 +115,7 @@ Até agora, criamos funções de teste manualmente usando estruturas condicionai
 
 Vamos reescrever nossos testes usando o módulo `Test`:
 
-```{julia}
+```{code-cell} julia
 using Test
 
 @testset "Testes para maneiras_subir_escada" begin
@@ -141,7 +144,7 @@ Além disso, o módulo `Test` oferece outras macros úteis:
 
 Vamos implementar duas novas funções e seus respectivos testes: uma função para calcular a soma dos dígitos de um número e outra para verificar se um número é primo.
 
-### Soma dos Dígitos
+## Soma dos Dígitos
 
 Primeiramente, vamos criar uma função que calcula a soma dos dígitos de um número inteiro. Por exemplo, para o número 123, a soma dos dígitos seria 1 + 2 + 3 = 6.
 
@@ -154,7 +157,7 @@ Antes de implementar a função, vamos pensar nos casos de teste:
 
 Podemos implementar a função usando recursão. A ideia é "descascar" o número, extraindo um dígito de cada vez:
 
-```{julia}
+```{code-cell} julia
 function soma_digitos(n)
     if n <= 0
         return 0
@@ -171,7 +174,7 @@ end
 
 Os casos de teste discutidos acima podem ser implementados utilizando o módulo `Test`:
 
-```{julia}
+```{code-cell} julia
 @testset "Testes para soma_digitos" begin
     @test soma_digitos(0) == 0
     @test soma_digitos(1) == 1
@@ -181,7 +184,7 @@ Os casos de teste discutidos acima podem ser implementados utilizando o módulo 
 end
 ```
 
-### Verificação de Números Primos
+## Verificação de Números Primos
 
 Vamos criar uma função para verificar se um número é primo. Um número primo é aquele que é divisível apenas por 1 e por ele mesmo. Antes de escrever a função vamos pensar nos testes:
 
@@ -194,7 +197,7 @@ Vamos criar uma função para verificar se um número é primo. Um número primo
 
 Podemos implementar a função usando uma abordagem recursiva que tenta dividir o número por cada inteiro de 2 até a raiz quadrada do número:
 
-```{julia}
+```{code-cell} julia
 function verifica_divisor(n, divisor)
     # Se encontramos um divisor, o número não é primo
     if n % divisor == 0
@@ -222,7 +225,7 @@ end
 
 Os testes podem ser escritos como:
 
-```{julia}
+```{code-cell} julia
 @testset "Testes para e_primo" begin
     @test e_primo(2) == true
     @test e_primo(3) == true

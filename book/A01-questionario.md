@@ -1,4 +1,5 @@
-# Respostas para a pergunta "O que é um computador?" {#sec-questionario}
+(sec-questionario)=
+# Apêndice — Respostas para a pergunta "O que é um computador?"
 
 As respostas foram coletadas através do site <https://www.bli.do/MAC115>. Eis as respostas:
 

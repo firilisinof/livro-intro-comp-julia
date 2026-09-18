@@ -1,8 +1,11 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
 
-# Estruturas de Repetição Iterativas {#sec-while}
+(sec-while)=
+# Estruturas de Repetição Iterativas
 
 Até o momento, vimos que o computador é muito bom para fazer cálculos e repetições. Realizamos essas repetições utilizando funções recursivas, onde uma função chama a si mesma para resolver problemas menores. Agora, vamos explorar uma forma alternativa de realizar repetições: a abordagem iterativa.
 
@@ -10,8 +13,7 @@ Até o momento, vimos que o computador é muito bom para fazer cálculos e repet
 
 A estrutura `while` é uma das formas mais fundamentais de criar laços (em inglês, _loops_) em programação. Ela permite que um bloco de código seja executado repetidamente enquanto uma condição específica for verdadeira, de forma iterativa. A sintaxe básica do `while` em Julia é:
 
-```{julia}
-#| eval: false
+```julia
 while condição
     # Bloco de código a ser repetido
 end
@@ -28,7 +30,7 @@ Um aspecto importante para entender sobre o `while` é que para evitar um loop i
 
 Vamos começar com um exemplo simples: contagem regressiva.
 
-```{julia}
+```{code-cell} julia
 function contagem_regressiva(n)
     while n > 0
         println(n)
@@ -46,11 +48,11 @@ Neste exemplo, a condição `n > 0` é inicialmente verdadeira (assumindo que `n
 
 Para entender melhor a diferença entre recursão e iteração, vamos reescrever algumas funções que implementamos anteriormente usando recursão.
 
-### Contagem Regressiva
+## Contagem Regressiva
 
 Primeiro, vamos relembrar a versão recursiva da contagem regressiva:
 
-```{julia}
+```{code-cell} julia
 function contagem_recursiva(n)
     if n <= 0
         println("Fim!")
@@ -69,13 +71,13 @@ Comparando as duas implementações, podemos observar que:
 
 Ambas as versões produzem o mesmo resultado, mas com abordagens diferentes.
 
-### Soma dos Primeiros N Números
+## Soma dos Primeiros N Números
 
 Vamos implementar uma função que calcula a soma dos primeiros `n` números inteiros positivos (1 + 2 + ... + n), usando tanto recursão quanto `while`.
 
 Versão recursiva:
 
-```{julia}
+```{code-cell} julia
 function soma_recursiva(n)
     if n <= 0
         return 0
@@ -89,7 +91,7 @@ println("Soma dos primeiros 5 números (recursiva): ", soma_recursiva(5))
 
 Versão com `while`:
 
-```{julia}
+```{code-cell} julia
 function soma_while(n)
     soma = 0
     i = 1
@@ -119,7 +121,7 @@ $$\sin(x) = \sum_{n=0}^{\infty} \frac{(-1)^n \cdot x^{2n+1}}{(2n+1)!}$$
 
 Implementação usando `while`:
 
-```{julia}
+```{code-cell} julia
 function sin_taylor(x, termos = 10)
     resultado = 0.0
     termo = x
@@ -146,7 +148,7 @@ Observe como o `while` permite um controle preciso sobre o número de termos da 
 
 Vamos comparar com uma implementação recursiva:
 
-```{julia}
+```{code-cell} julia
 function sin_taylor_recursivo(x, i = 0, termos = 10, termo = x, resultado = 0.0)
     if i >= termos
         return resultado
@@ -171,14 +173,14 @@ Como podemos observar, a versão recursiva é mais complexa, pois precisamos pas
 
 Tanto a recursão quanto a iteração podem ser usadas para resolver problemas de repetição, cada uma com seus pontos fortes:
 
-### Vantagens da iteração
+**Vantagens da iteração**
 
 - Geralmente mais eficiente em termos de memória
 - Evita o risco de estouro de pilha para entradas grandes
 - Pode ser mais intuitivo para operações de repetição simples
 - Permite um controle mais detalhado sobre o processo de iteração
 
-### Vantagens da recursão
+**Vantagens da recursão**
 
 - Frequentemente mais elegante para problemas que se decompõem naturalmente
 - Pode tornar o código mais conciso e legível para certos algoritmos

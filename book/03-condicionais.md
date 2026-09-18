@@ -1,5 +1,7 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
 
 # Estruturas de Controle e Tomada de Decisões
@@ -11,32 +13,32 @@ O objetivo deste capítulo é entender como um programa pode tomar decisões e a
 Antes de estudarmos estruturas condicionais, precisamos entender os operadores de comparação e o tipo de dado que eles produzem: o tipo booleano (`Bool`). Uma variável booleana pode ter apenas dois valores possíveis: `true` (verdadeiro) ou `false` (falso).
 Vamos examinar os principais operadores de comparação em Julia:
 
-```{julia}
+```{code-cell} julia
 # Igualdade: retorna true se os valores forem iguais
 2 + 2 == 4
 ```
 
-```{julia}
+```{code-cell} julia
 # Diferença: retorna true se os valores forem diferentes
 3 != 8
 ```
 
-```{julia}
+```{code-cell} julia
 # Menor que: retorna true se o primeiro valor for menor que o segundo
 23 < 24
 ```
 
-```{julia}
+```{code-cell} julia
 # Menor ou igual: retorna true se o primeiro valor for menor ou igual ao segundo
 42 <= 44
 ```
 
-```{julia}
+```{code-cell} julia
 # Maior que: retorna true se o primeiro valor for maior que o segundo
 42 > 2
 ```
 
-```{julia}
+```{code-cell} julia
 # Maior ou igual: retorna true se o primeiro valor for maior ou igual ao segundo
 42 >= 42
 ```
@@ -45,41 +47,41 @@ Vamos examinar os principais operadores de comparação em Julia:
 
 Podemos verificar o tipo de uma expressão de comparação:
 
-```{julia}
+```{code-cell} julia
 typeof(2 == 3)
 ```
 
 Como esperado, o tipo é `Bool`, indicando um valor booleano.
 
 
-### Operadores Lógicos
+## Operadores Lógicos
 
 Além dos operadores de comparação, Julia também oferece operadores lógicos que permitem combinar ou modificar valores booleanos:
 
-```{julia}
+```{code-cell} julia
 # Operador NOT (negação): inverte o valor booleano
 !true
 ```
 
-```{julia}
+```{code-cell} julia
 !false
 ```
 
-```{julia}
+```{code-cell} julia
 # Operador AND: retorna true apenas se ambos os valores forem true
 true && true
 ```
 
-```{julia}
+```{code-cell} julia
 true && false
 ```
 
-```{julia}
+```{code-cell} julia
 # Operador OR: retorna true se pelo menos um dos valores for true
 true || false
 ```
 
-```{julia}
+```{code-cell} julia
 false || false
 ```
 
@@ -89,7 +91,7 @@ Esses operadores são essenciais para construir condições mais complexas em no
 
 Até agora, nossos programas seguiam um fluxo de execução linear, com as instruções sendo executadas na ordem em que foram escritas. Veja o exemplo:
 
-```{julia}
+```{code-cell} julia
 println("Oi")
 println("um")
 println("dois")
@@ -99,11 +101,11 @@ A ordem de impressão será "Oi", "um" e "dois", exatamente na sequência em que
 
 No entanto, muitas vezes precisamos que nosso programa tome decisões e execute diferentes blocos de código dependendo de certas condições. É aqui que entra a estrutura condicional `if`.
 
-### A Estrutura if
+## A Estrutura if
 
 A estrutura **if** permite executar um bloco de código apenas se uma condição for verdadeira:
 
-```{julia}
+```{code-cell} julia
 pandemia = true
 println("Vou sair de casa?")
 if pandemia == true
@@ -115,7 +117,7 @@ Neste exemplo, a mensagem "Só vou sair de casa se for essencial" só será impr
 
 Aqui está outro exemplo:
 
-```{julia}
+```{code-cell} julia
 denominador = 1
 if denominador != 0
    println("Sei fazer a divisão se não for por zero")
@@ -125,11 +127,11 @@ end
 
 O código dentro do bloco `if` só será executado se o denominador for diferente de zero, evitando assim um erro de divisão por zero.
 
-### Adicionando Alternativas com else
+## Adicionando Alternativas com else
 
 Frequentemente, queremos executar um bloco de código se uma condição for verdadeira e outro bloco se a condição for falsa. Para isso, usamos a estrutura **if-else**:
 
-```{julia}
+```{code-cell} julia
 pandemia = true
 println("Vou sair de casa?")
 if pandemia == true
@@ -141,11 +143,11 @@ end
 
 Se a variável `pandemia` for `true`, será impressa a mensagem "Só vou sair de casa se for essencial". Caso contrário, será impressa a mensagem "Balada liberada!!".
 
-### Múltiplas Condições com elseif
+## Múltiplas Condições com elseif
 
 E se tivermos mais de duas situações possíveis? Nesse caso, podemos usar a estrutura **if-elseif-else**:
 
-```{julia}
+```{code-cell} julia
 pandemia = true
 tenhoqueestudar = true
 println("Vou sair de casa?")

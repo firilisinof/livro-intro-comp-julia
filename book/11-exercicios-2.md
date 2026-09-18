@@ -1,5 +1,7 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
 
 # Exercícios com vetores  
@@ -19,7 +21,7 @@ vamos supor que o vetor é uma permutação, em seguida verificamos se todos os 
 1 e n estão no vetor. Isso pode ser feito com comando in, que verifica se um elemento pertence
 ao vetor.
 
-``` {julia}
+```{code-cell} julia
 function permutação(l)
     perm = true
     tamanho = length(l)
@@ -40,7 +42,7 @@ e é unico. Ou seja, verificamos se o primeiro elemento está entre 1 e n, e dep
 o vetor para ver se ele é único. Em seguida fazemos isso para os elementos seguintes.
 O código fica:
 
-``` {julia}
+```{code-cell} julia
 function permutação(l)
     perm = true
     tamanho = length(l)
@@ -67,7 +69,7 @@ Ao final, todos os elementos desse vetor auxiliar tem que valer 1. Dessa vez, ap
 os testes automatizados.
 
 
-``` {julia}
+```{code-cell} julia
 using Test
 function permutação(l)
     perm = true
@@ -109,7 +111,7 @@ end
 Já que vimos o exemplo anterior onde "contamos" o número, podemos ir um pouco além e 
 calcular o histograma de um vetor com números entre 1 e 10.
 
-``` {julia}
+```{code-cell} julia
 using Test
 
 function histograma(l)
@@ -157,8 +159,7 @@ que repetr o experimento várias vezes. Na função main() abaixo, pedimos a qua
 e o número de pessoas para executar a simulação.
 
 
-``` {julia}
-#| eval: false
+```julia
 function experimento_niver(n)
     repetiu = false
     i = 1
@@ -200,7 +201,7 @@ verificar se mais do que duas pessoas fazem aniversário na mesma data. Para iss
 contamos o número de repetições.
 
 
-``` {julia}
+```{code-cell} julia
 function experimento_niver(n)
     repetiu = 0
     i = 1

@@ -1,5 +1,7 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
 # Mais Problemas Envolvendo Recursão
 
@@ -33,7 +35,7 @@ Nossos casos base são:
 
 Vamos implementar essa solução:
 
-```{julia}
+```{code-cell} julia
 function maneiras_subir_escada(n)
     # Casos base
     if n == 0 || n == 1
@@ -47,7 +49,7 @@ end
 
 Vamos testar nosso código para diferentes números de degraus:
 
-```{julia}
+```{code-cell} julia
 for i in 1:10
     println("Escada com $i degraus: $(maneiras_subir_escada(i)) maneiras diferentes")
 end
@@ -90,7 +92,7 @@ Nossos casos base (onde a recursão para) são:
 
 Vamos implementar essa solução:
 
-```{julia}
+```{code-cell} julia
 function potenciacao(base, expoente)
     # Resolvemos o expoente negativo primeiro
     if expoente < 0
@@ -116,7 +118,7 @@ end
 
 Vamos testar nossa função:
 
-```{julia}
+```{code-cell} julia
 println(potenciacao(2, 10))  # Deve retornar 1024
 println(potenciacao(3, 5))   # Deve retornar 243
 ```
@@ -189,7 +191,7 @@ Como o erro calculado não foi exato, esta não é a resposta final, mas se torn
 
 Vamos implementar esse método recursivamente:
 
-```{julia}
+```{code-cell} julia
 function raiz_quadrada(S, xₙ = S / 2, ε = 0.0001)
     xₙ₊₁ = (xₙ + S / xₙ) / 2
     
@@ -210,7 +212,7 @@ A função recebe três parâmetros:
 
 Vamos testar nossa função:
 
-```{julia}
+```{code-cell} julia
 println(raiz_quadrada(25))  # Deve ser próximo de 5
 println(raiz_quadrada(2))   # Deve ser próximo de 1.4142...
 ```
@@ -246,7 +248,7 @@ Podemos determinar os casos base através das seguintes propriedades:
 
 Vamos implementar essa solução:
 
-```{julia}
+```{code-cell} julia
 function coeficiente_binomial(n, k)
     if k == 0 || k == n
         return 1
@@ -258,7 +260,7 @@ end
 
 Vamos testar nossa função:
 
-```{julia}
+```{code-cell} julia
 println(coeficiente_binomial(5, 2))  # Deve retornar 10
 println(coeficiente_binomial(10, 4)) # Deve retornar 210
 ```

@@ -1,5 +1,7 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
 
 # Boas práticas
@@ -15,7 +17,7 @@ e o que ela devolve.
 Isso pode ser feito usando tipos.
 
 
-```  {julia}
+```{code-cell} julia
 function fatorial(n::Int64)::Int64
     if n < 2 
         return 1
@@ -28,7 +30,7 @@ end
 Com isso, fica claro o que a função recebe e devolve, e se for enviado um tipo
 diferente do esperado, temos em erro imediato.
 
-### Boa prática 1: Use tipos
+## Boa prática 1: Use tipos
 
 ## Testes automatizados
 
@@ -36,7 +38,7 @@ Para evitar que apareçam erros, ou os populates bugs, uma forma eficaz é escre
 que verifica o funcionamento do código. Se isso for feito de forma automática, temos os
 testes automatizados.
 
-```  {julia}
+```{code-cell} julia
 using Test
 function testaFat()
   @test fatorial(3) == 6
@@ -47,7 +49,7 @@ function testaFat()
 end
 ```
 
-### Boa prática 2: Sempre que possível faça testes
+## Boa prática 2: Sempre que possível faça testes
 
 ## Escreva código para humanos, não para computadores
 
@@ -65,7 +67,7 @@ o código
 implemente. Ainda melhor se você tiver testes automatizados, para verificar que
 a melhoria não quebrou o código.
 
-### Boa prática 3: Escreva código para que outros leiam
+## Boa prática 3: Escreva código para que outros leiam
 
 
 ## Aplicando as boas práticas
@@ -80,7 +82,7 @@ usar um outro vetor de saída. Sendo que o de entrada e o de saída devem ser do
 tipo Float64. Além disso, para o vetor que fornece a quantidade de números temos
 um vetor de inteiros. De posse disso, já temos a assinatura da função.
 
-``` {julia}
+```{code-cell} julia
 function contHist(v::Vector{Float64}, el::Vector{Float64}, qtd::Vector{Int64})
 end 
 ```
@@ -88,7 +90,7 @@ De posse dessa assinatura, já podemos escrever os testes.
 
 
 
-``` {julia}
+```{code-cell} julia
 function verifica(v::Vector{Float64}, elementos::Vector{Float64}, 
      quant::Vector{Int64})
      el = Float64[]
@@ -116,7 +118,7 @@ se ele não tiver aparecido antes, temos que adicionar o número ao vetor saída
 marcar 1 ocorrência. Se já apareceu, basta incrementar o número de ocorrências.
 
 
-``` {julia}
+```{code-cell} julia
 function contHist(v::Vector{Float64}, el::Vector{Float64}, qtd::Vector{Int64})
     for a in v
         if a in el

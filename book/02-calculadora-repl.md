@@ -1,5 +1,7 @@
 ---
-engine: julia
+kernelspec:
+  name: julia-livro-1.11
+  display_name: "Julia 1.11 — livro"
 ---
 # Usando o Interpretador (REPL) como Calculadora
 
@@ -34,19 +36,19 @@ julia>
 
 Dentro da sessão podemos inserir comandos que serão lidos, avaliados e impressos na tela. Um comando só é avaliado quando teclamos **Enter**. Vamos começar com operações com números inteiros. Para somar dois números podemos digitar:
 
-```{julia}
+```{code-cell} julia
 1 + 2
 ```
 
 Para multiplicar outros dois número:
 
-```{julia}
+```{code-cell} julia
 40 * 4
 ```
 
 Como esperado, podemos utilizar as operações básicas de soma (`+`), subtração (`-`) e multiplicação (`*`), e os resultados ocorrem como previsto. No entanto, observaremos a seguir que o comportamento da divisão apresenta algumas particularidades:
 
-```{julia}
+```{code-cell} julia
 a = 84 
 b = 2
 
@@ -58,7 +60,7 @@ println(resultado)
 
 Notem que, neste exemplo, ocorreu uma conversão de tipo, pois 84 e 2 são números inteiros, enquanto o resultado é um número em ponto flutuante (float). Os pontos flutuantes são representações binárias de números reais, tema que exploraremos com mais detalhes em breve. Esta conversão fica evidente pela representação do resultado como `42.0`, em vez de simplesmente `42`. Caso deseje obter o resultado como um número inteiro, é possível utilizar o operador `div`:
 
-```{julia}
+```{code-cell} julia
 div(84,2)
 ```
 
@@ -66,58 +68,58 @@ Ou de forma equivalente usando o operador `\div` (para conseguir ver o símbolo 
 
 Além das operações básicas, é possível fazer exponenciação:
 
-```{julia}
+```{code-cell} julia
 2^31
 ```
 
 Expressões mais complexas também podem ser calculadas:
 
-```{julia}
+```{code-cell} julia
 23 + 2 * 2 + 3 * 4
 ```
 
 Sim, a precedência de operadores usual também é válida em Julia. Entretanto, lembre-se da primeira lição de programação: *Escreva para humanos, não para máquinas*. Podemos usar parênteses para separar as operações:
 
-```{julia}
+```{code-cell} julia
 23 + (2 * 2) + (3 * 4)
 ```
 
 Lembra dos pontos flutuantes? Todas as operações vistas podem ser aplicadas em pontos flutuantes:
 
-```{julia}
+```{code-cell} julia
 23.5 * 3.14
 ```
 
 Ou:
 
-```{julia}
+```{code-cell} julia
 12.5 / 2.0
 ```
 
 
 O exemplo acima demonstra mais um código escrito de forma clara para pessoas, onde ao utilizarmos `2.0` deixamos explícito que o segundo parâmetro é um número de ponto flutuante (float). É fundamental compreender que números de ponto flutuante possuem precisão **limitada**, portanto não se surpreenda ao encontrar resultados inesperados como os demonstrados abaixo:
 
-```{julia}
+```{code-cell} julia
 1.2 - 1.0
 ```
 
 Erros como esse são bastante raros, tanto que normalmente depositamos total confiança nas contas realizadas por computadores e calculadoras. No entanto, é importante reconhecer que existem limitações (veja os exemplos abaixo).
 
-```{julia}
+```{code-cell} julia
 2.6 - 0.7 - 1.9
 ```
 
-```{julia}
+```{code-cell} julia
 0.1 + 0.2
 ```
 
-```{julia}
+```{code-cell} julia
 10e15 + 1 - 10e15
 ```
 
 Esses problemas de precisão estão ligados à limitação de como os números são representados no computador. De maneira simplificada, os valores no computador são codificados em palavras, formadas por bits. Nos computadores modernos, as palavras têm 64 bits, ou 8 bytes. Logo, uma outra limitação está relacionada aos números inteiros muito grandes.
 
-```{julia}
+```{code-cell} julia
 2^63
 ```
 
@@ -125,7 +127,7 @@ No entanto, para um curso introdutório, é suficiente estar ciente dessas limit
 
 Voltando às contas. Um outro operador interessante é o `%` que calcula o resto da divisão
 
-```{julia}
+```{code-cell} julia
 4 % 3
 ```
 
@@ -133,8 +135,7 @@ Até agora vimos como trabalhar com um único valor, como se estivéssemos usand
 
 Além das operações básicas também temos as operações matemáticas (funções), como por exemplo o seno, *sine* em inglês. Para saber como uma função funciona podemos pedir ajuda ao ambiente, usando uma `?` ou o macro (funções especiais) `@doc`, e em seguida digitando o que queremos saber, como por exemplo em:
 
-```{julia}
-#| eval: false
+```julia
 @doc sin
 ```
 
@@ -159,8 +160,7 @@ Ambos os comandos `? sin` e `@doc sin` possuem a mesma saída.
 
 Notem que nem tudo que foi apresentado faz sentido no momento, mas já dá para entender o uso de uma função como `sin`. Vejamos agora a raiz quadrada:
 
-```{julia}
-#| eval: false
+```julia
 @doc sqrt
 ```
 
@@ -180,11 +180,11 @@ See also: hypot
 
 Nela vemos que é possível calcular a raiz como em:
 
-```{julia}
+```{code-cell} julia
 sqrt(4)
 ```
 
-```{julia}
+```{code-cell} julia
 sqrt(4.0)
 ```
 
@@ -215,15 +215,16 @@ some pitfalls with floating-point numbers.
 
 A função `big()` permite criar números de grande magnitude, representados pelos tipos `BigInt` ou `BigFloat`. Essa função é particularmente útil quando você precisa trabalhar com números muito grandes que ultrapassam os limites dos tipos padrão, como `Int64` ou `Int32`. Ao utilizar números do tipo `BigInt`, eliminamos problemas de estouro (overflow), conforme podemos observar abaixo:
 
-```{julia}
-big(2) ^ 1002
+```{code-cell} julia
+numero_grande = big(2) ^ 1002
+(digitos = ndigits(numero_grande), excede_int64 = numero_grande > typemax(Int64))
 ```
 
 ## Variáveis e Tipos de Dados
 
 Como já introduzido, em Julia, temos o conceito de variáveis. Variáveis servem para armazenar dados diversos, como inteiros e floats. Podemos operar nas variáveis da mesma forma que operamos nos dados que elas guardam (veja o exemplo abaixo).
 
-```{julia}
+```{code-cell} julia
 a = 7
 2 + a
 ```
@@ -232,19 +233,19 @@ Quando escrevemos `a = 7`, estamos realizando uma operação chamada **atribuiç
 
 É importante destacar que as variáveis em Julia podem receber novos valores, e o tipo da variável é determinado pela última atribuição realizada. A função `typeof` pode ser usada para identificar o tipo da variável especificada.
 
-```{julia}
+```{code-cell} julia
 a = 3
 typeof(a)
 ```
 
-```{julia}
+```{code-cell} julia
 a = a + 1
 typeof(a)
 ```
 
 A atribuição sempre acontece da direita para a esquerda: primeiro calcula-se o valor da expressão à direita, e depois esse valor é armazenado na variável à esquerda. No exemplo a seguir, a variável `b` começa com um valor de tipo inteiro. No entanto, após a operação de multiplicação, seu valor passa a ser do tipo ponto flutuante.
 
-```{julia}
+```{code-cell} julia
 b = 3
 b = b * 0.5
 typeof(b)
@@ -252,28 +253,28 @@ typeof(b)
 
 A capacidade de alterar o tipo da variável é conhecida como **tipagem dinâmica**. Esta característica apresenta diversas vantagens, como a flexibilidade de reutilizar variáveis para armazenar diferentes tipos de dados ao longo do tempo e a menor verbosidade, pois não é necessário especificar o tipo de cada variável, o que melhora a legibilidade do código. Neste contexto, podemos observar que Julia possui vários tipos primitivos, sendo os principais:
 
-```{julia}
+```{code-cell} julia
 typeof(1)
 ```
 
-```{julia}
+```{code-cell} julia
 typeof(1.1)
 ```
 
-```{julia}
+```{code-cell} julia
 typeof("Bom dia")
 ```
 
 Falando em **strings**, eles são definidos por conjuntos de caracteres entre aspas como:
 
-```{julia}
+```{code-cell} julia
 s1 = "Olha que legal"
 s2 = "Outra String"
 ```
 
 Também é possível realizar operações com strings, como **concatenação**:
 
-```{julia}
+```{code-cell} julia
 s1 = "Tenha um"
 s2 = " Bom dia"
 s3 = s1 * s2
@@ -281,14 +282,14 @@ s3 = s1 * s2
 
 Ou repetição usando o operador de potência:
 
-```{julia}
+```{code-cell} julia
 s = "Não vou mais fazer coisas que possam desagradar os meus colegas "
 s ^ 10
 ```
 
 Para evitar que se digitem muitos caracteres, por vezes podemos usar *açucares sintáticos*.
 
-```{julia}
+```{code-cell} julia
 x = 1
 x = x + 1
 x += 1  # '+= 1' equivale a '= x + 1', também funciona para os operadores *, - e /
@@ -298,11 +299,11 @@ O código acima utiliza comentários (tudo depois do `#`). Esses comentários s�
 
 Ainda sobre variáveis, há algumas regras referentes aos seus nomes: devem começar com uma letra (ou com `_`), podem conter dígitos e não podem ser palavras reservadas. Vale ressaltar que Julia, por ser uma linguagem moderna, aceita caracteres unicode e emojis nos nomes, como por exemplo o Δ (`\Delta`).
 
-```{julia}
+```{code-cell} julia
 Δ = 2
 ```
 
-```{julia}
+```{code-cell} julia
 🐱 = 5 # \:cat: <tab>
 🐶 = 3 # \:dog: <tab>
 🏠 = 20 # \:house: <tab>
@@ -314,7 +315,7 @@ Isso não adiciona nada do lado de algoritmos, mas é possível ter variáveis b
 
 Para imprimir informações no terminal, usamos as funções `print()` e o `println()`. A diferença entre elas é que a primeira não pula linha, enquanto que a segunda pula.
 
-```{julia}
+```{code-cell} julia
 print("Hello ")
 println("World!")
 println("Ola, mundo!")
@@ -322,7 +323,7 @@ println("Ola, mundo!")
 
 O comando `println()` pode receber múltiplos argumentos, que serão convertidos em strings e concatenados automaticamente:
 
-```{julia}
+```{code-cell} julia
 nome = "Maria"
 idade = 25
 println("Olá, meu nome é ", nome, " e tenho ", idade, " anos.")
@@ -330,7 +331,7 @@ println("Olá, meu nome é ", nome, " e tenho ", idade, " anos.")
 
 Para formatações mais complexas, Julia oferece **interpolação de strings**, onde podemos inserir variáveis e expressões diretamente dentro de uma string usando o cifrão `$`:
 
-```{julia}
+```{code-cell} julia
 nome = "João"
 altura = 1.75
 println("$nome tem $altura metros de altura.")
@@ -338,15 +339,15 @@ println("$nome tem $altura metros de altura.")
 
 Também podemos incluir expressões dentro de chaves após o cifrão:
 
-```{julia}
+```{code-cell} julia
 preco = 9.99
 quantidade = 3
 println("Total da compra: R\$ $(preco * quantidade)")
 ```
 
-Para formatação numérica, podemos usar a função `@sprintf` ou a macro `@printf` do módulo `Printf` (detalhes sobre módulos na @sec-files-modules):
+Para formatação numérica, podemos usar a função `@sprintf` ou a macro `@printf` do módulo `Printf` (detalhes sobre módulos na {ref}`sec-files-modules`):
 
-```{julia}
+```{code-cell} julia
 using Printf
 
 valor = 123.456
@@ -355,13 +356,14 @@ valor = 123.456
 
 Ou alternativamente:
 
-```{julia}
+```{code-cell} julia
 valor = 123.456
 s = @sprintf("Valor formatado: %.2f", valor)
 println(s)
 ```
 
-## Arquivos Externos e Módulos {#sec-files-modules}
+(sec-files-modules)=
+## Arquivos Externos e Módulos
 
 No exemplo anterior usamos a sintaxe `using Printf`. Esta é a sintaxe para importar um módulo em Julia. Os módulos são coleções organizadas de código que podemos utilizar em nossos programas. O módulo `Printf` faz parte da **biblioteca padrão** de Julia e oferece funções para formatação de tipos no estilo da linguagem C. Ao escrever `using Printf`, informamos o interpretador que queremos acessar as funções deste módulo, como `@printf` e `@sprintf`. Para descobrir quais funções estão disponíveis neste e em outros módulos, consulte a documentação oficial de Julia. A documentação específica do módulo `Printf` está disponível em <https://docs.julialang.org/en/v1/stdlib/Printf/>.
 
@@ -379,8 +381,7 @@ Além de módulos, Julia permite carregar código de arquivos externos usando o 
 
 No Windows, os caminhos de arquivo tradicionalmente usam barras invertidas (`\`). Porém, em Julia, podemos usar tanto barras normais (`/`) quanto barras invertidas. Há um detalhe importante: quando usamos barras invertidas dentro de strings em Julia, precisamos duplicá-las. Isso ocorre porque a barra invertida sozinha (`\`) é um caractere especial em strings, usado para representar caracteres como `\n` (nova linha) ou `\t` (tabulação). Para indicar que queremos uma barra invertida literal, precisamos escrever duas (`\\`). Por esse motivo, caminhos com várias pastas tornam-se mais difíceis de ler:
 
-```{julia}
-#| eval: false
+```julia
 # Caminho usando barras normais (recomendado)
 include("C:/Users/MeuUsuario/Documentos/arquivo.jl")
 
@@ -390,29 +391,25 @@ include("C:\\Users\\MeuUsuario\\Documentos\\arquivo.jl")
 
 Se o arquivo estiver no mesmo diretório que seu script ou REPL atual, basta usar o nome do arquivo:
 
-```{julia}
-#| eval: false
+```julia
 include("funcoes.jl")
 ```
 
 Para arquivos em subdiretórios do diretório atual:
 
-```{julia}
-#| eval: false
+```julia
 include("utilitarios/matematica.jl")
 ```
 
 Para arquivos no diretório pai:
 
-```{julia}
-#| eval: false
+```julia
 include("../exemplos.jl")
 ```
 
 Vamos ver um exemplo prático. Suponha que você tenha criado um arquivo chamado `funcoes.jl` na pasta `C:/Projetos/Julia/` com o seguinte conteúdo:
 
-```{julia}
-#| eval: false
+```julia
 function ola(nome)
     println("Olá ", nome)
 end
@@ -422,10 +419,9 @@ function soma(a, b)
 end
 ```
 
-Agora você pode usar essas funções (mais sobre funções no @sec-functions) no REPL ou em outro arquivo:
+Agora você pode usar essas funções (mais sobre funções no {ref}`sec-functions`) no REPL ou em outro arquivo:
 
-```{julia}
-#| eval: false
+```julia
 # No REPL ou em um arquivo na mesma pasta:
 include("funcoes.jl")
 
@@ -440,7 +436,7 @@ println(resultado)     # Imprime: 8
 
 Esta funcionalidade é especialmente útil para organizar seu código em múltiplos arquivos, permitindo que você divida programas maiores em partes menores.
 
-### O que é um arquivo `.jl`?
+## O que é um arquivo `.jl`?
 
 Um arquivo `.jl` é semelhante a um arquivo de texto `.txt`, porém com a extensão `.jl`. Embora seja possível abri-lo com um editor de texto simples como o Bloco de Notas, não é recomendado utilizá-lo para programação. Os arquivos `.jl` são arquivos de código-fonte da linguagem Julia e são geralmente editados com editores específicos para programação, como Visual Studio Code, Atom ou Sublime Text.
 
