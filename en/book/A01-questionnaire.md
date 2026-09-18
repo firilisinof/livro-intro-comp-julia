@@ -1,0 +1,25 @@
+(sec-questionario)=
+# Appendix: Answers to the question "What is a computer?"
+
+The answers were collected through the site <https://www.bli.do/MAC115>. Here are the answers:
+
+- "It's a machine that uses certain patterns to process information. It's an evolution of the theoretical Turing machine and can be considered an extension of our intelligence."
+- "Computer: a machine capable of carrying out binary processes of creation and analysis, modeled either by the device itself (AI) or by a programmer. A product of steps."
+- "A computer is a machine capable of identifying codes based on binary values using logical language."
+- "It's a technological instrument that gathers millions of pieces of data shared by people all over the world, making it possible to work in a technical way, creating new data and ways of reaching answers."
+- "A device that lives in the outlet."
+- "It's equipment that 'runs' an installed program that receives data, processes it, and outputs a result, if everything goes well…"
+- "Decoder."
+- "Its purpose is to be a tool based on algorithms and decision logic that, once programmed and set up, can enable problem solving through the collection of data and information, and then the generation of systems."
+- "A computer is an electronic device characterized by its logical processing capacity. They are built with semiconductors and can have several different parts, such as a power supply (or battery), motherboard, processor, graphics card, memory, and so on."
+- "A robot that will control humans one day."
+- "A device that does arithmetic."
+- "A computer is a device that computes, that does arithmetic, using a CPU (Central Processing Unit) to perform calculations using the binary system. 0s and 1s, which are used in logic gates made of silicon, a semiconductor that allows calculations using these two digits to be carried out."
+- "A machine."
+- "It's a thing that has tools that help carry out different tasks."
+- "It's a 2.0 phone."
+- "A computer is a machine that obeys commands."
+- "A calculator."
+- "Turing machine."
+- "A computer is, in a very simplified way, an electronic intelligence made up of a shell (hardware) that is completed by the software, built to respond to commands."
+- "The evolution of the calculator."
